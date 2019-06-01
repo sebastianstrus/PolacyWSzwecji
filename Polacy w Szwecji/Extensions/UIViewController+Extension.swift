@@ -17,6 +17,7 @@ extension UIViewController {
         playerController.showsPlaybackControls = false
         self.addChild(playerController)
         playerController.view.frame = UIScreen.main.bounds
+        playerController.view.alpha = 0.8
         playerController.videoGravity = AVLayerVideoGravity(rawValue: AVLayerVideoGravity.resizeAspectFill.rawValue)
         self.view.addSubview(playerController.view)
         player.play()

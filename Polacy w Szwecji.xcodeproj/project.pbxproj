@@ -18,6 +18,7 @@
 		7D348EA322A1E51700F40530 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348EA222A1E51700F40530 /* AppFonts.swift */; };
 		7D348EA522A1E52E00F40530 /* LuckiestGuy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */; };
 		7D348EA722A1EA3500F40530 /* SeymourOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */; };
+		7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		7D348EA222A1E51700F40530 /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
 		7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SeymourOne-Regular.ttf"; sourceTree = "<group>"; };
+		7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,20 +68,93 @@
 		7D348E8722A1DF5900F40530 /* Polacy w Szwecji */ = {
 			isa = PBXGroup;
 			children = (
+				7DCE63D222A30D6500CBC3F2 /* Model */,
+				7DCE63D322A30D7600CBC3F2 /* View */,
+				7DCE63D422A30D8100CBC3F2 /* Controller */,
 				7D348E8822A1DF5900F40530 /* AppDelegate.swift */,
-				7D348E8A22A1DF5900F40530 /* WelcomeController.swift */,
-				7D348E8F22A1DF5B00F40530 /* Assets.xcassets */,
 				7D348E9122A1DF5B00F40530 /* LaunchScreen.storyboard */,
-				7D348EA022A1E2D200F40530 /* Constants.swift */,
-				7D348E9C22A1E22B00F40530 /* polish_flag.mov */,
+				7DCE63D722A30E0200CBC3F2 /* Resources */,
+				7DCE63D622A30DCF00CBC3F2 /* Supporting_files */,
+				7DCE63D522A30DA400CBC3F2 /* Extensions */,
 				7D348E9422A1DF5B00F40530 /* Info.plist */,
-				7D348EA222A1E51700F40530 /* AppFonts.swift */,
-				7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */,
-				7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */,
+			);
+			path = "Polacy w Szwecji";
+			sourceTree = "<group>";
+		};
+		7DCE63D222A30D6500CBC3F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7DCE63D322A30D7600CBC3F2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7DCE63D422A30D8100CBC3F2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7D348E8A22A1DF5900F40530 /* WelcomeController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7DCE63D522A30DA400CBC3F2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
 				7D348E9E22A1E2B600F40530 /* UIView+Extension.swift */,
 				7D348E9A22A1E01A00F40530 /* UIViewController+Extension.swift */,
 			);
-			path = "Polacy w Szwecji";
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7DCE63D622A30DCF00CBC3F2 /* Supporting_files */ = {
+			isa = PBXGroup;
+			children = (
+				7D348EA022A1E2D200F40530 /* Constants.swift */,
+				7D348EA222A1E51700F40530 /* AppFonts.swift */,
+			);
+			path = Supporting_files;
+			sourceTree = "<group>";
+		};
+		7DCE63D722A30E0200CBC3F2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7DCE63DA22A30E4000CBC3F2 /* Images */,
+				7DCE63D922A30E1400CBC3F2 /* Fonts */,
+				7DCE63D822A30E0C00CBC3F2 /* Videos */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7DCE63D822A30E0C00CBC3F2 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				7D348E9C22A1E22B00F40530 /* polish_flag.mov */,
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
+		7DCE63D922A30E1400CBC3F2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */,
+				7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7DCE63DA22A30E4000CBC3F2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7D348E8F22A1DF5B00F40530 /* Assets.xcassets */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +236,7 @@
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
 				7D348E9F22A1E2B600F40530 /* UIView+Extension.swift in Sources */,
 				7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */,
+				7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
