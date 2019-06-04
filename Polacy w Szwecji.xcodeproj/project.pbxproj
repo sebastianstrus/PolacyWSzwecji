@@ -19,6 +19,12 @@
 		7D348EA522A1E52E00F40530 /* LuckiestGuy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */; };
 		7D348EA722A1EA3500F40530 /* SeymourOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */; };
 		7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */; };
+		7DCE64F722A5D06F00CBC3F2 /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */; };
+		7DCE64F822A5D06F00CBC3F2 /* ThirdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */; };
+		7DCE64F922A5D06F00CBC3F2 /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F522A5D06F00CBC3F2 /* SecondController.swift */; };
+		7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */; };
+		7DCE64FC22A5D07E00CBC3F2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64FB22A5D07E00CBC3F2 /* MenuView.swift */; };
+		7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +42,12 @@
 		7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
 		7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SeymourOne-Regular.ttf"; sourceTree = "<group>"; };
 		7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
+		7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdController.swift; sourceTree = "<group>"; };
+		7DCE64F522A5D06F00CBC3F2 /* SecondController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
+		7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
+		7DCE64FB22A5D07E00CBC3F2 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,10 +80,10 @@
 		7D348E8722A1DF5900F40530 /* Polacy w Szwecji */ = {
 			isa = PBXGroup;
 			children = (
+				7D348E8822A1DF5900F40530 /* AppDelegate.swift */,
 				7DCE63D222A30D6500CBC3F2 /* Model */,
 				7DCE63D322A30D7600CBC3F2 /* View */,
 				7DCE63D422A30D8100CBC3F2 /* Controller */,
-				7D348E8822A1DF5900F40530 /* AppDelegate.swift */,
 				7D348E9122A1DF5B00F40530 /* LaunchScreen.storyboard */,
 				7DCE63D722A30E0200CBC3F2 /* Resources */,
 				7DCE63D622A30DCF00CBC3F2 /* Supporting_files */,
@@ -92,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */,
+				7DCE64FB22A5D07E00CBC3F2 /* MenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -100,6 +113,10 @@
 			isa = PBXGroup;
 			children = (
 				7D348E8A22A1DF5900F40530 /* WelcomeController.swift */,
+				7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */,
+				7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */,
+				7DCE64F522A5D06F00CBC3F2 /* SecondController.swift */,
+				7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -109,6 +126,7 @@
 			children = (
 				7D348E9E22A1E2B600F40530 /* UIView+Extension.swift */,
 				7D348E9A22A1E01A00F40530 /* UIViewController+Extension.swift */,
+				7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -231,12 +249,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D348EA322A1E51700F40530 /* AppFonts.swift in Sources */,
+				7DCE64FC22A5D07E00CBC3F2 /* MenuView.swift in Sources */,
 				7D348EA122A1E2D200F40530 /* Constants.swift in Sources */,
 				7D348E9B22A1E01A00F40530 /* UIViewController+Extension.swift in Sources */,
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
+				7DCE64F822A5D06F00CBC3F2 /* ThirdController.swift in Sources */,
+				7DCE64F722A5D06F00CBC3F2 /* FirstController.swift in Sources */,
 				7D348E9F22A1E2B600F40530 /* UIView+Extension.swift in Sources */,
 				7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */,
 				7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */,
+				7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */,
+				7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */,
+				7DCE64F922A5D06F00CBC3F2 /* SecondController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

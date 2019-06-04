@@ -143,6 +143,7 @@ class WelcomeView: UIView {
     
     @objc func handleSignup() {
         print("register")
+        submitAction?()
         
     }
 }

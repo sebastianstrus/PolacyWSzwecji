@@ -30,13 +30,17 @@ class WelcomeController: UIViewController {
     private func setupView() {
         welcomeView = WelcomeView()
         view.addSubview(welcomeView)
+        welcomeView.submitAction = handleSubmit
         welcomeView.pinToEdges(view: view)
+    }
+    
+    func handleSubmit() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
 
 extension UIButton {
-    
     
     public convenience init(title: String, color: UIColor?, filled: Bool) {
         self.init()
