@@ -8,8 +8,11 @@
 
 import UIKit
 
+
 class ContainerController: UIViewController {
 
+    final let kNumberButtons: Int = 7
+    
     var menuView: MenuView!
     
     var menuShowing = false
@@ -23,129 +26,81 @@ class ContainerController: UIViewController {
     var button5XAnchor: NSLayoutConstraint?
     var button6XAnchor: NSLayoutConstraint?
     
-
-    
-    var canSetButtons = false
-    
     lazy var firstController: FirstController = {
         let viewController = FirstController()
-        viewController.view.backgroundColor = UIColor.darkGray
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
+    
     lazy var secondController: SecondController = {
         let viewController = SecondController()
-        viewController.view.backgroundColor = UIColor.gray
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
+    
     lazy var thirdController: ThirdController = {
         let viewController = ThirdController()
-        viewController.view.backgroundColor = UIColor.lightGray
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
+    
     lazy var fourthController: FirstController = {
         let viewController = FirstController()
-        viewController.view.backgroundColor = UIColor.orange
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
+    
     lazy var fifthController: SecondController = {
         let viewController = SecondController()
-        viewController.view.backgroundColor = UIColor.purple
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
+    
     lazy var sixthController: ThirdController = {
         let viewController = ThirdController()
-        viewController.view.backgroundColor = UIColor.blue
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
+    
     lazy var seventhController: FirstController = {
         let viewController = FirstController()
-        viewController.view.backgroundColor = UIColor.green
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
     
     
-    let button0: UIButton = {
-        let button = UIButton(type: .custom)
-        button.layer.borderWidth = 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 34)
-        button.layer.borderColor = UIColor.red.cgColor
-        button.setTitle("1", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        button.tag = 0
+    let button0: SideButtonView = {
+        let button = SideButtonView(imageName: "home_icon", title: "Forum")
         return button
     }()
-    let button1: UIButton = {
-        let button = UIButton(type: .custom)
-        button.layer.borderWidth = 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 34)
-        button.layer.borderColor = UIColor.red.cgColor
-        button.setTitle("2", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        button.tag = 1
+    
+    let button1: SideButtonView = {
+        let button = SideButtonView(imageName: "work_icon", title: "Praca")
         return button
     }()
-    let button2: UIButton = {
-        let button = UIButton(type: .custom)
-        button.layer.borderWidth = 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 34)
-        button.layer.borderColor = UIColor.red.cgColor
-        button.setTitle("3", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        button.tag = 2
+    
+    let button2: SideButtonView = {
+        let button = SideButtonView(imageName: "apartments_icon", title: "Lokale")
         return button
     }()
-    let button3: UIButton = {
-        let button = UIButton(type: .custom)
-        button.layer.borderWidth = 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 34)
-        button.layer.borderColor = UIColor.red.cgColor
-        button.setTitle("4", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        button.tag = 3
+    
+    let button3: SideButtonView = {
+        let button = SideButtonView(imageName: "alkohol_icon", title: "Zakupy")
         return button
     }()
-    let button4: UIButton = {
-        let button = UIButton(type: .custom)
-        button.layer.borderWidth = 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 34)
-        button.layer.borderColor = UIColor.red.cgColor
-        button.setTitle("5", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        button.tag = 4
+    
+    let button4: SideButtonView = {
+        let button = SideButtonView(imageName: "vademekum_icon", title: "Vademecum")
         return button
     }()
-    let button5: UIButton = {
-        let button = UIButton(type: .custom)
-        button.layer.borderWidth = 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 34)
-        button.layer.borderColor = UIColor.red.cgColor
-        button.setTitle("6", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        button.tag = 5
+    
+    let button5: SideButtonView = {
+        let button = SideButtonView(imageName: "vademekum_icon", title: "Forum")
         return button
     }()
-    let button6: UIButton = {
-        let button = UIButton(type: .custom)
-        button.layer.borderWidth = 2
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 34)
-        button.layer.borderColor = UIColor.red.cgColor
-        button.setTitle("7", for: .normal)
-        button.setTitleColor(UIColor.red, for: .normal)
-        button.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        button.tag = 6
+    
+    let button6: SideButtonView = {
+        let button = SideButtonView(imageName: "vademekum_icon", title: "Forum")
         return button
     }()
     
@@ -153,6 +108,14 @@ class ContainerController: UIViewController {
     @objc func buttonPressed(sender: UIButton) {
         updateView(tag: sender.tag)
         toggleMenu()
+    }
+
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        print("handleTap")
+        guard let getTag = sender.view?.tag else { return }
+        print("getTag: \(getTag)")
+        updateView(tag: getTag)
     }
     
     override func viewDidLoad() {
@@ -193,14 +156,28 @@ class ContainerController: UIViewController {
     }
     
     func setupView() {
+        
+        let buttons = [button0, button1, button2, button3, button4, button5, button6]
+
+        var anchors = [button0XAnchor, button1XAnchor, button2XAnchor, button3XAnchor, button4XAnchor, button5XAnchor, button6XAnchor]
+        
+        var i = 0
+        for button in buttons {
+            button.tag = i
+            i += 1
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+            button.addGestureRecognizer(tap)
+        }
+        
+        
         updateView(tag: 0)
-        // add static container for side menu, initially hidden
+        
+        // add static transparent container for side menu, initially hidden
         view.addSubview(containerSideMenu)
         containerSideMenu.topAnchor.constraint(equalTo: view.safeTopAnchor).isActive = true
         containerSideMenu.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         containerSideMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -160).isActive = true
         containerSideMenu.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80).isActive = true
-        
         
         //add wave view shape
         containerSideMenu.addSubview(waveContainerView)
@@ -216,32 +193,20 @@ class ContainerController: UIViewController {
         waveImageView.setAnchor(top: waveContainerView.topAnchor, leading: waveContainerView.leadingAnchor, bottom: waveContainerView.bottomAnchor, trailing: waveContainerView.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         
         
-        
-        
-        containerSideMenu.addSubview(button0)
-        containerSideMenu.addSubview(button1)
-        containerSideMenu.addSubview(button2)
-        containerSideMenu.addSubview(button3)
-        containerSideMenu.addSubview(button4)
-        containerSideMenu.addSubview(button5)
-        containerSideMenu.addSubview(button6)
-        
-        button0.setAnchor(width: 50, height: 60)
-        button1.setAnchor(width: 50, height: 60)
-        button2.setAnchor(width: 50, height: 60)
-        button3.setAnchor(width: 50, height: 60)
-        button4.setAnchor(width: 50, height: 60)
-        button5.setAnchor(width: 50, height: 60)
-        button6.setAnchor(width: 50, height: 60)
-        
-        button0XAnchor = button0.centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-        button1XAnchor = button1.centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-        button2XAnchor = button2.centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-        button3XAnchor = button3.centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-        button4XAnchor = button4.centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-        button5XAnchor = button5.centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-        button6XAnchor = button6.centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-        
+        for button in buttons {
+            containerSideMenu.addSubview(button)
+            button.setAnchor(width: 50, height: 60)
+        }
+
+        for i in 1...kNumberButtons {
+            print("i: \(i)")
+            anchors[i-1] = buttons[i-1].centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
+            print("activate \(i-1)")
+            //anchors[i-1]?.isActive = true
+        }
+
+
+ 
         button0XAnchor?.isActive = true
         button1XAnchor?.isActive = true
         button2XAnchor?.isActive = true
@@ -249,8 +214,6 @@ class ContainerController: UIViewController {
         button4XAnchor?.isActive = true
         button5XAnchor?.isActive = true
         button6XAnchor?.isActive = true
-        
-        
         
         
         button0.transform = CGAffineTransform(rotationAngle: self.radians(10))
@@ -264,39 +227,49 @@ class ContainerController: UIViewController {
         
 
         // if not logged in:
-        let welcomeController = WelcomeController()
-        present(welcomeController, animated: true)
+//        let welcomeController = WelcomeController()
+//        present(welcomeController, animated: true)
         
         
+        containerSideMenu.setNeedsLayout()
+        containerSideMenu.layoutIfNeeded()
         
-    }
-    
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        print("viewWillLayoutSubviews")
         let containerHeight = containerSideMenu.frame.height
         print("containerHeight: \(containerHeight)")
+        let heightByNumberItems = containerHeight/8//kNumberButtons
         
-        let heightBy5 = containerHeight/7
-        print("heightBy5: \(heightBy5)")
-        
-        
-        if (heightBy5 != 0.0) {
-            button0.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 0.5).isActive = true
-            button1.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 1.5).isActive = true
-            button2.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 2.5).isActive = true
-            button3.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 3.5).isActive = true
-            button4.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 4.5).isActive = true
-            button5.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 5.5).isActive = true
-            button6.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 6.5).isActive = true
+        var offset: CGFloat = 0.5
+        for button in buttons {
+            button.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightByNumberItems * offset).isActive = true
+            offset += 1
         }
+
         
-        
-        
+//        let welcomeController = WelcomeController()
+//        present(welcomeController, animated: true)
     }
     
-    
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//
+//        print("viewWillLayoutSubviews")
+//        let containerHeight = containerSideMenu.frame.height
+//        print("containerHeight: \(containerHeight)")
+//        let heightBy5 = containerHeight/kNumberButtons
+//
+//        print("heightBy5: \(heightBy5)")
+//
+//        if (heightBy5 != 0.0) {
+//            button0.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 0.5).isActive = true
+//            button1.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 1.5).isActive = true
+//            button2.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 2.5).isActive = true
+//            button3.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 3.5).isActive = true
+//            button4.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 4.5).isActive = true
+//            button5.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 5.5).isActive = true
+//            button6.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 6.5).isActive = true
+//        }
+//    }
+
     
     func updateView(tag: Int) {
         firstController.view.isHidden = !(tag == 0)
@@ -313,6 +286,7 @@ class ContainerController: UIViewController {
 
     @objc func toggleMenu() {
         if menuShowing {
+            // hide menu
             UIView.animate(withDuration: 0.7) {
                 self.sideMenuXAnchor?.isActive = false
                 self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -80)
@@ -369,19 +343,14 @@ class ContainerController: UIViewController {
                 self.button6.transform = CGAffineTransform(rotationAngle: self.radians(10))
                 self.view.layoutIfNeeded()
             })
-            
-
-            
-            
         } else {
+            // show menu
             UIView.animate(withDuration: 0.7) {
                 self.sideMenuXAnchor?.isActive = false
                 self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 80)
                 self.sideMenuXAnchor?.isActive = true
                 self.view.layoutIfNeeded()
             }
-            
-            
             UIView.animate(withDuration: 0.35, delay: 0.08, options: [], animations: {
                 self.button0XAnchor?.isActive = false
                 self.button0XAnchor = self.button0.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 80)
@@ -434,7 +403,6 @@ class ContainerController: UIViewController {
         }
         menuShowing = !menuShowing
     }
-    
     
     
     private func addViewControllerAsChildViewController(childViewController: UIViewController) {

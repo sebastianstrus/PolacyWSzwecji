@@ -94,12 +94,7 @@ class WelcomeView: UIView {
     
     func setup() {
         addSubview(topContainer)
-        
-        //topContainer.setAnchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: CGFloat(Device.SCREEN_HEIGHT / 2))
-        
-        
-        
-        
+
         // create container for topImageView
         topContainer.translatesAutoresizingMaskIntoConstraints = false
         topContainer.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -109,15 +104,7 @@ class WelcomeView: UIView {
         topContainer.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true// better than rightAn
         topContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    
         
         addSubview(bottomContainer)
         bottomContainer.setAnchor(top: topContainer.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
@@ -144,6 +131,5 @@ class WelcomeView: UIView {
     @objc func handleSignup() {
         print("register")
         submitAction?()
-        
     }
 }

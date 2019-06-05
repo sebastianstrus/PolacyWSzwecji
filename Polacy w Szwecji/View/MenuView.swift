@@ -20,7 +20,6 @@ class MenuView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func setupView() {
         backgroundColor = UIColor.orange
     }

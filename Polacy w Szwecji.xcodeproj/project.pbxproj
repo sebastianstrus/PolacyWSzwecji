@@ -18,6 +18,7 @@
 		7D348EA322A1E51700F40530 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348EA222A1E51700F40530 /* AppFonts.swift */; };
 		7D348EA522A1E52E00F40530 /* LuckiestGuy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */; };
 		7D348EA722A1EA3500F40530 /* SeymourOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */; };
+		7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54666E22A85F140001DDBF /* SideButtonView.swift */; };
 		7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */; };
 		7DCE64F722A5D06F00CBC3F2 /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */; };
 		7DCE64F822A5D06F00CBC3F2 /* ThirdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */; };
@@ -41,6 +42,7 @@
 		7D348EA222A1E51700F40530 /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
 		7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SeymourOne-Regular.ttf"; sourceTree = "<group>"; };
+		7D54666E22A85F140001DDBF /* SideButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideButtonView.swift; sourceTree = "<group>"; };
 		7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
 		7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */,
 				7DCE64FB22A5D07E00CBC3F2 /* MenuView.swift */,
+				7D54666E22A85F140001DDBF /* SideButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				7D348EA122A1E2D200F40530 /* Constants.swift in Sources */,
 				7D348E9B22A1E01A00F40530 /* UIViewController+Extension.swift in Sources */,
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
+				7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */,
 				7DCE64F822A5D06F00CBC3F2 /* ThirdController.swift in Sources */,
 				7DCE64F722A5D06F00CBC3F2 /* FirstController.swift in Sources */,
 				7D348E9F22A1E2B600F40530 /* UIView+Extension.swift in Sources */,
