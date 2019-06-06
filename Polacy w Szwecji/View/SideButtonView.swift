@@ -31,7 +31,6 @@ class SideButtonView: UIView {
     
     func setupView() {
         addSubview(imageView)
-        imageView.tintColor = UIColor.red
         imageView.image = UIImage(named: imageName)!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         imageView.setAnchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, paddingTop: 0, paddingLeft: 3, paddingBottom: 0, paddingRight: 3, width: 0, height: 44)
         
@@ -43,14 +42,14 @@ class SideButtonView: UIView {
     
     let imageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "menu_icon"))
+        iv.tintColor = UIColor.lightRed
         return iv
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "test"
-        label.textColor = UIColor.red
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = UIColor.lightRed
+        label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .center
         return label
     }()

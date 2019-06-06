@@ -57,10 +57,13 @@ class ContainerController: UIViewController {
         return viewController
     }()
     
-    lazy var sixthController: ThirdController = {
-        let viewController = ThirdController()
-        self.addViewControllerAsChildViewController(childViewController: viewController)
-        return viewController
+    lazy var sixthController: PDFViewController = {
+        let pdfViewController = PDFViewController()
+        
+        
+        
+        self.addViewControllerAsChildViewController(childViewController: pdfViewController)
+        return pdfViewController
     }()
     
     lazy var seventhController: FirstController = {
@@ -71,32 +74,32 @@ class ContainerController: UIViewController {
     
     
     let button0: SideButtonView = {
-        let button = SideButtonView(imageName: "home_icon", title: "Forum")
+        let button = SideButtonView(imageName: "home_icon", title: "Home")//Forum
         return button
     }()
     
     let button1: SideButtonView = {
-        let button = SideButtonView(imageName: "work_icon", title: "Praca")
+        let button = SideButtonView(imageName: "work_icon", title: "Work")//Praca
         return button
     }()
     
     let button2: SideButtonView = {
-        let button = SideButtonView(imageName: "apartments_icon", title: "Lokale")
+        let button = SideButtonView(imageName: "apartments_icon", title: "Flats")//Lokale
         return button
     }()
     
     let button3: SideButtonView = {
-        let button = SideButtonView(imageName: "alkohol_icon", title: "Zakupy")
+        let button = SideButtonView(imageName: "alkohol_icon", title: "Shopping")//Zakupy
         return button
     }()
     
     let button4: SideButtonView = {
-        let button = SideButtonView(imageName: "vademekum_icon", title: "Vademecum")
+        let button = SideButtonView(imageName: "chat_icon", title: "Chat") //Czat
         return button
     }()
     
     let button5: SideButtonView = {
-        let button = SideButtonView(imageName: "vademekum_icon", title: "Forum")
+        let button = SideButtonView(imageName: "info_icon", title: "Info") //Życie
         return button
     }()
     
@@ -117,6 +120,7 @@ class ContainerController: UIViewController {
         guard let getTag = sender.view?.tag else { return }
         print("getTag: \(getTag)")
         updateView(tag: getTag)
+        hideMenu()
     }
     
     override func viewDidLoad() {
@@ -134,15 +138,15 @@ class ContainerController: UIViewController {
         return view
     }()
     
-    lazy var waveContainerView: UIView = {
+    var waveContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var waveImageView: UIImageView = {
+    var waveImageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "wave_shape")?.withRenderingMode(.alwaysTemplate))
-        iv.tintColor = UIColor.white
+        iv.tintColor = UIColor.lightWhite
         iv.contentMode = UIView.ContentMode.scaleToFill
         return iv
     }()
@@ -151,7 +155,7 @@ class ContainerController: UIViewController {
     
     func setupNavBar() {
         //navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor(r: 235, g: 40, b: 40)
+        navigationController?.navigationBar.barTintColor = UIColor.lightRed
         let menuBtn = UIBarButtonItem(image: UIImage(named: "menu_icon")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(toggleMenu))
         menuBtn.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = menuBtn
@@ -186,6 +190,8 @@ class ContainerController: UIViewController {
         waveContainerView.topAnchor.constraint(equalTo: containerSideMenu.topAnchor).isActive = true
         waveContainerView.bottomAnchor.constraint(equalTo: containerSideMenu.bottomAnchor).isActive = true
         waveContainerView.widthAnchor.constraint(equalToConstant: 2*kWidth).isActive = true
+        
+        
         sideMenuXAnchor = waveContainerView.centerXAnchor.constraint(equalTo: view.leadingAnchor, constant: -kWidth)
         sideMenuXAnchor?.isActive = true
         
@@ -287,127 +293,129 @@ class ContainerController: UIViewController {
     
 
     @objc func toggleMenu() {
-        if menuShowing {
-            // hide menu
-            UIView.animate(withDuration: 0.7, animations: {
-                self.sideMenuXAnchor?.isActive = false
-                self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -self.kWidth)
-                self.sideMenuXAnchor?.isActive = true
-                self.view.layoutIfNeeded()
-            }) { (_) in
-                self.containerSideMenu.isHidden = true
-                
-            }
-            
-            UIView.animate(withDuration: 0.35, delay: 0.29, options: [], animations: {
-                self.button0XAnchor?.isActive = false
-                self.button0XAnchor = self.button0.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
-                self.button0XAnchor?.isActive = true
-                self.button0.transform = CGAffineTransform(rotationAngle: self.radians(10))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.28, options: [], animations: {
-                self.button1XAnchor?.isActive = false
-                self.button1XAnchor = self.button1.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
-                self.button1XAnchor?.isActive = true
-                self.button1.transform = CGAffineTransform(rotationAngle: self.radians(15))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.25, options: [], animations: {
-                self.button2XAnchor?.isActive = false
-                self.button2XAnchor = self.button2.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
-                self.button2XAnchor?.isActive = true
-                self.button2.transform = CGAffineTransform(rotationAngle: self.radians(17))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.20, options: [], animations: {
-                self.button3XAnchor?.isActive = false
-                self.button3XAnchor = self.button3.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
-                self.button3XAnchor?.isActive = true
-                self.button3.transform = CGAffineTransform(rotationAngle: self.radians(19))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.16, options: [], animations: {
-                self.button4XAnchor?.isActive = false
-                self.button4XAnchor = self.button4.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
-                self.button4XAnchor?.isActive = true
-                self.button4.transform = CGAffineTransform(rotationAngle: self.radians(17))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.1, options: [], animations: {
-                self.button5XAnchor?.isActive = false
-                self.button5XAnchor = self.button5.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
-                self.button5XAnchor?.isActive = true
-                self.button5.transform = CGAffineTransform(rotationAngle: self.radians(15))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.075, options: [], animations: {
-                self.button6XAnchor?.isActive = false
-                self.button6XAnchor = self.button6.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
-                self.button6XAnchor?.isActive = true
-                self.button6.transform = CGAffineTransform(rotationAngle: self.radians(10))
-                self.view.layoutIfNeeded()
-            })
-        } else {
-            // show menu
-            containerSideMenu.isHidden = false
-            UIView.animate(withDuration: 0.7) {
-                self.sideMenuXAnchor?.isActive = false
-                self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 80)
-                self.sideMenuXAnchor?.isActive = true
-                self.view.layoutIfNeeded()
-            }
-            UIView.animate(withDuration: 0.35, delay: 0.05, options: [], animations: {
-                self.button0XAnchor?.isActive = false
-                self.button0XAnchor = self.button0.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 80)
-                self.button0XAnchor?.isActive = true
-                self.button0.transform = CGAffineTransform(rotationAngle: self.radians(0))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.06, options: [], animations: {
-                self.button1XAnchor?.isActive = false
-                self.button1XAnchor = self.button1.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 80)
-                self.button1XAnchor?.isActive = true
-                self.button1.transform = CGAffineTransform(rotationAngle: self.radians(0))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.1, options: [], animations: {
-                self.button2XAnchor?.isActive = false
-                self.button2XAnchor = self.button2.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 80)
-                self.button2XAnchor?.isActive = true
-                self.button2.transform = CGAffineTransform(rotationAngle: self.radians(0))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.15, options: [], animations: {
-                self.button3XAnchor?.isActive = false
-                self.button3XAnchor = self.button3.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 80)
-                self.button3XAnchor?.isActive = true
-                self.button3.transform = CGAffineTransform(rotationAngle: self.radians(0))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.20, options: [], animations: {
-                self.button4XAnchor?.isActive = false
-                self.button4XAnchor = self.button4.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 80)
-                self.button4XAnchor?.isActive = true
-                self.button4.transform = CGAffineTransform(rotationAngle: self.radians(0))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.24, options: [], animations: {
-                self.button5XAnchor?.isActive = false
-                self.button5XAnchor = self.button5.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 80)
-                self.button5XAnchor?.isActive = true
-                self.button5.transform = CGAffineTransform(rotationAngle: self.radians(0))
-                self.view.layoutIfNeeded()
-            })
-            UIView.animate(withDuration: 0.35, delay: 0.27, options: [], animations: {
-                self.button6XAnchor?.isActive = false
-                self.button6XAnchor = self.button6.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 80)
-                self.button6XAnchor?.isActive = true
-                self.button6.transform = CGAffineTransform(rotationAngle: self.radians(0))
-                self.view.layoutIfNeeded()
-            })
-        }
+        menuShowing ? hideMenu() : showMenu()
         menuShowing = !menuShowing
+    }
+    
+    func showMenu() {
+        containerSideMenu.isHidden = false
+        UIView.animate(withDuration: 0.7) {
+            self.sideMenuXAnchor?.isActive = false
+            self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: self.kWidth)
+            self.sideMenuXAnchor?.isActive = true
+            self.view.layoutIfNeeded()
+        }
+        UIView.animate(withDuration: 0.35, delay: 0.05, options: [], animations: {
+            self.button0XAnchor?.isActive = false
+            self.button0XAnchor = self.button0.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: self.kWidth)
+            self.button0XAnchor?.isActive = true
+            self.button0.transform = CGAffineTransform(rotationAngle: self.radians(0))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.06, options: [], animations: {
+            self.button1XAnchor?.isActive = false
+            self.button1XAnchor = self.button1.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: self.kWidth)
+            self.button1XAnchor?.isActive = true
+            self.button1.transform = CGAffineTransform(rotationAngle: self.radians(0))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.1, options: [], animations: {
+            self.button2XAnchor?.isActive = false
+            self.button2XAnchor = self.button2.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: self.kWidth)
+            self.button2XAnchor?.isActive = true
+            self.button2.transform = CGAffineTransform(rotationAngle: self.radians(0))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.15, options: [], animations: {
+            self.button3XAnchor?.isActive = false
+            self.button3XAnchor = self.button3.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: self.kWidth)
+            self.button3XAnchor?.isActive = true
+            self.button3.transform = CGAffineTransform(rotationAngle: self.radians(0))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.20, options: [], animations: {
+            self.button4XAnchor?.isActive = false
+            self.button4XAnchor = self.button4.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: self.kWidth)
+            self.button4XAnchor?.isActive = true
+            self.button4.transform = CGAffineTransform(rotationAngle: self.radians(0))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.24, options: [], animations: {
+            self.button5XAnchor?.isActive = false
+            self.button5XAnchor = self.button5.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: self.kWidth)
+            self.button5XAnchor?.isActive = true
+            self.button5.transform = CGAffineTransform(rotationAngle: self.radians(0))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.27, options: [], animations: {
+            self.button6XAnchor?.isActive = false
+            self.button6XAnchor = self.button6.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: self.kWidth)
+            self.button6XAnchor?.isActive = true
+            self.button6.transform = CGAffineTransform(rotationAngle: self.radians(0))
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func hideMenu() {
+        UIView.animate(withDuration: 0.7, animations: {
+            self.sideMenuXAnchor?.isActive = false
+            self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -self.kWidth)
+            self.sideMenuXAnchor?.isActive = true
+            self.view.layoutIfNeeded()
+        }) { (_) in
+            self.containerSideMenu.isHidden = true
+            
+        }
+        
+        UIView.animate(withDuration: 0.35, delay: 0.29, options: [], animations: {
+            self.button0XAnchor?.isActive = false
+            self.button0XAnchor = self.button0.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
+            self.button0XAnchor?.isActive = true
+            self.button0.transform = CGAffineTransform(rotationAngle: self.radians(10))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.28, options: [], animations: {
+            self.button1XAnchor?.isActive = false
+            self.button1XAnchor = self.button1.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
+            self.button1XAnchor?.isActive = true
+            self.button1.transform = CGAffineTransform(rotationAngle: self.radians(15))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.25, options: [], animations: {
+            self.button2XAnchor?.isActive = false
+            self.button2XAnchor = self.button2.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
+            self.button2XAnchor?.isActive = true
+            self.button2.transform = CGAffineTransform(rotationAngle: self.radians(17))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.20, options: [], animations: {
+            self.button3XAnchor?.isActive = false
+            self.button3XAnchor = self.button3.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
+            self.button3XAnchor?.isActive = true
+            self.button3.transform = CGAffineTransform(rotationAngle: self.radians(19))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.16, options: [], animations: {
+            self.button4XAnchor?.isActive = false
+            self.button4XAnchor = self.button4.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
+            self.button4XAnchor?.isActive = true
+            self.button4.transform = CGAffineTransform(rotationAngle: self.radians(17))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.1, options: [], animations: {
+            self.button5XAnchor?.isActive = false
+            self.button5XAnchor = self.button5.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
+            self.button5XAnchor?.isActive = true
+            self.button5.transform = CGAffineTransform(rotationAngle: self.radians(15))
+            self.view.layoutIfNeeded()
+        })
+        UIView.animate(withDuration: 0.35, delay: 0.075, options: [], animations: {
+            self.button6XAnchor?.isActive = false
+            self.button6XAnchor = self.button6.centerXAnchor.constraint(equalTo: self.containerSideMenu.centerXAnchor, constant: 0)
+            self.button6XAnchor?.isActive = true
+            self.button6.transform = CGAffineTransform(rotationAngle: self.radians(10))
+            self.view.layoutIfNeeded()
+        })
     }
     
     
