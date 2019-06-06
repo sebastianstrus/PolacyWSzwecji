@@ -128,6 +128,7 @@ class ContainerController: UIViewController {
     
     var containerSideMenu: UIView = {
         let view = UIView()
+        view.isHidden = true
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         return view
@@ -288,11 +289,14 @@ class ContainerController: UIViewController {
     @objc func toggleMenu() {
         if menuShowing {
             // hide menu
-            UIView.animate(withDuration: 0.7) {
+            UIView.animate(withDuration: 0.7, animations: {
                 self.sideMenuXAnchor?.isActive = false
                 self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -self.kWidth)
                 self.sideMenuXAnchor?.isActive = true
                 self.view.layoutIfNeeded()
+            }) { (_) in
+                self.containerSideMenu.isHidden = true
+                
             }
             
             UIView.animate(withDuration: 0.35, delay: 0.29, options: [], animations: {
@@ -346,6 +350,7 @@ class ContainerController: UIViewController {
             })
         } else {
             // show menu
+            containerSideMenu.isHidden = false
             UIView.animate(withDuration: 0.7) {
                 self.sideMenuXAnchor?.isActive = false
                 self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 80)
