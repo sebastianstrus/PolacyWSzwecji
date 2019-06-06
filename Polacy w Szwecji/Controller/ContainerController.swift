@@ -234,9 +234,7 @@ class ContainerController: UIViewController {
         
         
 
-        // if not logged in:
-//        let welcomeController = WelcomeController()
-//        present(welcomeController, animated: true)
+
         
         
         containerSideMenu.setNeedsLayout()
@@ -251,6 +249,10 @@ class ContainerController: UIViewController {
             button.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightByNumberItems * offset).isActive = true
             offset += 1
         }
+        
+        // if not logged in:
+        let welcomeController = WelcomeController()
+        present(welcomeController, animated: true)
 
         
 //        let welcomeController = WelcomeController()
