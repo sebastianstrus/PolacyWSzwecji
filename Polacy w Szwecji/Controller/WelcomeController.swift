@@ -51,8 +51,10 @@ class WelcomeController: UIViewController {
         backgroundIV.pinToEdges(view: view)
         playVideo(title: "polish_flag")
         setupView()
+        
+        
     }
-    
+
     @objc func appEnteredBackgound() {
         //playerController.player = nil
         if let tracks = player.currentItem?.tracks {

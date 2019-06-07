@@ -11,10 +11,9 @@ import UIKit
 
 class ContainerController: UIViewController {
 
-    final let kNumberButtons: Int = 7
+    final let kNumberButtons: CGFloat = 7
     final let kWidth: CGFloat = 80
     
-    var menuView: MenuView!
     
     var menuShowing = false
     var sideMenuXAnchor: NSLayoutConstraint?
@@ -26,6 +25,7 @@ class ContainerController: UIViewController {
     var button4XAnchor: NSLayoutConstraint?
     var button5XAnchor: NSLayoutConstraint?
     var button6XAnchor: NSLayoutConstraint?
+    var buttons: [SideButtonView]!
     
     lazy var firstController: FirstController = {
         let viewController = FirstController()
@@ -125,7 +125,8 @@ class ContainerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let welcomeController = WelcomeController()
+        present(welcomeController, animated: true)
         setupNavBar()
         setupView()
     }
@@ -163,7 +164,7 @@ class ContainerController: UIViewController {
     
     func setupView() {
         
-        let buttons = [button0, button1, button2, button3, button4, button5, button6]
+        buttons = [button0, button1, button2, button3, button4, button5, button6]
 
         var anchors = [button0XAnchor, button1XAnchor, button2XAnchor, button3XAnchor, button4XAnchor, button5XAnchor, button6XAnchor]
         
@@ -200,30 +201,16 @@ class ContainerController: UIViewController {
         waveContainerView.addSubview(waveImageView)
         waveImageView.setAnchor(top: waveContainerView.topAnchor, leading: waveContainerView.leadingAnchor, bottom: waveContainerView.bottomAnchor, trailing: waveContainerView.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
         
-        
+        var j = 0
         for button in buttons {
             containerSideMenu.addSubview(button)
             button.setAnchor(width: 50, height: 60)
+            anchors[j] = buttons[j].centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
+            j += 1
         }
-
-        for i in 1...kNumberButtons {
-            print("i: \(i)")
-            anchors[i-1] = buttons[i-1].centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-            print("activate \(i-1)")
-            //anchors[i-1]?.isActive = true
-        }
-
 
  
-        button0XAnchor?.isActive = true
-        button1XAnchor?.isActive = true
-        button2XAnchor?.isActive = true
-        button3XAnchor?.isActive = true
-        button4XAnchor?.isActive = true
-        button5XAnchor?.isActive = true
-        button6XAnchor?.isActive = true
-        
-        
+
         button0.transform = CGAffineTransform(rotationAngle: self.radians(10))
         button1.transform = CGAffineTransform(rotationAngle: self.radians(15))
         button2.transform = CGAffineTransform(rotationAngle: self.radians(17))
@@ -232,54 +219,23 @@ class ContainerController: UIViewController {
         button5.transform = CGAffineTransform(rotationAngle: self.radians(15))
         button6.transform = CGAffineTransform(rotationAngle: self.radians(10))
         
-        
 
-
-        
-        
-        containerSideMenu.setNeedsLayout()
+        //containerSideMenu.setNeedsLayout()
         containerSideMenu.layoutIfNeeded()
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
         let containerHeight = containerSideMenu.frame.height
-        print("containerHeight: \(containerHeight)")
-        let heightByNumberItems = containerHeight/8//kNumberButtons
+        let heightByNumberItems = containerHeight/kNumberButtons
         
         var offset: CGFloat = 0.5
         for button in buttons {
             button.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightByNumberItems * offset).isActive = true
             offset += 1
         }
-        
-        // if not logged in:
-        let welcomeController = WelcomeController()
-        present(welcomeController, animated: true)
-
-        
-//        let welcomeController = WelcomeController()
-//        present(welcomeController, animated: true)
     }
-    
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//
-//        print("viewWillLayoutSubviews")
-//        let containerHeight = containerSideMenu.frame.height
-//        print("containerHeight: \(containerHeight)")
-//        let heightBy5 = containerHeight/kNumberButtons
-//
-//        print("heightBy5: \(heightBy5)")
-//
-//        if (heightBy5 != 0.0) {
-//            button0.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 0.5).isActive = true
-//            button1.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 1.5).isActive = true
-//            button2.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 2.5).isActive = true
-//            button3.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 3.5).isActive = true
-//            button4.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 4.5).isActive = true
-//            button5.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 5.5).isActive = true
-//            button6.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightBy5 * 6.5).isActive = true
-//        }
-//    }
-
     
     func updateView(tag: Int) {
         firstController.view.isHidden = !(tag == 0)
@@ -290,8 +246,6 @@ class ContainerController: UIViewController {
         sixthController.view.isHidden = !(tag == 5)
         seventhController.view.isHidden = !(tag == 6)
     }
-    
-    
     
 
     @objc func toggleMenu() {

@@ -25,7 +25,6 @@
 		7DCE64F822A5D06F00CBC3F2 /* ThirdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */; };
 		7DCE64F922A5D06F00CBC3F2 /* SecondController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F522A5D06F00CBC3F2 /* SecondController.swift */; };
 		7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */; };
-		7DCE64FC22A5D07E00CBC3F2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64FB22A5D07E00CBC3F2 /* MenuView.swift */; };
 		7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +49,6 @@
 		7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdController.swift; sourceTree = "<group>"; };
 		7DCE64F522A5D06F00CBC3F2 /* SecondController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
 		7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
-		7DCE64FB22A5D07E00CBC3F2 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */,
-				7DCE64FB22A5D07E00CBC3F2 /* MenuView.swift */,
 				7D54666E22A85F140001DDBF /* SideButtonView.swift */,
 			);
 			path = View;
@@ -262,7 +259,6 @@
 			files = (
 				7D54667122A92A8F0001DDBF /* PDFViewController.swift in Sources */,
 				7D348EA322A1E51700F40530 /* AppFonts.swift in Sources */,
-				7DCE64FC22A5D07E00CBC3F2 /* MenuView.swift in Sources */,
 				7D348EA122A1E2D200F40530 /* Constants.swift in Sources */,
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
 				7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */,
