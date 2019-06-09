@@ -57,20 +57,18 @@ class ContainerController: UIViewController {
         return viewController
     }()
     
-    lazy var sixthController: PDFViewController = {
-        let pdfViewController = PDFViewController()
-        
-        
-        
-        self.addViewControllerAsChildViewController(childViewController: pdfViewController)
-        return pdfViewController
-    }()
-    
-    lazy var seventhController: FirstController = {
+    lazy var sixthController: FirstController = {
         let viewController = FirstController()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
+    
+    lazy var seventhController: PDFViewController = {
+        let pdfViewController = PDFViewController()
+        self.addViewControllerAsChildViewController(childViewController: pdfViewController)
+        return pdfViewController
+    }()
+
     
     
     let buttonView0: SideButtonView = {
@@ -99,12 +97,12 @@ class ContainerController: UIViewController {
     }()
     
     let buttonView5: SideButtonView = {
-        let button = SideButtonView(imageName: "info_icon", title: "Info") //Życie
+        let button = SideButtonView(imageName: "friends_icon", title: "Friends") //Znajomi
         return button
     }()
     
     let buttonView6: SideButtonView = {
-        let button = SideButtonView(imageName: "vademekum_icon", title: "Forum")
+        let button = SideButtonView(imageName: "info_icon", title: "Info") //Życie
         return button
     }()
     
@@ -113,9 +111,13 @@ class ContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //temp
+        let signUpController = SignUpController()
+        present(signUpController, animated: true)
+        
         // if not logged in
-        let welcomeController = WelcomeController()
-        present(welcomeController, animated: true)
+//        let welcomeController = WelcomeController()
+//        present(welcomeController, animated: true)
         
         setupNavBar()
         setupView()
@@ -145,7 +147,7 @@ class ContainerController: UIViewController {
     
     
     func setupNavBar() {
-        //navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.lightRed
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         let menuBtn = UIBarButtonItem(image: UIImage(named: "menu_icon")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(toggleMenu))
@@ -164,11 +166,11 @@ class ContainerController: UIViewController {
         var anchors = [button0XAnchor, button1XAnchor, button2XAnchor, button3XAnchor, button4XAnchor, button5XAnchor, button6XAnchor]
         
         var i = 0
-        for button in buttonViews {
-            button.tag = i
+        buttonViews.forEach { (btnView) in
+            btnView.tag = i
             i += 1
             let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-            button.addGestureRecognizer(tap)
+            btnView.addGestureRecognizer(tap)
         }
         
         
@@ -204,8 +206,6 @@ class ContainerController: UIViewController {
             j += 1
         }
 
- 
-
         buttonView0.transform = CGAffineTransform(rotationAngle: self.radians(10))
         buttonView1.transform = CGAffineTransform(rotationAngle: self.radians(15))
         buttonView2.transform = CGAffineTransform(rotationAngle: self.radians(17))
@@ -214,13 +214,7 @@ class ContainerController: UIViewController {
         buttonView5.transform = CGAffineTransform(rotationAngle: self.radians(15))
         buttonView6.transform = CGAffineTransform(rotationAngle: self.radians(10))
         
-
-        //containerSideMenu.setNeedsLayout()
-        //lkjiolcontainerSideMenu.layoutIfNeeded()
-        
     }
-    
-
 
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         guard let getTag = sender.view?.tag else { return }
@@ -229,10 +223,8 @@ class ContainerController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        print("viewDidLayoutSubviews")
         let containerHeight = containerSideMenu.frame.height
         let heightByNumberItems = containerHeight/kNumberButtons
-        print("containerHeight: \(containerHeight)")
         var offset: CGFloat = 0.5
         for button in buttonViews {
             button.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightByNumberItems * offset).isActive = true

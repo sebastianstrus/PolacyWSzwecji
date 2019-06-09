@@ -20,6 +20,12 @@
 		7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54666E22A85F140001DDBF /* SideButtonView.swift */; };
 		7D54667122A92A8F0001DDBF /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54667022A92A8F0001DDBF /* PDFViewController.swift */; };
 		7D54667322A92C270001DDBF /* vademecum2012.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7D54667222A92C270001DDBF /* vademecum2012.pdf */; };
+		7D61602622AD69D500D968AD /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602522AD69D500D968AD /* SignUpController.swift */; };
+		7D61602822AD69E800D968AD /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602722AD69E800D968AD /* SignInController.swift */; };
+		7D61602A22AD6A1E00D968AD /* RestorePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602922AD6A1E00D968AD /* RestorePasswordController.swift */; };
+		7D61602C22AD6A3A00D968AD /* RestorePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602B22AD6A3A00D968AD /* RestorePasswordView.swift */; };
+		7D61602E22AD6A4900D968AD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602D22AD6A4900D968AD /* SignUpView.swift */; };
+		7D61603022AD6A6000D968AD /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602F22AD6A6000D968AD /* SignInView.swift */; };
 		7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */; };
 		7DCE64F722A5D06F00CBC3F2 /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */; };
 		7DCE64F822A5D06F00CBC3F2 /* ThirdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */; };
@@ -44,6 +50,12 @@
 		7D54666E22A85F140001DDBF /* SideButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideButtonView.swift; sourceTree = "<group>"; };
 		7D54667022A92A8F0001DDBF /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		7D54667222A92C270001DDBF /* vademecum2012.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = vademecum2012.pdf; sourceTree = "<group>"; };
+		7D61602522AD69D500D968AD /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		7D61602722AD69E800D968AD /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		7D61602922AD6A1E00D968AD /* RestorePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordController.swift; sourceTree = "<group>"; };
+		7D61602B22AD6A3A00D968AD /* RestorePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestorePasswordView.swift; sourceTree = "<group>"; };
+		7D61602D22AD6A4900D968AD /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		7D61602F22AD6A6000D968AD /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
 		7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdController.swift; sourceTree = "<group>"; };
@@ -83,16 +95,64 @@
 			isa = PBXGroup;
 			children = (
 				7D348E8822A1DF5900F40530 /* AppDelegate.swift */,
+				7D348E9422A1DF5B00F40530 /* Info.plist */,
 				7DCE63D222A30D6500CBC3F2 /* Model */,
 				7DCE63D322A30D7600CBC3F2 /* View */,
 				7DCE63D422A30D8100CBC3F2 /* Controller */,
-				7D348E9122A1DF5B00F40530 /* LaunchScreen.storyboard */,
 				7DCE63D722A30E0200CBC3F2 /* Resources */,
 				7DCE63D622A30DCF00CBC3F2 /* Supporting_files */,
 				7DCE63D522A30DA400CBC3F2 /* Extensions */,
-				7D348E9422A1DF5B00F40530 /* Info.plist */,
 			);
 			path = "Polacy w Szwecji";
+			sourceTree = "<group>";
+		};
+		7D61603122AD6B4800D968AD /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7D348E8A22A1DF5900F40530 /* WelcomeController.swift */,
+				7D61602522AD69D500D968AD /* SignUpController.swift */,
+				7D61602722AD69E800D968AD /* SignInController.swift */,
+				7D61602922AD6A1E00D968AD /* RestorePasswordController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		7D61603222AD6B5200D968AD /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */,
+				7D61602D22AD6A4900D968AD /* SignUpView.swift */,
+				7D61602F22AD6A6000D968AD /* SignInView.swift */,
+				7D61602B22AD6A3A00D968AD /* RestorePasswordView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		7D61603322AD6B8200D968AD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */,
+				7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */,
+				7DCE64F522A5D06F00CBC3F2 /* SecondController.swift */,
+				7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */,
+				7D54667022A92A8F0001DDBF /* PDFViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7D61603422AD6C0A00D968AD /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7D61603522AD6C9C00D968AD /* PDFs */ = {
+			isa = PBXGroup;
+			children = (
+				7D54667222A92C270001DDBF /* vademecum2012.pdf */,
+			);
+			path = PDFs;
 			sourceTree = "<group>";
 		};
 		7DCE63D222A30D6500CBC3F2 /* Model */ = {
@@ -105,7 +165,9 @@
 		7DCE63D322A30D7600CBC3F2 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */,
+				7D348E9122A1DF5B00F40530 /* LaunchScreen.storyboard */,
+				7D61603222AD6B5200D968AD /* Auth */,
+				7D61603422AD6C0A00D968AD /* Main */,
 				7D54666E22A85F140001DDBF /* SideButtonView.swift */,
 			);
 			path = View;
@@ -114,12 +176,8 @@
 		7DCE63D422A30D8100CBC3F2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7D348E8A22A1DF5900F40530 /* WelcomeController.swift */,
-				7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */,
-				7DCE64F322A5D06F00CBC3F2 /* FirstController.swift */,
-				7DCE64F522A5D06F00CBC3F2 /* SecondController.swift */,
-				7DCE64F422A5D06F00CBC3F2 /* ThirdController.swift */,
-				7D54667022A92A8F0001DDBF /* PDFViewController.swift */,
+				7D61603122AD6B4800D968AD /* Auth */,
+				7D61603322AD6B8200D968AD /* Main */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -137,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				7D348EA022A1E2D200F40530 /* Constants.swift */,
-				7D348EA222A1E51700F40530 /* AppFonts.swift */,
 			);
 			path = Supporting_files;
 			sourceTree = "<group>";
@@ -145,7 +202,7 @@
 		7DCE63D722A30E0200CBC3F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7D54667222A92C270001DDBF /* vademecum2012.pdf */,
+				7D61603522AD6C9C00D968AD /* PDFs */,
 				7DCE63DA22A30E4000CBC3F2 /* Images */,
 				7DCE63D922A30E1400CBC3F2 /* Fonts */,
 				7DCE63D822A30E0C00CBC3F2 /* Videos */,
@@ -164,6 +221,7 @@
 		7DCE63D922A30E1400CBC3F2 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				7D348EA222A1E51700F40530 /* AppFonts.swift */,
 				7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */,
 				7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */,
 			);
@@ -259,16 +317,22 @@
 			files = (
 				7D54667122A92A8F0001DDBF /* PDFViewController.swift in Sources */,
 				7D348EA322A1E51700F40530 /* AppFonts.swift in Sources */,
+				7D61602C22AD6A3A00D968AD /* RestorePasswordView.swift in Sources */,
 				7D348EA122A1E2D200F40530 /* Constants.swift in Sources */,
+				7D61602822AD69E800D968AD /* SignInController.swift in Sources */,
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
+				7D61602A22AD6A1E00D968AD /* RestorePasswordController.swift in Sources */,
 				7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */,
 				7DCE64F822A5D06F00CBC3F2 /* ThirdController.swift in Sources */,
 				7DCE64F722A5D06F00CBC3F2 /* FirstController.swift in Sources */,
+				7D61603022AD6A6000D968AD /* SignInView.swift in Sources */,
 				7D348E9F22A1E2B600F40530 /* UIView+Extension.swift in Sources */,
 				7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */,
+				7D61602622AD69D500D968AD /* SignUpController.swift in Sources */,
 				7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */,
 				7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */,
 				7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */,
+				7D61602E22AD6A4900D968AD /* SignUpView.swift in Sources */,
 				7DCE64F922A5D06F00CBC3F2 /* SecondController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,15 +1,15 @@
 //
-//  ViewController.swift
+//  SignInController.swift
 //  Polacy w Szwecji
 //
-//  Created by Sebastian Strus on 2019-06-01.
+//  Created by Sebastian Strus on 2019-06-09.
 //  Copyright © 2019 Sebastian Strus. All rights reserved.
 //
 
 import UIKit
 import AVKit
 
-class WelcomeController: UIViewController {
+class SignInController: UIViewController {
 
     var player: AVPlayer!
     var playerController: AVPlayerViewController!
@@ -34,7 +34,7 @@ class WelcomeController: UIViewController {
         }
     }
     
-    fileprivate var welcomeView: WelcomeView!
+    fileprivate var signInView: SignInView!
     
     let backgroundIV: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "sweden"))
@@ -44,17 +44,17 @@ class WelcomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        handleKeyboard()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(appEnteredBackgound), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appEnteredForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         view.addSubview(backgroundIV)
         backgroundIV.pinToEdges(view: view)
         playVideo(title: "polish_flag")
         setupView()
-        
-        
     }
-
+    
     @objc func appEnteredBackgound() {
         //playerController.player = nil
         if let tracks = player.currentItem?.tracks {
@@ -78,29 +78,41 @@ class WelcomeController: UIViewController {
     }
     
     private func setupView() {
-        welcomeView = WelcomeView()
-        view.addSubview(welcomeView)
-        welcomeView.submitAction = handleSubmit
-        welcomeView.pinToEdges(view: view)
+        signInView = SignInView()
+        view.addSubview(signInView)
+        signInView.pinToEdges(view: view)
+        signInView.signInAction = handleSignIn
+        signInView.signUpAction = handleSignUp
+        signInView.forgotPasswordAction = handleForgotPassword
     }
     
-    func handleSubmit() {
-        dismiss(animated: true, completion: nil)
+    private func handleSignIn() {
     }
-}
+    
+    private  func handleSignUp() {
+    }
+    
+    private func handleForgotPassword() {
+    }
+    
+    // MARK: - Private functions
+    private func handleKeyboard() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    @objc fileprivate func keyboardWillShow(_ notification: Notification) {
+        signInView.handleKeyboardUp()
+    }
+    
+    @objc fileprivate func keyboardWillHide(notification: NSNotification) {
+        signInView.handleKeyboardDown()
+    }
 
-
-extension UIButton {
-    
-    public convenience init(title: String, color: UIColor?, filled: Bool) {
-        self.init()
-        let attributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: title, attributes: [NSAttributedString.Key.font: AppFonts.BTN_FONT!, .foregroundColor: UIColor.white]))
-        self.setAttributedTitle(attributedString, for: .normal)
-        self.layer.cornerRadius = Device.IS_IPHONE ? 30 : 60
-        self.layer.borderWidth = 2
-        self.layer.borderColor = color?.cgColor
-        self.backgroundColor = filled ? color : .clear
-        self.setAnchor(width: 0, height: Device.IS_IPHONE ? 60 : 120)
-    }
-    
 }

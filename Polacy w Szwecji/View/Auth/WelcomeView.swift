@@ -10,8 +10,9 @@ import UIKit
 
 class WelcomeView: UIView {
     
-    var cancelAction: (() -> Void)?
-    var submitAction: (() -> Void)?
+    var fbAction: (() -> Void)?
+    var googleAction: (() -> Void)?
+    var creteAccountAction: (() -> Void)?
     
     var yCenterAnchor: NSLayoutConstraint!
     var yUpAnchor: NSLayoutConstraint!
@@ -70,7 +71,7 @@ class WelcomeView: UIView {
         button.clipsToBounds = true
         button.backgroundColor = UIColor.blueFB
         button.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
-        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleFB), for: .touchUpInside)
         return button
     }()
     
@@ -86,7 +87,7 @@ class WelcomeView: UIView {
         button.clipsToBounds = true
         button.backgroundColor = UIColor.redGoogle//.red
         button.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
-        button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleGoogle), for: .touchUpInside)
         return button
     }()
     
@@ -109,7 +110,7 @@ class WelcomeView: UIView {
         button.backgroundColor = UIColor.black
 
         button.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
-        button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleCreateAccount), for: .touchUpInside)
         return button
     }()
     
@@ -158,15 +159,18 @@ class WelcomeView: UIView {
                                    height: Device.IS_IPHONE ?  280 : 560)
         buttonsStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         buttonsStackView.topAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        //buttonsStackView.centerYAnchor.constraint(equalTo: bottomContainer.centerYAnchor).isActive = true
     }
     
-    @objc func handleLogin() {
-        print("login")
+    @objc func handleFB() {
+        fbAction?()
     }
     
-    @objc func handleSignup() {
-        print("register")
-        submitAction?()
+    @objc func handleGoogle() {
+        googleAction?()
     }
+    
+    @objc func handleCreateAccount() {
+        creteAccountAction?()
+    }
+
 }

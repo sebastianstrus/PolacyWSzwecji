@@ -53,7 +53,4 @@ class SideButtonView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
-    
-
 }
