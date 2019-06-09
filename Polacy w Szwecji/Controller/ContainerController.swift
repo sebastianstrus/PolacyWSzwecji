@@ -112,8 +112,11 @@ class ContainerController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // if not logged in
         let welcomeController = WelcomeController()
         present(welcomeController, animated: true)
+        
         setupNavBar()
         setupView()
     }
@@ -148,6 +151,10 @@ class ContainerController: UIViewController {
         let menuBtn = UIBarButtonItem(image: UIImage(named: "menu_icon")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(toggleMenu))
         menuBtn.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = menuBtn
+        
+        let joinBtn = UIBarButtonItem(title: "Join", style: .plain, target: self, action: #selector(handleJoin))
+        joinBtn.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = joinBtn
     }
     
     func setupView() {
@@ -209,7 +216,7 @@ class ContainerController: UIViewController {
         
 
         //containerSideMenu.setNeedsLayout()
-        containerSideMenu.layoutIfNeeded()
+        //lkjiolcontainerSideMenu.layoutIfNeeded()
         
     }
     
@@ -222,10 +229,10 @@ class ContainerController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        
+        print("viewDidLayoutSubviews")
         let containerHeight = containerSideMenu.frame.height
         let heightByNumberItems = containerHeight/kNumberButtons
-        
+        print("containerHeight: \(containerHeight)")
         var offset: CGFloat = 0.5
         for button in buttonViews {
             button.centerYAnchor.constraint(equalTo: containerSideMenu.topAnchor, constant: heightByNumberItems * offset).isActive = true
@@ -249,6 +256,13 @@ class ContainerController: UIViewController {
         menuShowing ? hideMenu() : showMenu()
         menuShowing = !menuShowing
     }
+    
+    @objc func handleJoin() {
+        let welcomeController = WelcomeController()
+        present(welcomeController, animated: true)
+    }
+    
+    
     
     func showMenu() {
         containerSideMenu.isHidden = false

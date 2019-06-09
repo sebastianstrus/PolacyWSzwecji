@@ -14,7 +14,7 @@ extension UIView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
-        stackView.spacing = Device.IS_IPHONE ? 10 : 20
+        stackView.spacing = Device.IS_IPHONE ? 8 : 16
         return stackView
     }
     
@@ -121,6 +121,12 @@ extension UIView {
                   paddingLeft: 0,
                   paddingBottom: 0,
                   paddingRight: 0)
+    }
+    
+    func addSubviews(_ views:[UIView]) {
+        views.forEach { (view) in
+            self.addSubview(view)
+        }
     }
 }
 

@@ -16,4 +16,8 @@ extension UIColor {
     
     class var lightRed: UIColor { return UIColor(r: 245, g: 30, b: 30)}
     class var lightWhite: UIColor { return UIColor(r: 240, g: 240, b: 240)}
+    class var blueFB: UIColor { return UIColor(r: 72, g: 98, b: 168)}
+    class var redGoogle: UIColor { return UIColor(r: 220, g: 90, b: 64)}
+    
+
 }

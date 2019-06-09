@@ -10,7 +10,6 @@ import UIKit
 
 struct AppFonts {
     static let TITLE_FONT = UIFont(name: "LuckiestGuy-Regular", size: Device.IS_IPHONE ? 60 : 120)
-
-    static let BTN_FONT = UIFont(name: "SeymourOne", size: Device.IS_IPHONE ? 14 : 28)
+    static let BTN_FONT = UIFont(name: "SeymourOne", size: Device.IS_IPHONE ? 12 : 24)
 
 }
