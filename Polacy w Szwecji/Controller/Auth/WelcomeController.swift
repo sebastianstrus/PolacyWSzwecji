@@ -85,12 +85,16 @@ class WelcomeController: UIViewController {
     }
     
     private func handleFB() {
+        dismiss(animated: false)
     }
     
     private func handleGoogle() {
+        dismiss(animated: true)
     }
     
     private func handleCreateAccount() {
+        let signUpController = SignUpController()
+        navigationController?.pushViewController(signUpController, animated: false)
     }
 }
 

@@ -87,7 +87,14 @@ class RestorePasswordController: UIViewController {
     }
     
     func handleCancel() {
-        dismiss(animated: true)
+        
+        UIView.transition(with: view, duration: 0.5, options: .transitionCurlDown, animations: {
+            
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+        
+      
+        //navigationController?.popViewController(animated: false)
     }
     
     // MARK: - Private functions

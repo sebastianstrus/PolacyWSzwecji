@@ -81,22 +81,29 @@ class SignUpController: UIViewController {
         signUpView = SignUpView()
         view.addSubview(signUpView)
         signUpView.pinToEdges(view: view)
-        signUpView.cancelAction = handleCancle
+        signUpView.cancelAction = handleCancel
         signUpView.signInAction = handleSignIn
         signUpView.signUpAction = handleSignUp
-        signUpView.forgotPasswordAction = handleForgotPassword
     }
-    private func handleCancle() {
-        dismiss(animated: true)
+    
+    private func handleCancel() {
+        navigationController?.popViewController(animated: false)
     }
     
     private func handleSignIn() {
+        let signInController = SignInController()
+        navigationController?.pushViewController(signInController, animated: false)
     }
     
     private func handleSignUp() {
-    }
-    
-    private func handleForgotPassword() {
+        print("signUpToFirebase")
+        
+        let containerController = ContainerController()
+        let navController = UINavigationController(rootViewController: containerController)
+        
+        //navController.navigationBar.isHidden = true
+        //navigationController?.pushViewController(containerController, animated: true)
+        present(navController, animated: false)
     }
     
     // MARK: - Private functions

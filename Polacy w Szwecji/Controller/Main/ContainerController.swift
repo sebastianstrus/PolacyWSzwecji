@@ -112,8 +112,8 @@ class ContainerController: UIViewController {
         super.viewDidLoad()
         
         //temp
-        let signUpController = WelcomeController()
-        present(signUpController, animated: true)
+        //let signUpController = RestorePasswordController()
+        //present(signUpController, animated: true)
         
         // if not logged in
 //        let welcomeController = WelcomeController()
@@ -251,7 +251,9 @@ class ContainerController: UIViewController {
     
     @objc func handleJoin() {
         let welcomeController = WelcomeController()
-        present(welcomeController, animated: true)
+        let nav = UINavigationController(rootViewController: welcomeController)
+        nav.isNavigationBarHidden = true
+        present(nav, animated: true)
     }
     
     

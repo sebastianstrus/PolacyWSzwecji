@@ -82,17 +82,22 @@ class SignInController: UIViewController {
         view.addSubview(signInView)
         signInView.pinToEdges(view: view)
         signInView.signInAction = handleSignIn
-        signInView.signUpAction = handleSignUp
+        signInView.dismissAction = handleSignUp
         signInView.forgotPasswordAction = handleForgotPassword
     }
     
     private func handleSignIn() {
+        print("signInToFB")
     }
     
     private  func handleSignUp() {
+        print("handleSignUp")
+        navigationController?.popViewController(animated: false)
     }
     
     private func handleForgotPassword() {
+        let restorePasswordController = RestorePasswordController()
+        navigationController?.pushViewController(restorePasswordController, animated: false)
     }
     
     // MARK: - Private functions

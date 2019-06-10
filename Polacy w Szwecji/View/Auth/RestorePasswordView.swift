@@ -17,14 +17,16 @@ class RestorePasswordView: UIView {
     
     let xButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "x_icon"), for: .normal)
-        button.addTarget(self, action: #selector(handleClose), for: .touchUpInside)
+        button.tintColor = UIColor.white
+        button.setImage(UIImage(named: "x_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         return button
     }()
     
     let emailTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email address"
+        tf.keyboardType = .emailAddress
         tf.textColor = UIColor.darkGray
         tf.borderStyle = UITextField.BorderStyle.roundedRect
         tf.backgroundColor = UIColor.white.withAlphaComponent(0.9)
@@ -83,7 +85,7 @@ class RestorePasswordView: UIView {
         resetBtn.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
-    @objc private func handleClose() {
+    @objc private func handleCancel() {
         cancelAction?()
     }
     

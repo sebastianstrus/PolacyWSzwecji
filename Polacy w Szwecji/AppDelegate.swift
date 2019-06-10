@@ -19,8 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //create main window without storyboard
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+        
+        
+        
         let menuController = ContainerController()
+        
+        
+        let welcomeController = WelcomeController()
+        
         let navController = UINavigationController(rootViewController: menuController)
+        //navController.navigationBar.isHidden = true
         window?.rootViewController = navController
         
         return true

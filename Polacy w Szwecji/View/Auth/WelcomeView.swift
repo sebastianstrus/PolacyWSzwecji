@@ -155,7 +155,7 @@ class WelcomeView: UIView {
         
         let buttonsStackView = createStackView(views: [fbBtn, googleBtn, orLabel, createAccountBtn, termsLabel])
         addSubview(buttonsStackView)
-        buttonsStackView.setAnchor(width: Device.IS_IPHONE ?  260 : 520,
+        buttonsStackView.setAnchor(width: Device.IS_IPHONE ?  280 : 560,
                                    height: Device.IS_IPHONE ?  232 : 464)
         buttonsStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         buttonsStackView.topAnchor.constraint(equalTo: centerYAnchor).isActive = true

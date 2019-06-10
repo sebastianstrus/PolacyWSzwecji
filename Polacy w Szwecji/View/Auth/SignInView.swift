@@ -11,24 +11,26 @@ import UIKit
 class SignInView: UIView {
 
     var signInAction: (() -> Void)?
-    var signUpAction: (() -> Void)?
+    var dismissAction: (() -> Void)?
     var forgotPasswordAction: (() -> Void)?
     
     private var yCenterAnchor: NSLayoutConstraint!
     private var yUpAnchor: NSLayoutConstraint!
     
-    let signInLabel: UILabel = {
+
+    /*let signInLabel: UILabel = {
         let label = UILabel()
         label.text = "Sign in"
         label.textColor = UIColor.black
         label.font = UIFont.init(name: "Didot-Bold", size: 28)
         label.textAlignment = .center
         return label
-    }()
+    }()*/
     
     let emailTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email address"
+        tf.keyboardType = .emailAddress
         tf.textColor = UIColor.darkGray
         tf.borderStyle = UITextField.BorderStyle.roundedRect
         tf.backgroundColor = UIColor.white.withAlphaComponent(0.9)
@@ -58,10 +60,11 @@ class SignInView: UIView {
     
     let signUpBtn: UIButton = {
         let button = UIButton()
-        let attributedText = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: Device.IS_IPHONE ?  16 : 32), NSAttributedString.Key.foregroundColor: UIColor.white])
-        let attributedSubText = NSMutableAttributedString(string: "Sign up", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: Device.IS_IPHONE ?  18 : 36), NSAttributedString.Key.foregroundColor: UIColor.black])
+        let attributedText = NSMutableAttributedString(string: "Don't have an account? ", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: Device.IS_IPHONE ?  16 : 32), NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.85)])
+        let attributedSubText = NSMutableAttributedString(string: "Sign up", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: Device.IS_IPHONE ?  18 : 36), NSAttributedString.Key.foregroundColor: UIColor.white])
         attributedText.append(attributedSubText)
         button.setAttributedTitle(attributedText, for: .normal)
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         return button
     }()
     
@@ -86,9 +89,10 @@ class SignInView: UIView {
     
     // MARK: - Private methods
     private func setup() {
+        
         let containerView = UIView()
         addSubview(containerView)
-        containerView.setAnchor(width: Device.IS_IPHONE ? 260 : 520,
+        containerView.setAnchor(width: Device.IS_IPHONE ? 280 : 560,
                                 height: Device.IS_IPHONE ? 184 : 368)
         containerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
@@ -105,7 +109,7 @@ class SignInView: UIView {
                           paddingLeft: 0,
                           paddingBottom: 0,
                           paddingRight: 0,
-                          width: Device.IS_IPHONE ?  260 : 520,
+                          width: Device.IS_IPHONE ?  280 : 560,
                           height: Device.IS_IPHONE ? 40 : 80)
         emailTF.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
@@ -118,7 +122,7 @@ class SignInView: UIView {
                              paddingLeft: 0,
                              paddingBottom: 0,
                              paddingRight: 0,
-                             width: Device.IS_IPHONE ?  260 : 520,
+                             width: Device.IS_IPHONE ?  280 : 560,
                              height: Device.IS_IPHONE ? 40 : 80)
         passwordTF.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
@@ -131,7 +135,7 @@ class SignInView: UIView {
                             paddingLeft: 0,
                             paddingBottom: 0,
                             paddingRight: 0,
-                            width: Device.IS_IPHONE ?  260 : 520,
+                            width: Device.IS_IPHONE ?  280 : 560,
                             height: Device.IS_IPHONE ? 40 : 80)
         signInBtn.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
@@ -144,7 +148,7 @@ class SignInView: UIView {
                             paddingLeft: 0,
                             paddingBottom: 0,
                             paddingRight: 0,
-                            width: Device.IS_IPHONE ?  260 : 520,
+                            width: Device.IS_IPHONE ?  280 : 560,
                             height: Device.IS_IPHONE ? 40 : 80)
         signUpBtn.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
@@ -161,12 +165,14 @@ class SignInView: UIView {
                             height: 40)
     }
     
+    
+    
     @objc func handleSignIn() {
         signInAction?()
     }
     
     @objc func handleSignUp() {
-        signUpAction?()
+        dismissAction?()
     }
     
     @objc func handleForgotPassword() {
