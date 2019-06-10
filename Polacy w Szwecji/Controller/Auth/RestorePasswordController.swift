@@ -88,11 +88,13 @@ class RestorePasswordController: UIViewController {
     
     func handleCancel() {
         
-        UIView.transition(with: view, duration: 0.5, options: .transitionCurlDown, animations: {
-            
-            self.navigationController?.popToRootViewController(animated: true)
-        })
-        
+
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.fade
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        _ = self.navigationController?.popToRootViewController(animated: false)
       
         //navigationController?.popViewController(animated: false)
     }
