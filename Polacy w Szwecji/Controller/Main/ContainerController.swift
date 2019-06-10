@@ -112,7 +112,7 @@ class ContainerController: UIViewController {
         super.viewDidLoad()
         
         //temp
-        let signUpController = SignUpController()
+        let signUpController = WelcomeController()
         present(signUpController, animated: true)
         
         // if not logged in

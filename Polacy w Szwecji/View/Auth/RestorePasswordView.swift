@@ -13,6 +13,8 @@ class RestorePasswordView: UIView {
     private var yCenterAnchor: NSLayoutConstraint!
     private var yUpAnchor: NSLayoutConstraint!
     
+    var cancelAction: (() -> Void)?
+    
     let xButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "x_icon"), for: .normal)
@@ -82,7 +84,7 @@ class RestorePasswordView: UIView {
     }
     
     @objc private func handleClose() {
-        print("handleClose")
+        cancelAction?()
     }
     
     @objc private func handleReset() {

@@ -87,6 +87,7 @@ class SignUpController: UIViewController {
         signUpView.forgotPasswordAction = handleForgotPassword
     }
     private func handleCancle() {
+        dismiss(animated: true)
     }
     
     private func handleSignIn() {

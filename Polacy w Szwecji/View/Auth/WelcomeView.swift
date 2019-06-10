@@ -65,12 +65,12 @@ class WelcomeView: UIView {
         button.setImage(UIImage(named: "icon-facebook"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.tintColor = UIColor.white
-        button.imageEdgeInsets = UIEdgeInsets(top: 12, left: -20, bottom: 12, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: -10, bottom: 8, right: 0)
         button.titleLabel?.font = UIFont.systemFont(ofSize: Device.IS_IPHONE ? 18 : 36)
         button.layer.cornerRadius = Device.IS_IPHONE ? 6 : 12
         button.clipsToBounds = true
         button.backgroundColor = UIColor.blueFB
-        button.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
+        button.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 80)
         button.addTarget(self, action: #selector(handleFB), for: .touchUpInside)
         return button
     }()
@@ -81,12 +81,12 @@ class WelcomeView: UIView {
         button.setImage(UIImage(named: "icon-google"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.tintColor = UIColor.white
-        button.imageEdgeInsets = UIEdgeInsets(top: 12, left: -40, bottom: 12, right: 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 8, left: -30, bottom: 8, right: 0)
         button.titleLabel?.font = UIFont.systemFont(ofSize: Device.IS_IPHONE ? 18 : 36)
         button.layer.cornerRadius = Device.IS_IPHONE ? 6 : 12
         button.clipsToBounds = true
         button.backgroundColor = UIColor.redGoogle//.red
-        button.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
+        button.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 80)
         button.addTarget(self, action: #selector(handleGoogle), for: .touchUpInside)
         return button
     }()
@@ -97,7 +97,7 @@ class WelcomeView: UIView {
         label.font = UIFont.boldSystemFont(ofSize: Device.IS_IPHONE ?  16 : 32)
         label.textAlignment = .center
         label.textColor = UIColor.white
-        label.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
+        label.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 100)
         return label
     }()
     
@@ -109,7 +109,7 @@ class WelcomeView: UIView {
         button.clipsToBounds = true
         button.backgroundColor = UIColor.black
 
-        button.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
+        button.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 80)
         button.addTarget(self, action: #selector(handleCreateAccount), for: .touchUpInside)
         return button
     }()
@@ -121,7 +121,7 @@ class WelcomeView: UIView {
         attributedTermsText.append(attributedTermsSubText)
         label.attributedText = attributedTermsText
         label.numberOfLines = 0
-        label.setAnchor(width: 0, height: Device.IS_IPHONE ? 50 : 100)
+        label.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 80)
         return label
     }()
     
@@ -150,13 +150,13 @@ class WelcomeView: UIView {
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: topAnchor, constant: CGFloat(Device.SCREEN_HEIGHT / 4)).isActive = true
         
-        addSubviews([fbBtn, googleBtn, orLabel, createAccountBtn, termsLabel])
+        //addSubviews([fbBtn, googleBtn, orLabel, createAccountBtn, termsLabel])
 
         
         let buttonsStackView = createStackView(views: [fbBtn, googleBtn, orLabel, createAccountBtn, termsLabel])
         addSubview(buttonsStackView)
         buttonsStackView.setAnchor(width: Device.IS_IPHONE ?  260 : 520,
-                                   height: Device.IS_IPHONE ?  280 : 560)
+                                   height: Device.IS_IPHONE ?  232 : 464)
         buttonsStackView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         buttonsStackView.topAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }

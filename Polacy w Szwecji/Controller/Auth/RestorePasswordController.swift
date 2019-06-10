@@ -83,6 +83,11 @@ class RestorePasswordController: UIViewController {
         restorePasswordView = RestorePasswordView()
         view.addSubview(restorePasswordView)
         restorePasswordView.pinToEdges(view: view)
+        restorePasswordView.cancelAction = handleCancel
+    }
+    
+    func handleCancel() {
+        dismiss(animated: true)
     }
     
     // MARK: - Private functions
