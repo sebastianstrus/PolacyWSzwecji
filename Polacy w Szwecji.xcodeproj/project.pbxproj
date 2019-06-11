@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D08C66822AF221800C8DCD8 /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C66722AF221800C8DCD8 /* BaseAuthViewController.swift */; };
+		7D08C66A22B00C3800C8DCD8 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C66922B00C3800C8DCD8 /* UIButton+Extension.swift */; };
+		7D08C66C22B0108600C8DCD8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C66B22B0108600C8DCD8 /* UIViewController+Extension.swift */; };
+		7D08C66E22B0459500C8DCD8 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C66D22B0459500C8DCD8 /* UINavigationController+Extension.swift */; };
+		7D08C67022B04EA700C8DCD8 /* counting.mov in Resources */ = {isa = PBXBuildFile; fileRef = 7D08C66F22B04EA700C8DCD8 /* counting.mov */; };
 		7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8822A1DF5900F40530 /* AppDelegate.swift */; };
 		7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8A22A1DF5900F40530 /* WelcomeController.swift */; };
 		7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D348E8F22A1DF5B00F40530 /* Assets.xcassets */; };
@@ -35,6 +40,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D08C66722AF221800C8DCD8 /* BaseAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewController.swift; sourceTree = "<group>"; };
+		7D08C66922B00C3800C8DCD8 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		7D08C66B22B0108600C8DCD8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		7D08C66D22B0459500C8DCD8 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		7D08C66F22B04EA700C8DCD8 /* counting.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = counting.mov; sourceTree = "<group>"; };
 		7D348E8522A1DF5900F40530 /* Polacy w Szwecji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polacy w Szwecji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D348E8822A1DF5900F40530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D348E8A22A1DF5900F40530 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -109,6 +119,7 @@
 		7D61603122AD6B4800D968AD /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				7D08C66722AF221800C8DCD8 /* BaseAuthViewController.swift */,
 				7D348E8A22A1DF5900F40530 /* WelcomeController.swift */,
 				7D61602522AD69D500D968AD /* SignUpController.swift */,
 				7D61602722AD69E800D968AD /* SignInController.swift */,
@@ -187,6 +198,9 @@
 			children = (
 				7D348E9E22A1E2B600F40530 /* UIView+Extension.swift */,
 				7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */,
+				7D08C66922B00C3800C8DCD8 /* UIButton+Extension.swift */,
+				7D08C66B22B0108600C8DCD8 /* UIViewController+Extension.swift */,
+				7D08C66D22B0459500C8DCD8 /* UINavigationController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -213,6 +227,7 @@
 		7DCE63D822A30E0C00CBC3F2 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
+				7D08C66F22B04EA700C8DCD8 /* counting.mov */,
 				7D348E9C22A1E22B00F40530 /* polish_flag.mov */,
 			);
 			path = Videos;
@@ -305,6 +320,7 @@
 				7D348EA722A1EA3500F40530 /* SeymourOne-Regular.ttf in Resources */,
 				7D348EA522A1E52E00F40530 /* LuckiestGuy-Regular.ttf in Resources */,
 				7D54667322A92C270001DDBF /* vademecum2012.pdf in Resources */,
+				7D08C67022B04EA700C8DCD8 /* counting.mov in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,20 +336,24 @@
 				7D61602C22AD6A3A00D968AD /* RestorePasswordView.swift in Sources */,
 				7D348EA122A1E2D200F40530 /* Constants.swift in Sources */,
 				7D61602822AD69E800D968AD /* SignInController.swift in Sources */,
+				7D08C66822AF221800C8DCD8 /* BaseAuthViewController.swift in Sources */,
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
 				7D61602A22AD6A1E00D968AD /* RestorePasswordController.swift in Sources */,
 				7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */,
 				7DCE64F822A5D06F00CBC3F2 /* ThirdController.swift in Sources */,
 				7DCE64F722A5D06F00CBC3F2 /* FirstController.swift in Sources */,
 				7D61603022AD6A6000D968AD /* SignInView.swift in Sources */,
+				7D08C66C22B0108600C8DCD8 /* UIViewController+Extension.swift in Sources */,
 				7D348E9F22A1E2B600F40530 /* UIView+Extension.swift in Sources */,
 				7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */,
 				7D61602622AD69D500D968AD /* SignUpController.swift in Sources */,
 				7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */,
+				7D08C66E22B0459500C8DCD8 /* UINavigationController+Extension.swift in Sources */,
 				7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */,
 				7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */,
 				7D61602E22AD6A4900D968AD /* SignUpView.swift in Sources */,
 				7DCE64F922A5D06F00CBC3F2 /* SecondController.swift in Sources */,
+				7D08C66A22B00C3800C8DCD8 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

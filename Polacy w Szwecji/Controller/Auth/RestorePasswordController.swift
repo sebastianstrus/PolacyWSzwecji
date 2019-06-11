@@ -9,75 +9,23 @@
 import UIKit
 import AVKit
 
-class RestorePasswordController: UIViewController {
+class RestorePasswordController: BaseAuthViewController {
 
-    var player: AVPlayer!
-    var playerController: AVPlayerViewController!
-    
+
     private var yCenterAnchor: NSLayoutConstraint!
     private var yUpAnchor: NSLayoutConstraint!
     
-    func playVideo(title: String) {
-        let path = Bundle.main.path(forResource: title, ofType:"mov")
-        player = AVPlayer(url: URL(fileURLWithPath: path!))
-        playerController = AVPlayerViewController()
-        playerController.player = player
-        playerController.showsPlaybackControls = false
-        self.addChild(playerController)
-        playerController.view.frame = UIScreen.main.bounds
-        playerController.view.alpha = 0.8
-        playerController.videoGravity = AVLayerVideoGravity(rawValue: AVLayerVideoGravity.resizeAspectFill.rawValue)
-        self.view.addSubview(playerController.view)
-        player.play()
-        // repead video
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main) { _ in
-            self.player.seek(to: CMTime.zero)
-            self.player.play()
-        }
-    }
-    
     fileprivate var restorePasswordView: RestorePasswordView!
     
-    let backgroundIV: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "sweden"))
-        iv.contentMode = UIView.ContentMode.scaleAspectFill
-        return iv
-    }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        handleKeyboard()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(appEnteredBackgound), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(appEnteredForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        view.addSubview(backgroundIV)
-        backgroundIV.pinToEdges(view: view)
-        playVideo(title: "polish_flag")
         setupView()
+        handleKeyboard()
     }
     
-    @objc func appEnteredBackgound() {
-        //playerController.player = nil
-        if let tracks = player.currentItem?.tracks {
-            for track in tracks {
-                if track.assetTrack!.hasMediaCharacteristic(AVMediaCharacteristic.visual) {
-                    track.isEnabled = false
-                }
-            }
-        }
-    }
-    
-    @objc func appEnteredForeground() {
-        //playerController.player = player
-        if let tracks = player.currentItem?.tracks {
-            for track in tracks {
-                if track.assetTrack!.hasMediaCharacteristic(AVMediaCharacteristic.visual) {
-                    track.isEnabled = true
-                }
-            }
-        }
-    }
+
     
     private func setupView() {
         restorePasswordView = RestorePasswordView()
@@ -87,16 +35,7 @@ class RestorePasswordController: UIViewController {
     }
     
     func handleCancel() {
-        
-
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.fade
-        self.navigationController?.view.layer.add(transition, forKey: nil)
-        _ = self.navigationController?.popToRootViewController(animated: false)
-      
-        //navigationController?.popViewController(animated: false)
+        navigationController?.customPopToRoot()
     }
     
     // MARK: - Private functions
