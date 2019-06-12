@@ -14,6 +14,7 @@ class RestorePasswordView: UIView {
     private var yUpAnchor: NSLayoutConstraint!
     
     var cancelAction: (() -> Void)?
+    var resetAction: (() -> Void)?
     
     let xButton: UIButton = {
         let button = UIButton(type: .system)
@@ -90,7 +91,7 @@ class RestorePasswordView: UIView {
     }
     
     @objc private func handleReset() {
-        print("handleSignIn")
+        resetAction?()
     }
     
     //public

@@ -37,7 +37,6 @@ class SignUpController: BaseAuthViewController {
     }
     
     private func handlePicker() {
-        print("handlePicker")
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
@@ -46,12 +45,13 @@ class SignUpController: BaseAuthViewController {
     }
     
     private func handleSignIn() {
+        self.view.endEditing(true)
         let signInController = SignInController()
         navigationController?.customPush(vc: signInController)
     }
     
     private func handleSubmit() {
-        
+        self.view.endEditing(true)
         guard let imageSelected = self.image else {
             print("Image is nil")
             return
@@ -126,7 +126,6 @@ class SignUpController: BaseAuthViewController {
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         signUpView.handleKeyboardDown()
     }
-    
 }
 
 

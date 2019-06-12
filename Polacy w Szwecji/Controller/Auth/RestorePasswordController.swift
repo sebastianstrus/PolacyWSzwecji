@@ -31,9 +31,14 @@ class RestorePasswordController: BaseAuthViewController {
         view.addSubview(restorePasswordView)
         restorePasswordView.pinToEdges(view: view)
         restorePasswordView.cancelAction = handleCancel
+        restorePasswordView.resetAction = handleReset
     }
     
     func handleCancel() {
+        navigationController?.customPopToRoot()
+    }
+    func handleReset() {
+        self.view.endEditing(true)
         navigationController?.customPopToRoot()
     }
     

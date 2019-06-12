@@ -27,6 +27,10 @@ class BaseAuthViewController: UIViewController {
         handleVideoInBackground()
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     
     @objc private func appEnteredBackgound() {
         //playerController.player = nil
@@ -80,5 +84,4 @@ class BaseAuthViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(appEnteredBackgound), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appEnteredForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-
 }
