@@ -9,10 +9,12 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class SignUpController: BaseAuthViewController {
     
     fileprivate var signUpView: SignUpView!
+    private var image: UIImage? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,25 +51,52 @@ class SignUpController: BaseAuthViewController {
     }
     
     private func handleSubmit() {
-        Auth.auth().createUser(withEmail: "test3@gmail.com", password: "123456") { (authDataResult, error) in
+        
+        guard let imageSelected = self.image else {
+            print("Image is nil")
+            return
+        }
+        
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
+            return
+        }
+        
+        Auth.auth().createUser(withEmail: "test008@gmail.com", password: "123456") { (authDataResult, error) in
             if error != nil {
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 return
             }
             if let authData = authDataResult {
                 print(authData.user.email)
-                let dict: Dictionary<String, Any> = [
+                var dict: Dictionary<String, Any> = [
                     "uid": authData.user.uid,
                     "email": authData.user.email,
                     "profileImageUrl": "",
                     "status": "Welcome to ”Polacy w Szwecji”"
                 ]
                 
-                Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict, withCompletionBlock: {
-                    (error, ref) in
-                    if error == nil {
-                        print("Done")
+                // TODO: move storage ref url somewhere to constatnts
+                let storageRef = Storage.storage().reference(forURL: "gs://polacywszwecji-aee3f.appspot.com")
+                let storageProfileRef = storageRef.child("profile").child(authData.user.uid)
+                
+                let metaData = StorageMetadata()
+                metaData.contentType = "image/jpg"
+                storageProfileRef.putData(imageData, metadata: metaData, completion: { (storageMetaData, error) in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                        return
                     }
+                    storageProfileRef.downloadURL(completion: { (url, error) in
+                        if let metaImageUrl = url?.absoluteString {
+                            dict["profileImageUrl"] = metaImageUrl
+                            
+                            Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
+                                if error == nil {
+                                    print("Done")
+                                }
+                            })
+                        }
+                    })
                 })
             }
             
@@ -105,10 +134,12 @@ extension SignUpController: UIImagePickerControllerDelegate, UINavigationControl
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            image = selectedImage
             signUpView.setAwatar(image: selectedImage)
         }
         
         if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            image = originalImage
             signUpView.setAwatar(image: originalImage)
         }
         
