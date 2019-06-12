@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import ProgressHUD
 
 class SignUpController: BaseAuthViewController {
     
@@ -52,59 +53,14 @@ class SignUpController: BaseAuthViewController {
     
     private func handleSubmit() {
         self.view.endEditing(true)
-        guard let imageSelected = self.image else {
-            print("Image is nil")
-            return
+        validateTextFields()
+        signUp(onSuccess: {
+            print("SWITCH VIEW!!!")
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
         }
         
-        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
-            return
-        }
         
-        Auth.auth().createUser(withEmail: "test008@gmail.com", password: "123456") { (authDataResult, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-                return
-            }
-            if let authData = authDataResult {
-                print(authData.user.email)
-                var dict: Dictionary<String, Any> = [
-                    "uid": authData.user.uid,
-                    "email": authData.user.email,
-                    "profileImageUrl": "",
-                    "status": "Welcome to ”Polacy w Szwecji”"
-                ]
-                
-                // TODO: move storage ref url somewhere to constatnts
-                let storageRef = Storage.storage().reference(forURL: "gs://polacywszwecji-aee3f.appspot.com")
-                let storageProfileRef = storageRef.child("profile").child(authData.user.uid)
-                
-                let metaData = StorageMetadata()
-                metaData.contentType = "image/jpg"
-                storageProfileRef.putData(imageData, metadata: metaData, completion: { (storageMetaData, error) in
-                    if error != nil {
-                        print(error!.localizedDescription)
-                        return
-                    }
-                    storageProfileRef.downloadURL(completion: { (url, error) in
-                        if let metaImageUrl = url?.absoluteString {
-                            dict["profileImageUrl"] = metaImageUrl
-                            
-                            Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
-                                if error == nil {
-                                    print("Done")
-                                }
-                            })
-                        }
-                    })
-                })
-            }
-            
-        }
-        
-        let containerController = ContainerController()
-        let navController = UINavigationController(rootViewController: containerController)
-        present(navController, animated: false)
     }
     
     // MARK: - Private functions
@@ -126,6 +82,41 @@ class SignUpController: BaseAuthViewController {
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         signUpView.handleKeyboardDown()
     }
+    
+    func validateTextFields() {
+        guard let username = signUpView.nameTF.text, !username.isEmpty else {
+            ProgressHUD.showError(ERROR_EMPTY_USERNAME)
+            return
+        }
+        guard let email = signUpView.emailTF.text, !email.isEmpty else {
+            ProgressHUD.showError(ERROR_EMPTY_EMAIL)
+            return
+        }
+        guard let password = signUpView.passwordTF.text, !password.isEmpty else {
+            ProgressHUD.showError(ERROR_EMPTY_PASSWORD)
+            return
+        }
+    }
+
+    
+    func signUp(onSuccess: @escaping()-> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        
+        ProgressHUD.show()
+        Api.User.signUp(withUsername: signUpView.nameTF.text!,
+                        email: signUpView.emailTF.text!,
+                        password: signUpView.passwordTF.text!,
+                        image: self.image,
+                        onSuccess: {
+                            ProgressHUD.dismiss()
+                            onSuccess()
+                            
+//                            let containerController = ContainerController()
+//                            let navController = UINavigationController(rootViewController: containerController)
+//                            self.present(navController, animated: false)
+        }) { (errorMessage) in
+            onError(errorMessage)
+        }
+    }
 }
 
 
@@ -144,4 +135,6 @@ extension SignUpController: UIImagePickerControllerDelegate, UINavigationControl
         
         picker.dismiss(animated: true, completion: nil)
     }
+    
+    
 }
