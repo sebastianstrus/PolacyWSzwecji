@@ -11,6 +11,7 @@ import UIKit
 class SignUpView: UIView {
     
     var cancelAction: (() -> Void)?
+    var pickerAction: (() -> Void)?
     var signUpAction: (() -> Void)?
     var signInAction: (() -> Void)?
     
@@ -25,7 +26,7 @@ class SignUpView: UIView {
         return button
     }()
     
-    let imageView: UIImageView = {
+    let awatarImageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "profile_icon"))
         iv.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         iv.contentMode = .scaleAspectFill
@@ -34,6 +35,7 @@ class SignUpView: UIView {
         iv.setAnchor(width: Device.IS_IPHONE ?  80 : 160, height: Device.IS_IPHONE ? 80 : 160)
         iv.layer.cornerRadius = Device.IS_IPHONE ? 40 : 80
         iv.backgroundColor = UIColor.white
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     
@@ -104,7 +106,6 @@ class SignUpView: UIView {
     
     // MARK: - Private methods
     private func setup() {
-        
         addSubview(xButton)
         xButton.setAnchor(top: safeTopAnchor,
                           leading: leadingAnchor,
@@ -117,18 +118,20 @@ class SignUpView: UIView {
                           width: Device.IS_IPHONE ? 40 : 80,
                           height: Device.IS_IPHONE ? 40 : 80)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
+        awatarImageView.addGestureRecognizer(tapGesture)
+        
         let containerView = UIView()
         addSubview(containerView)
         containerView.setAnchor(width: Device.IS_IPHONE ? 280 : 560, height: Device.IS_IPHONE ? 320 : 640)
         containerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        //containerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         yCenterAnchor = containerView.centerYAnchor.constraint(equalTo: centerYAnchor)
         yUpAnchor = containerView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -100)
         yCenterAnchor.isActive = true
         
-        containerView.addSubview(imageView)
-        imageView.setAnchor(top: containerView.topAnchor,
+        containerView.addSubview(awatarImageView)
+        awatarImageView.setAnchor(top: containerView.topAnchor,
                             leading: nil,
                             bottom: nil,
                             trailing: nil,
@@ -138,10 +141,10 @@ class SignUpView: UIView {
                             paddingRight: 0,
                             width: Device.IS_IPHONE ?  80 : 160,
                             height: Device.IS_IPHONE ? 80 : 160)
-        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        awatarImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
 
         containerView.addSubview(nameTF)
-        nameTF.setAnchor(top: imageView.bottomAnchor,
+        nameTF.setAnchor(top: awatarImageView.bottomAnchor,
                          leading: nil,
                          bottom: nil,
                          trailing: nil,
@@ -206,6 +209,10 @@ class SignUpView: UIView {
         signInBtn.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
+    @objc private func presentPicker() {
+        pickerAction?()
+    }
+    
     @objc private func handleCancel() {
         cancelAction?()
     }
@@ -235,5 +242,9 @@ class SignUpView: UIView {
         UIView.animate(withDuration: 0.4) {
             self.layoutIfNeeded()
         }
+    }
+    
+    func setAwatar(image: UIImage) {
+        awatarImageView.image = image
     }
 }

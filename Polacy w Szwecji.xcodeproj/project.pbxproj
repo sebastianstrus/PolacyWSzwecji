@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		587D4ADB55664ABA59CE1902 /* Pods_Polacy_w_Szwecji.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8F9006BDCB2C55F5535A690 /* Pods_Polacy_w_Szwecji.framework */; };
 		7D08C66822AF221800C8DCD8 /* BaseAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C66722AF221800C8DCD8 /* BaseAuthViewController.swift */; };
 		7D08C66A22B00C3800C8DCD8 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C66922B00C3800C8DCD8 /* UIButton+Extension.swift */; };
 		7D08C66C22B0108600C8DCD8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C66B22B0108600C8DCD8 /* UIViewController+Extension.swift */; };
 		7D08C66E22B0459500C8DCD8 /* UINavigationController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C66D22B0459500C8DCD8 /* UINavigationController+Extension.swift */; };
 		7D08C67022B04EA700C8DCD8 /* counting.mov in Resources */ = {isa = PBXBuildFile; fileRef = 7D08C66F22B04EA700C8DCD8 /* counting.mov */; };
+		7D08C67222B0637F00C8DCD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D08C67122B0637F00C8DCD8 /* GoogleService-Info.plist */; };
 		7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8822A1DF5900F40530 /* AppDelegate.swift */; };
 		7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8A22A1DF5900F40530 /* WelcomeController.swift */; };
 		7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D348E8F22A1DF5B00F40530 /* Assets.xcassets */; };
@@ -40,11 +42,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		76837F098D9D5402B3E049AA /* Pods-Polacy w Szwecji.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Polacy w Szwecji.release.xcconfig"; path = "Target Support Files/Pods-Polacy w Szwecji/Pods-Polacy w Szwecji.release.xcconfig"; sourceTree = "<group>"; };
 		7D08C66722AF221800C8DCD8 /* BaseAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAuthViewController.swift; sourceTree = "<group>"; };
 		7D08C66922B00C3800C8DCD8 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		7D08C66B22B0108600C8DCD8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		7D08C66D22B0459500C8DCD8 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		7D08C66F22B04EA700C8DCD8 /* counting.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = counting.mov; sourceTree = "<group>"; };
+		7D08C67122B0637F00C8DCD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D348E8522A1DF5900F40530 /* Polacy w Szwecji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polacy w Szwecji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D348E8822A1DF5900F40530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D348E8A22A1DF5900F40530 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 		7DCE64F522A5D06F00CBC3F2 /* SecondController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondController.swift; sourceTree = "<group>"; };
 		7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		D8F9006BDCB2C55F5535A690 /* Pods_Polacy_w_Szwecji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Polacy_w_Szwecji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDEBB48392E34822D2D3AD54 /* Pods-Polacy w Szwecji.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Polacy w Szwecji.debug.xcconfig"; path = "Target Support Files/Pods-Polacy w Szwecji/Pods-Polacy w Szwecji.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,17 +85,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				587D4ADB55664ABA59CE1902 /* Pods_Polacy_w_Szwecji.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45204F8BA1C0C46203E38275 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D8F9006BDCB2C55F5535A690 /* Pods_Polacy_w_Szwecji.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D348E7C22A1DF5900F40530 = {
 			isa = PBXGroup;
 			children = (
 				7D348E8722A1DF5900F40530 /* Polacy w Szwecji */,
 				7D348E8622A1DF5900F40530 /* Products */,
+				877A91869CE6C48E3865E00E /* Pods */,
+				45204F8BA1C0C46203E38275 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +123,7 @@
 			children = (
 				7D348E8822A1DF5900F40530 /* AppDelegate.swift */,
 				7D348E9422A1DF5B00F40530 /* Info.plist */,
+				7D08C67122B0637F00C8DCD8 /* GoogleService-Info.plist */,
 				7DCE63D222A30D6500CBC3F2 /* Model */,
 				7DCE63D322A30D7600CBC3F2 /* View */,
 				7DCE63D422A30D8100CBC3F2 /* Controller */,
@@ -251,6 +269,16 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		877A91869CE6C48E3865E00E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DDEBB48392E34822D2D3AD54 /* Pods-Polacy w Szwecji.debug.xcconfig */,
+				76837F098D9D5402B3E049AA /* Pods-Polacy w Szwecji.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,9 +286,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D348E9722A1DF5B00F40530 /* Build configuration list for PBXNativeTarget "Polacy w Szwecji" */;
 			buildPhases = (
+				3EEC7EBC1DF5EB76DF875FDF /* [CP] Check Pods Manifest.lock */,
 				7D348E8122A1DF5900F40530 /* Sources */,
 				7D348E8222A1DF5900F40530 /* Frameworks */,
 				7D348E8322A1DF5900F40530 /* Resources */,
+				213FFEC71DED8C9A1B34E4CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -315,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D348E9D22A1E22B00F40530 /* polish_flag.mov in Resources */,
+				7D08C67222B0637F00C8DCD8 /* GoogleService-Info.plist in Resources */,
 				7D348E9322A1DF5B00F40530 /* LaunchScreen.storyboard in Resources */,
 				7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */,
 				7D348EA722A1EA3500F40530 /* SeymourOne-Regular.ttf in Resources */,
@@ -325,6 +356,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		213FFEC71DED8C9A1B34E4CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Polacy w Szwecji/Pods-Polacy w Szwecji-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Polacy w Szwecji/Pods-Polacy w Szwecji-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Polacy w Szwecji/Pods-Polacy w Szwecji-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EEC7EBC1DF5EB76DF875FDF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Polacy w Szwecji-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7D348E8122A1DF5900F40530 /* Sources */ = {
@@ -489,6 +562,7 @@
 		};
 		7D348E9822A1DF5B00F40530 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDEBB48392E34822D2D3AD54 /* Pods-Polacy w Szwecji.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +581,7 @@
 		};
 		7D348E9922A1DF5B00F40530 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76837F098D9D5402B3E049AA /* Pods-Polacy w Szwecji.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

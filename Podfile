@@ -7,4 +7,7 @@ target 'Polacy w Szwecji' do
 
   # Pods for Polacy w Szwecji
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 end
