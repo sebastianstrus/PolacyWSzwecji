@@ -37,10 +37,6 @@ class UserApi {
                     return
                 }
                 
-                // TODO: move storage ref url somewhere to constatnts
-                let storageRef = Storage.storage().reference(forURL: "gs://polacywszwecji-aee3f.appspot.com")
-                let storageProfileRef = storageRef.child("profile").child(authData.user.uid)
-                
                 let storageProfile = Ref().storageSpecificProfile(uid: authData.user.uid)
                 
                 let metaData = StorageMetadata()
@@ -50,7 +46,7 @@ class UserApi {
                                          uid: authData.user.uid,
                                          data: imageData,
                                          metadata: metaData,
-                                         storageProfileRef: storageProfileRef,
+                                         storageProfileRef: storageProfile,
                                          dict: dict,
                                          onSuccess: {
                                             onSuccess()
