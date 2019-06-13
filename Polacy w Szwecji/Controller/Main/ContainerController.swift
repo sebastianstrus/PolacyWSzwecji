@@ -27,43 +27,43 @@ class ContainerController: UIViewController {
     var button6XAnchor: NSLayoutConstraint?
     var buttonViews: [SideButtonView]!
     
-    lazy var firstController: FirstController = {
-        let viewController = FirstController()
+    lazy var accountController: AccountController = {
+        let viewController = AccountController()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
     
-    lazy var secondController: SecondController = {
-        let viewController = SecondController()
+    lazy var usersController: UsersController = {
+        let viewController = UsersController()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
     
-    lazy var thirdController: ThirdController = {
-        let viewController = ThirdController()
+    lazy var messagesController: MessagesController = {
+        let viewController = MessagesController()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
     
-    lazy var fourthController: FirstController = {
-        let viewController = FirstController()
+    lazy var workController: WorkController = {
+        let viewController = WorkController()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
     
-    lazy var fifthController: SecondController = {
-        let viewController = SecondController()
+    lazy var flatsController: FlatsController = {
+        let viewController = FlatsController()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
     
-    lazy var sixthController: FirstController = {
-        let viewController = FirstController()
+    lazy var shoppingController: ShoppingController = {
+        let viewController = ShoppingController()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
     
-    lazy var seventhController: PDFViewController = {
+    lazy var infoController: PDFViewController = {
         let pdfViewController = PDFViewController()
         self.addViewControllerAsChildViewController(childViewController: pdfViewController)
         return pdfViewController
@@ -72,32 +72,32 @@ class ContainerController: UIViewController {
     
     
     let buttonView0: SideButtonView = {
-        let button = SideButtonView(imageName: "home_icon", title: "Home")//Forum
+        let button = SideButtonView(imageName: "account_icon", title: "Account")//Forum
         return button
     }()
     
     let buttonView1: SideButtonView = {
-        let button = SideButtonView(imageName: "work_icon", title: "Work")//Praca
+        let button = SideButtonView(imageName: "users_icon", title: "Users")//Praca
         return button
     }()
     
     let buttonView2: SideButtonView = {
-        let button = SideButtonView(imageName: "apartments_icon", title: "Flats")//Lokale
+        let button = SideButtonView(imageName: "chat_icon", title: "Chat")//Lokale
         return button
     }()
     
     let buttonView3: SideButtonView = {
-        let button = SideButtonView(imageName: "alkohol_icon", title: "Shopping")//Zakupy
+        let button = SideButtonView(imageName: "work_icon", title: "Work")//Zakupy
         return button
     }()
     
     let buttonView4: SideButtonView = {
-        let button = SideButtonView(imageName: "chat_icon", title: "Chat") //Czat
+        let button = SideButtonView(imageName: "flats_icon", title: "Flats") //Czat
         return button
     }()
     
     let buttonView5: SideButtonView = {
-        let button = SideButtonView(imageName: "friends_icon", title: "Friends") //Znajomi
+        let button = SideButtonView(imageName: "shopping_icon", title: "Shopping") //Znajomi
         return button
     }()
     
@@ -233,13 +233,13 @@ class ContainerController: UIViewController {
     }
     
     func updateView(tag: Int) {
-        firstController.view.isHidden = !(tag == 0)
-        secondController.view.isHidden = !(tag == 1)
-        thirdController.view.isHidden = !(tag == 2)
-        fourthController.view.isHidden = !(tag == 3)
-        fifthController.view.isHidden = !(tag == 4)
-        sixthController.view.isHidden = !(tag == 5)
-        seventhController.view.isHidden = !(tag == 6)
+        accountController.view.isHidden = !(tag == 0)
+        usersController.view.isHidden = !(tag == 1)
+        messagesController.view.isHidden = !(tag == 2)
+        workController.view.isHidden = !(tag == 3)
+        flatsController.view.isHidden = !(tag == 4)
+        shoppingController.view.isHidden = !(tag == 5)
+        infoController.view.isHidden = !(tag == 6)
         navigationController?.navigationBar.topItem?.title = buttonViews[tag].titleLabel.text
     }
     

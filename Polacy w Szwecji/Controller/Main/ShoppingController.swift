@@ -1,22 +1,22 @@
 //
-//  FirstController.swift
-//  SideMenuDemo2
+//  ShoppingController.swift
+//  Polacy w Szwecji
 //
-//  Created by Sebastian Strus on 2019-06-03.
+//  Created by Sebastian Strus on 2019-06-14.
 //  Copyright © 2019 Sebastian Strus. All rights reserved.
 //
 
 import UIKit
 
-class FirstController: UIViewController {
-
+class ShoppingController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = UIColor.darkGray
     }
     
-
-
-
+    
+    
+    
 }

@@ -1,5 +1,5 @@
 //
-//  SecondController.swift
+//  FirstController.swift
 //  SideMenuDemo2
 //
 //  Created by Sebastian Strus on 2019-06-03.
@@ -8,12 +8,15 @@
 
 import UIKit
 
-class SecondController: UIViewController {
+class AccountController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.darkGray
     }
+    
+
+
 
 }

@@ -42,13 +42,13 @@ class SideButtonView: UIView {
     
     let imageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "menu_icon"))
-        iv.tintColor = UIColor.lightRed
+        iv.tintColor = UIColor.sideTint
         return iv
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.lightRed
+        label.textColor = UIColor.sideTint
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .center
         return label
