@@ -73,18 +73,37 @@ class ResetPasswordView: UIView {
         
         let containerView = UIView()
         addSubview(containerView)
-        containerView.setAnchor(width: Device.IS_IPHONE ? 260 : 520, height: Device.IS_IPHONE ? 88 : 176)
+        containerView.setAnchor(width: Device.IS_IPHONE ? 260 : 520,
+                                height: Device.IS_IPHONE ? 88 : 176)
         containerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         yCenterAnchor = containerView.centerYAnchor.constraint(equalTo: centerYAnchor)
         yUpAnchor = containerView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -100)
         yCenterAnchor.isActive = true
         
         containerView.addSubview(emailTF)
-        emailTF.setAnchor(top: containerView.topAnchor, leading: nil, bottom: nil, trailing: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ?  260 : 520, height: Device.IS_IPHONE ? 40 : 80)
+        emailTF.setAnchor(top: containerView.topAnchor,
+                          leading: nil,
+                          bottom: nil,
+                          trailing: nil,
+                          paddingTop: 0,
+                          paddingLeft: 0,
+                          paddingBottom: 0,
+                          paddingRight: 0,
+                          width: Device.IS_IPHONE ?  260 : 520,
+                          height: Device.IS_IPHONE ? 40 : 80)
         emailTF.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         containerView.addSubview(resetBtn)
-        resetBtn.setAnchor(top: emailTF.bottomAnchor, leading: nil, bottom: nil, trailing: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: Device.IS_IPHONE ?  260 : 520, height: Device.IS_IPHONE ? 40 : 80)
+        resetBtn.setAnchor(top: emailTF.bottomAnchor,
+                           leading: nil,
+                           bottom: nil,
+                           trailing: nil,
+                           paddingTop: 8,
+                           paddingLeft: 0,
+                           paddingBottom: 0,
+                           paddingRight: 0,
+                           width: Device.IS_IPHONE ?  260 : 520,
+                           height: Device.IS_IPHONE ? 40 : 80)
         resetBtn.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
     
