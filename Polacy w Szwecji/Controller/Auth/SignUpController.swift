@@ -29,8 +29,8 @@ class SignUpController: BaseAuthViewController {
         signUpView.pinToEdges(view: view)
         signUpView.cancelAction = handleCancel
         signUpView.pickerAction = handlePicker
-        signUpView.signInAction = handleSignIn
-        signUpView.signUpAction = handleSubmit
+        signUpView.signInAction = openSignIn
+        signUpView.signUpAction = handleSignUp
     }
     
     private func handleCancel() {
@@ -45,13 +45,13 @@ class SignUpController: BaseAuthViewController {
         self.present(picker, animated: true, completion: nil)
     }
     
-    private func handleSignIn() {
+    private func openSignIn() {
         self.view.endEditing(true)
         let signInController = SignInController()
         navigationController?.customPush(vc: signInController)
     }
     
-    private func handleSubmit() {
+    private func handleSignUp() {
         self.view.endEditing(true)
         validateTextFields()
         signUp(onSuccess: {
@@ -59,8 +59,6 @@ class SignUpController: BaseAuthViewController {
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)
         }
-        
-        
     }
     
     // MARK: - Private functions
@@ -100,7 +98,6 @@ class SignUpController: BaseAuthViewController {
 
     
     func signUp(onSuccess: @escaping()-> Void, onError: @escaping(_ errorMessage: String) -> Void) {
-        
         ProgressHUD.show()
         Api.User.signUp(withUsername: signUpView.nameTF.text!,
                         email: signUpView.emailTF.text!,
@@ -109,16 +106,11 @@ class SignUpController: BaseAuthViewController {
                         onSuccess: {
                             ProgressHUD.dismiss()
                             onSuccess()
-                            
-//                            let containerController = ContainerController()
-//                            let navController = UINavigationController(rootViewController: containerController)
-//                            self.present(navController, animated: false)
         }) { (errorMessage) in
             onError(errorMessage)
         }
     }
 }
-
 
 extension SignUpController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

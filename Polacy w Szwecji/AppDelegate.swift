@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let menuController = ContainerController()
         
         
-        let welcomeController = WelcomeController()
+        //let welcomeController = WelcomeController()
         
         let navController = UINavigationController(rootViewController: menuController)
         //navController.navigationBar.isHidden = true

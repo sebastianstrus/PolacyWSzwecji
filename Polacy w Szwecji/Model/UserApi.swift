@@ -57,4 +57,21 @@ class UserApi {
             }
         }
     }
+    
+    func signIn(email: String,
+                password: String,
+                onSuccess: @escaping()-> Void,
+                onError: @escaping(_ errorMessage: String) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (authData, error) in
+            error == nil ? onSuccess() : onError(error!.localizedDescription)
+        }
+    }
+    
+    func resetPassword(email: String,
+                onSuccess: @escaping()-> Void,
+                onError: @escaping(_ errorMessage: String) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            error == nil ? onSuccess() : onError(error!.localizedDescription)
+        }
+    }
 }

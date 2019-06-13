@@ -42,6 +42,8 @@ class SignUpView: UIView {
     let nameTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Full name"
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         tf.textColor = UIColor.darkGray
         tf.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 80)
         tf.borderStyle = UITextField.BorderStyle.roundedRect
@@ -52,6 +54,8 @@ class SignUpView: UIView {
     let emailTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email address"
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         tf.keyboardType = .emailAddress
         tf.textColor = UIColor.darkGray
         tf.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 80)
@@ -63,6 +67,8 @@ class SignUpView: UIView {
     let passwordTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         tf.textColor = UIColor.darkGray
         tf.isSecureTextEntry = true
         tf.setAnchor(width: 0, height: Device.IS_IPHONE ? 40 : 80)

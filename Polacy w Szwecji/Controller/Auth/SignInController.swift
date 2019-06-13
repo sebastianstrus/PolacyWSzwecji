@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SignInController: BaseAuthViewController {
 
@@ -28,21 +29,26 @@ class SignInController: BaseAuthViewController {
         view.addSubview(signInView)
         signInView.pinToEdges(view: view)
         signInView.signInAction = handleSignIn
-        signInView.dismissAction = handleSignUp
+        signInView.dismissAction = cancelToSignUp
         signInView.forgotPasswordAction = handleForgotPassword
     }
-    
+
     private func handleSignIn() {
-        print("signInToFB")
+        self.view.endEditing(true)
+        validateTextFields()
+        signIn(onSuccess: {
+            print("SWITCH VIEW!!!")
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
+        }
     }
-    
-    private  func handleSignUp() {
+    private  func cancelToSignUp() {
         print("handleSignUp")
         navigationController?.customPop()
     }
     
     private func handleForgotPassword() {
-        let restorePasswordController = RestorePasswordController()
+        let restorePasswordController = ResetPasswordController()
         navigationController?.customPush(vc: restorePasswordController)
     }
     
@@ -65,6 +71,30 @@ class SignInController: BaseAuthViewController {
     
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         signInView.handleKeyboardDown()
+    }
+    
+    private func signIn(onSuccess: @escaping()-> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        ProgressHUD.show()
+        Api.User.signIn(email: signInView.emailTF.text!,
+                        password: signInView.passwordTF.text!,
+                        onSuccess: {
+                            ProgressHUD.dismiss()
+                            onSuccess()
+        }) { (errorMessage) in
+            onError(errorMessage)
+        }
+    }
+    
+    func validateTextFields() {
+
+        guard let email = signInView.emailTF.text, !email.isEmpty else {
+            ProgressHUD.showError(ERROR_EMPTY_EMAIL)
+            return
+        }
+        guard let password = signInView.passwordTF.text, !password.isEmpty else {
+            ProgressHUD.showError(ERROR_EMPTY_PASSWORD)
+            return
+        }
     }
 
 }

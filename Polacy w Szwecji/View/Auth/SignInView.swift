@@ -30,6 +30,8 @@ class SignInView: UIView {
     let emailTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email address"
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         tf.keyboardType = .emailAddress
         tf.textColor = UIColor.darkGray
         tf.borderStyle = UITextField.BorderStyle.roundedRect
@@ -40,6 +42,8 @@ class SignInView: UIView {
     let passwordTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Password"
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         tf.textColor = UIColor.darkGray
         tf.isSecureTextEntry = true
         tf.borderStyle = UITextField.BorderStyle.roundedRect

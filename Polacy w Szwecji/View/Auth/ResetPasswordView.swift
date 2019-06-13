@@ -1,5 +1,5 @@
 //
-//  RestorePasswordView.swift
+//  ResetPasswordView.swift
 //  Polacy w Szwecji
 //
 //  Created by Sebastian Strus on 2019-06-09.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RestorePasswordView: UIView {
+class ResetPasswordView: UIView {
 
     private var yCenterAnchor: NSLayoutConstraint!
     private var yUpAnchor: NSLayoutConstraint!
@@ -27,6 +27,8 @@ class RestorePasswordView: UIView {
     let emailTF: UITextField = {
         let tf = UITextField()
         tf.placeholder = "Email address"
+        tf.autocorrectionType = .no
+        tf.autocapitalizationType = .none
         tf.keyboardType = .emailAddress
         tf.textColor = UIColor.darkGray
         tf.borderStyle = UITextField.BorderStyle.roundedRect

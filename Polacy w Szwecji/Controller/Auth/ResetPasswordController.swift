@@ -1,5 +1,5 @@
 //
-//  RestorePasswordController.swift
+//  ResetPasswordController.swift
 //  Polacy w Szwecji
 //
 //  Created by Sebastian Strus on 2019-06-09.
@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import ProgressHUD
 
-class RestorePasswordController: BaseAuthViewController {
+class ResetPasswordController: BaseAuthViewController {
 
 
     private var yCenterAnchor: NSLayoutConstraint!
     private var yUpAnchor: NSLayoutConstraint!
     
-    fileprivate var restorePasswordView: RestorePasswordView!
+    fileprivate var resetPasswordView: ResetPasswordView!
     
 
     override func viewDidLoad() {
@@ -27,19 +28,29 @@ class RestorePasswordController: BaseAuthViewController {
 
     
     private func setupView() {
-        restorePasswordView = RestorePasswordView()
-        view.addSubview(restorePasswordView)
-        restorePasswordView.pinToEdges(view: view)
-        restorePasswordView.cancelAction = handleCancel
-        restorePasswordView.resetAction = handleReset
+        resetPasswordView = ResetPasswordView()
+        view.addSubview(resetPasswordView)
+        resetPasswordView.pinToEdges(view: view)
+        resetPasswordView.cancelAction = handleCancel
+        resetPasswordView.resetAction = handleResetPasword
     }
     
     func handleCancel() {
         navigationController?.customPopToRoot()
     }
-    func handleReset() {
+    func handleResetPasword() {
         self.view.endEditing(true)
-        navigationController?.customPopToRoot()
+        guard let email = resetPasswordView.emailTF.text, email != "" else {
+            ProgressHUD.showError(ERROR_EMPTY_EMAIL_RESET)
+            return
+        }
+        Api.User.resetPassword(email: email,
+                               onSuccess: {
+                                ProgressHUD.showSuccess(SUCCESS_EMAIL_RESET)
+                                self.navigationController?.customPop()
+        }) { (errorMessage) in
+            ProgressHUD.showError(errorMessage)
+        }
     }
     
     // MARK: - Private functions
@@ -55,11 +66,11 @@ class RestorePasswordController: BaseAuthViewController {
     }
     
     @objc fileprivate func keyboardWillShow(_ notification: Notification) {
-        restorePasswordView.handleKeyboardUp()
+        resetPasswordView.handleKeyboardUp()
     }
     
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
-        restorePasswordView.handleKeyboardDown()
+        resetPasswordView.handleKeyboardDown()
     }
 
 }
