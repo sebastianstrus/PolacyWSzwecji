@@ -1,6 +1,6 @@
 //
-//  ViewController.swift
-//  SideMenuDemo2
+//  ContainerController.swift
+//  Polacy w Szwecji
 //
 //  Created by Sebastian Strus on 2019-06-02.
 //  Copyright © 2019 Sebastian Strus. All rights reserved.
@@ -33,8 +33,8 @@ class ContainerController: UIViewController {
         return viewController
     }()
     
-    lazy var usersController: UsersController = {
-        let viewController = UsersController()
+    lazy var usersController: UsersTVC = {
+        let viewController = UsersTVC()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
