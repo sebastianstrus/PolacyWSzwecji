@@ -13,7 +13,8 @@ import ProgressHUD
 //import FirebaseStorage
 
 class UserApi {
-    func signUp(withUsername username: String, email: String, password: String, image: UIImage?, onSuccess: @escaping()-> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+    
+    func signUp(withUsername username: String, email: String, password: String, image: UIImage?, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResult, error) in
             if error != nil {
                 ProgressHUD.showError(error!.localizedDescription)
@@ -60,7 +61,7 @@ class UserApi {
     
     func signIn(email: String,
                 password: String,
-                onSuccess: @escaping()-> Void,
+                onSuccess: @escaping() -> Void,
                 onError: @escaping(_ errorMessage: String) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { (authData, error) in
             error == nil ? onSuccess() : onError(error!.localizedDescription)
@@ -68,10 +69,22 @@ class UserApi {
     }
     
     func resetPassword(email: String,
-                onSuccess: @escaping()-> Void,
+                onSuccess: @escaping() -> Void,
                 onError: @escaping(_ errorMessage: String) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             error == nil ? onSuccess() : onError(error!.localizedDescription)
         }
+    }
+    
+    // TODO: consider:
+    // onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void
+    func logOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            ProgressHUD.showError(error.localizedDescription)
+            return
+        }
+        (UIApplication.shared.delegate as! AppDelegate).configureInitialVC()
     }
 }

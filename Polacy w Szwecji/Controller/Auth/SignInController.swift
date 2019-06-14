@@ -37,11 +37,26 @@ class SignInController: BaseAuthViewController {
         self.view.endEditing(true)
         validateTextFields()
         signIn(onSuccess: {
-            print("SWITCH VIEW!!!")
+            print("Sign in ok! SWITCH VIEW!!!")
+            (UIApplication.shared.delegate as! AppDelegate).configureInitialVC()
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)
         }
     }
+    
+    private func signIn(onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        ProgressHUD.show("Loading...")
+        Api.User.signIn(email: signInView.emailTF.text!,
+                        password: signInView.passwordTF.text!,
+                        onSuccess: {
+                            ProgressHUD.dismiss()
+                            onSuccess()
+        }) { (errorMessage) in
+            onError(errorMessage)
+        }
+    }
+    
+    
     private  func cancelToSignUp() {
         print("handleSignUp")
         navigationController?.customPop()
@@ -71,18 +86,6 @@ class SignInController: BaseAuthViewController {
     
     @objc fileprivate func keyboardWillHide(notification: NSNotification) {
         signInView.handleKeyboardDown()
-    }
-    
-    private func signIn(onSuccess: @escaping()-> Void, onError: @escaping(_ errorMessage: String) -> Void) {
-        ProgressHUD.show()
-        Api.User.signIn(email: signInView.emailTF.text!,
-                        password: signInView.passwordTF.text!,
-                        onSuccess: {
-                            ProgressHUD.dismiss()
-                            onSuccess()
-        }) { (errorMessage) in
-            onError(errorMessage)
-        }
     }
     
     func validateTextFields() {

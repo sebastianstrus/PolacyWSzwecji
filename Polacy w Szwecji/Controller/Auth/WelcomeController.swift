@@ -10,16 +10,13 @@ import UIKit
 
 class WelcomeController: BaseAuthViewController {
 
-
     fileprivate var welcomeView: WelcomeView!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupView()
     }
-
     
     private func setupView() {
         welcomeView = WelcomeView()

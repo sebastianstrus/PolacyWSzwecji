@@ -55,9 +55,24 @@ class SignUpController: BaseAuthViewController {
         self.view.endEditing(true)
         validateTextFields()
         signUp(onSuccess: {
-            print("SWITCH VIEW!!!")
+            print("Sign up ok! SWITCH VIEW!!!")
+            (UIApplication.shared.delegate as! AppDelegate).configureInitialVC()
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)
+        }
+    }
+    
+    func signUp(onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        ProgressHUD.show("Loading...")
+        Api.User.signUp(withUsername: signUpView.nameTF.text!,
+                        email: signUpView.emailTF.text!,
+                        password: signUpView.passwordTF.text!,
+                        image: self.image,
+                        onSuccess: {
+                            ProgressHUD.dismiss()
+                            onSuccess()
+        }) { (errorMessage) in
+            onError(errorMessage)
         }
     }
     
@@ -93,21 +108,6 @@ class SignUpController: BaseAuthViewController {
         guard let password = signUpView.passwordTF.text, !password.isEmpty else {
             ProgressHUD.showError(ERROR_EMPTY_PASSWORD)
             return
-        }
-    }
-
-    
-    func signUp(onSuccess: @escaping()-> Void, onError: @escaping(_ errorMessage: String) -> Void) {
-        ProgressHUD.show()
-        Api.User.signUp(withUsername: signUpView.nameTF.text!,
-                        email: signUpView.emailTF.text!,
-                        password: signUpView.passwordTF.text!,
-                        image: self.image,
-                        onSuccess: {
-                            ProgressHUD.dismiss()
-                            onSuccess()
-        }) { (errorMessage) in
-            onError(errorMessage)
         }
     }
 }

@@ -32,7 +32,16 @@ extension UIView {
                        height: height)
     }
     
-    func setAnchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat = 0, height: CGFloat = 0) {
+    func setAnchor(top: NSLayoutYAxisAnchor?,
+                   leading: NSLayoutXAxisAnchor?,
+                   bottom: NSLayoutYAxisAnchor?,
+                   trailing: NSLayoutXAxisAnchor?,
+                   paddingTop: CGFloat,
+                   paddingLeft: CGFloat,
+                   paddingBottom: CGFloat,
+                   paddingRight: CGFloat,
+                   width: CGFloat = 0,
+                   height: CGFloat = 0) {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         

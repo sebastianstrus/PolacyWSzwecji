@@ -21,6 +21,7 @@
 		7D08C67D22B30A9700C8DCD8 /* WorkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C67C22B30A9700C8DCD8 /* WorkController.swift */; };
 		7D08C67F22B30AC100C8DCD8 /* FlatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C67E22B30AC100C8DCD8 /* FlatsController.swift */; };
 		7D08C68122B30AEF00C8DCD8 /* ShoppingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C68022B30AEF00C8DCD8 /* ShoppingController.swift */; };
+		7D08C68322B42A1B00C8DCD8 /* MessagesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C68222B42A1B00C8DCD8 /* MessagesTVC.swift */; };
 		7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8822A1DF5900F40530 /* AppDelegate.swift */; };
 		7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8A22A1DF5900F40530 /* WelcomeController.swift */; };
 		7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D348E8F22A1DF5B00F40530 /* Assets.xcassets */; };
@@ -42,7 +43,6 @@
 		7D61603022AD6A6000D968AD /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602F22AD6A6000D968AD /* SignInView.swift */; };
 		7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */; };
 		7DCE64F722A5D06F00CBC3F2 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F322A5D06F00CBC3F2 /* AccountController.swift */; };
-		7DCE64F822A5D06F00CBC3F2 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F422A5D06F00CBC3F2 /* MessagesController.swift */; };
 		7DCE64F922A5D06F00CBC3F2 /* UsersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F522A5D06F00CBC3F2 /* UsersController.swift */; };
 		7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */; };
 		7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */; };
@@ -63,6 +63,7 @@
 		7D08C67C22B30A9700C8DCD8 /* WorkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkController.swift; sourceTree = "<group>"; };
 		7D08C67E22B30AC100C8DCD8 /* FlatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatsController.swift; sourceTree = "<group>"; };
 		7D08C68022B30AEF00C8DCD8 /* ShoppingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingController.swift; sourceTree = "<group>"; };
+		7D08C68222B42A1B00C8DCD8 /* MessagesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTVC.swift; sourceTree = "<group>"; };
 		7D348E8522A1DF5900F40530 /* Polacy w Szwecji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polacy w Szwecji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D348E8822A1DF5900F40530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D348E8A22A1DF5900F40530 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -86,7 +87,6 @@
 		7D61602F22AD6A6000D968AD /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		7DCE64F322A5D06F00CBC3F2 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
-		7DCE64F422A5D06F00CBC3F2 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		7DCE64F522A5D06F00CBC3F2 /* UsersController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersController.swift; sourceTree = "<group>"; };
 		7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -187,11 +187,11 @@
 				7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */,
 				7DCE64F322A5D06F00CBC3F2 /* AccountController.swift */,
 				7DCE64F522A5D06F00CBC3F2 /* UsersController.swift */,
-				7DCE64F422A5D06F00CBC3F2 /* MessagesController.swift */,
-				7D54667022A92A8F0001DDBF /* PDFViewController.swift */,
+				7D08C68222B42A1B00C8DCD8 /* MessagesTVC.swift */,
 				7D08C67C22B30A9700C8DCD8 /* WorkController.swift */,
 				7D08C67E22B30AC100C8DCD8 /* FlatsController.swift */,
 				7D08C68022B30AEF00C8DCD8 /* ShoppingController.swift */,
+				7D54667022A92A8F0001DDBF /* PDFViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -444,13 +444,13 @@
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
 				7D61602A22AD6A1E00D968AD /* ResetPasswordController.swift in Sources */,
 				7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */,
-				7DCE64F822A5D06F00CBC3F2 /* MessagesController.swift in Sources */,
 				7D08C67622B190A300C8DCD8 /* UserApi.swift in Sources */,
 				7DCE64F722A5D06F00CBC3F2 /* AccountController.swift in Sources */,
 				7D08C67D22B30A9700C8DCD8 /* WorkController.swift in Sources */,
 				7D08C67F22B30AC100C8DCD8 /* FlatsController.swift in Sources */,
 				7D61603022AD6A6000D968AD /* SignInView.swift in Sources */,
 				7D08C66C22B0108600C8DCD8 /* UIViewController+Extension.swift in Sources */,
+				7D08C68322B42A1B00C8DCD8 /* MessagesTVC.swift in Sources */,
 				7D348E9F22A1E2B600F40530 /* UIView+Extension.swift in Sources */,
 				7D08C67A22B19FCF00C8DCD8 /* Ref.swift in Sources */,
 				7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */,

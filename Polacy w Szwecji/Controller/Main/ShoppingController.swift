@@ -16,7 +16,4 @@ class ShoppingController: UIViewController {
         view.backgroundColor = UIColor.darkGray
     }
     
-    
-    
-    
 }

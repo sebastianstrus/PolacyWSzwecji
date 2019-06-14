@@ -39,8 +39,8 @@ class ContainerController: UIViewController {
         return viewController
     }()
     
-    lazy var messagesController: MessagesController = {
-        let viewController = MessagesController()
+    lazy var messagesController: MessagesTVC = {
+        let viewController = MessagesTVC()
         self.addViewControllerAsChildViewController(childViewController: viewController)
         return viewController
     }()
@@ -154,9 +154,9 @@ class ContainerController: UIViewController {
         menuBtn.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = menuBtn
         
-        let joinBtn = UIBarButtonItem(title: "Join", style: .plain, target: self, action: #selector(handleJoin))
-        joinBtn.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = joinBtn
+        let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        logoutBtn.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = logoutBtn
     }
     
     func setupView() {
@@ -249,11 +249,16 @@ class ContainerController: UIViewController {
         menuShowing = !menuShowing
     }
     
-    @objc func handleJoin() {
-        let welcomeController = WelcomeController()
-        let nav = UINavigationController(rootViewController: welcomeController)
-        nav.isNavigationBarHidden = true
-        present(nav, animated: true)
+    @objc func handleLogout() {
+        print("handleLogout")
+        
+        Api.User.logOut()
+        
+        
+//        let welcomeController = WelcomeController()
+//        let nav = UINavigationController(rootViewController: welcomeController)
+//        nav.isNavigationBarHidden = true
+//        present(nav, animated: true)
     }
     
     

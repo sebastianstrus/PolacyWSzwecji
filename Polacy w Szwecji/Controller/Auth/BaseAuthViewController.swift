@@ -31,7 +31,6 @@ class BaseAuthViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    
     @objc private func appEnteredBackgound() {
         //playerController.player = nil
         if let tracks = player.currentItem?.tracks {
