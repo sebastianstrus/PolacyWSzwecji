@@ -22,6 +22,7 @@
 		7D08C67F22B30AC100C8DCD8 /* FlatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C67E22B30AC100C8DCD8 /* FlatsController.swift */; };
 		7D08C68122B30AEF00C8DCD8 /* ShoppingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C68022B30AEF00C8DCD8 /* ShoppingController.swift */; };
 		7D08C68322B42A1B00C8DCD8 /* MessagesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C68222B42A1B00C8DCD8 /* MessagesTVC.swift */; };
+		7D08C6A322B4594A00C8DCD8 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A222B4594A00C8DCD8 /* UserCell.swift */; };
 		7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8822A1DF5900F40530 /* AppDelegate.swift */; };
 		7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8A22A1DF5900F40530 /* WelcomeController.swift */; };
 		7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D348E8F22A1DF5B00F40530 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		7D08C67E22B30AC100C8DCD8 /* FlatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlatsController.swift; sourceTree = "<group>"; };
 		7D08C68022B30AEF00C8DCD8 /* ShoppingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingController.swift; sourceTree = "<group>"; };
 		7D08C68222B42A1B00C8DCD8 /* MessagesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTVC.swift; sourceTree = "<group>"; };
+		7D08C6A222B4594A00C8DCD8 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		7D348E8522A1DF5900F40530 /* Polacy w Szwecji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polacy w Szwecji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D348E8822A1DF5900F40530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D348E8A22A1DF5900F40530 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				7D61603222AD6B5200D968AD /* Auth */,
 				7D61603422AD6C0A00D968AD /* Main */,
 				7D54666E22A85F140001DDBF /* SideButtonView.swift */,
+				7D08C6A222B4594A00C8DCD8 /* UserCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				7D61602822AD69E800D968AD /* SignInController.swift in Sources */,
 				7D08C68122B30AEF00C8DCD8 /* ShoppingController.swift in Sources */,
 				7D08C66822AF221800C8DCD8 /* BaseAuthViewController.swift in Sources */,
+				7D08C6A322B4594A00C8DCD8 /* UserCell.swift in Sources */,
 				7D08C67422B1901F00C8DCD8 /* Api.swift in Sources */,
 				7D08C67822B1958600C8DCD8 /* StorageService.swift in Sources */,
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
