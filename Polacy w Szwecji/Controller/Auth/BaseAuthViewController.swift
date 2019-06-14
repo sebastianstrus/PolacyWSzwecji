@@ -84,4 +84,15 @@ class BaseAuthViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(appEnteredBackgound), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appEnteredForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
+    
+    // fix
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        playerController.player?.pause()
+//    }
+//
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        playerController.player?.play()
+//    }
 }

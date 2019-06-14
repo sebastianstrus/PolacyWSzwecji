@@ -144,10 +144,10 @@
 		7D348E8722A1DF5900F40530 /* Polacy w Szwecji */ = {
 			isa = PBXGroup;
 			children = (
-				7D08C67B22B305EE00C8DCD8 /* API */,
 				7D348E8822A1DF5900F40530 /* AppDelegate.swift */,
 				7D348E9422A1DF5B00F40530 /* Info.plist */,
 				7D08C67122B0637F00C8DCD8 /* GoogleService-Info.plist */,
+				7D08C67B22B305EE00C8DCD8 /* API */,
 				7DCE63D222A30D6500CBC3F2 /* Model */,
 				7DCE63D322A30D7600CBC3F2 /* View */,
 				7DCE63D422A30D8100CBC3F2 /* Controller */,

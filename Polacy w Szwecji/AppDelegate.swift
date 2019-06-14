@@ -18,21 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        
-        //create main window without storyboard
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        
-        
-        
-        let menuController = ContainerController()
-        
-        
-        //let welcomeController = WelcomeController()
-        
-        let navController = UINavigationController(rootViewController: menuController)
-        //navController.navigationBar.isHidden = true
-        window?.rootViewController = navController
+        configureInitialVC()
         
         return true
     }
@@ -60,5 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    func configureInitialVC() {
+        let userExists = Auth.auth().currentUser != nil
+        let initialVC = userExists ? ContainerController() : WelcomeController()
+        let navController = UINavigationController(rootViewController: initialVC)
+        navController.navigationBar.isHidden = !userExists
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        window?.rootViewController = navController
+    }
 }
 
