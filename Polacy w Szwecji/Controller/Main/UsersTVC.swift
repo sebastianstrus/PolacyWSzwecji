@@ -64,12 +64,12 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.lightRed
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        
-  
-        let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        logoutBtn.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = logoutBtn
     
+        let menuBtn = UIBarButtonItem(image: UIImage(named: "menu_icon")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(requestToggleMenu))
+        menuBtn.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem = menuBtn
+        
+        
     }
     
     @objc func handleLogout() {
@@ -169,9 +169,7 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
         return 94
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected")
-        
+    @objc private func requestToggleMenu() {
         sideMenuDelegate?.shouldToggleMenu()
     }
 

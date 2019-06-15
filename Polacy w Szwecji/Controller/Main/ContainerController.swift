@@ -127,6 +127,13 @@ class ContainerController: UIViewController, SideMenuDelegate {
         setupView()
     }
     
+    var blockerCoverView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.isHidden = true
+        return view
+    }()
+    
     var containerSideMenu: UIView = {
         let view = UIView()
         view.isHidden = true
@@ -171,9 +178,13 @@ class ContainerController: UIViewController, SideMenuDelegate {
         // set initial view
         updateView(tag: 1)
         
+        
+        view.addSubview(blockerCoverView)
+        blockerCoverView.setAnchor(top: view.safeTopAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, paddingTop: 44, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        //TODO: check nav bar height (if 44) on other devices
         // add static transparent container for side menu, initially hidden
         view.addSubview(containerSideMenu)
-        containerSideMenu.topAnchor.constraint(equalTo: view.safeTopAnchor).isActive = true
+        containerSideMenu.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 44).isActive = true
         containerSideMenu.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         containerSideMenu.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -2*kWidth).isActive = true
         containerSideMenu.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: kWidth).isActive = true
@@ -200,6 +211,8 @@ class ContainerController: UIViewController, SideMenuDelegate {
                                 paddingBottom: 0,
                                 paddingRight: 0)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideMenu))
+        blockerCoverView.addGestureRecognizer(tap)
 
         var i = 0
         buttonViews.forEach { (btnView) in
@@ -263,6 +276,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     
     
     private func showMenu() {
+        blockerCoverView.isHidden = false
         containerSideMenu.isHidden = false
         menuShowing = true
         UIView.animate(withDuration: 0.7) {
@@ -322,7 +336,8 @@ class ContainerController: UIViewController, SideMenuDelegate {
         })
     }
     
-    private func hideMenu() {
+    @objc private func hideMenu() {
+        blockerCoverView.isHidden = true
         UIView.animate(withDuration: 0.7, animations: {
             self.sideMenuXAnchor?.isActive = false
             self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -self.kWidth)
