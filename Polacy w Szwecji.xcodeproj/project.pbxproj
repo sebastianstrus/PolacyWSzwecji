@@ -24,6 +24,7 @@
 		7D08C68322B42A1B00C8DCD8 /* MessagesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C68222B42A1B00C8DCD8 /* MessagesTVC.swift */; };
 		7D08C6A322B4594A00C8DCD8 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A222B4594A00C8DCD8 /* UserCell.swift */; };
 		7D08C6A522B46E2B00C8DCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A422B46E2B00C8DCD8 /* User.swift */; };
+		7D08C6A722B4E1DB00C8DCD8 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A622B4E1DB00C8DCD8 /* UIImageView+Extension.swift */; };
 		7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8822A1DF5900F40530 /* AppDelegate.swift */; };
 		7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8A22A1DF5900F40530 /* WelcomeController.swift */; };
 		7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D348E8F22A1DF5B00F40530 /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		7D08C68222B42A1B00C8DCD8 /* MessagesTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesTVC.swift; sourceTree = "<group>"; };
 		7D08C6A222B4594A00C8DCD8 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		7D08C6A422B46E2B00C8DCD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7D08C6A622B4E1DB00C8DCD8 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		7D348E8522A1DF5900F40530 /* Polacy w Szwecji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polacy w Szwecji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D348E8822A1DF5900F40530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D348E8A22A1DF5900F40530 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				7D08C66922B00C3800C8DCD8 /* UIButton+Extension.swift */,
 				7D08C66B22B0108600C8DCD8 /* UIViewController+Extension.swift */,
 				7D08C66D22B0459500C8DCD8 /* UINavigationController+Extension.swift */,
+				7D08C6A622B4E1DB00C8DCD8 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				7DCE64F722A5D06F00CBC3F2 /* AccountController.swift in Sources */,
 				7D08C67D22B30A9700C8DCD8 /* WorkController.swift in Sources */,
 				7D08C67F22B30AC100C8DCD8 /* FlatsController.swift in Sources */,
+				7D08C6A722B4E1DB00C8DCD8 /* UIImageView+Extension.swift in Sources */,
 				7D61603022AD6A6000D968AD /* SignInView.swift in Sources */,
 				7D08C66C22B0108600C8DCD8 /* UIViewController+Extension.swift in Sources */,
 				7D08C68322B42A1B00C8DCD8 /* MessagesTVC.swift in Sources */,

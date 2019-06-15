@@ -173,8 +173,8 @@ class ContainerController: UIViewController {
             btnView.addGestureRecognizer(tap)
         }
         
-        
-        updateView(tag: 2)
+        // set initial view
+        updateView(tag: 1)
         
         // add static transparent container for side menu, initially hidden
         view.addSubview(containerSideMenu)

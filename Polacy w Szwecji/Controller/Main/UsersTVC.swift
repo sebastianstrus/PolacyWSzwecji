@@ -14,20 +14,27 @@ class UsersTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("REF:")
-        print(Ref().databaseRoot.ref.description())
-        print(Ref().databaseUsers.ref.description())
         
-        Ref().databaseUsers.observe(.childAdded) { (snapshot) in
-            if let dict = snapshot.value as? Dictionary<String, Any> {
-                if let user = User.transformUser(dict: dict) {
-                    self.users.append(user)
-                }
-                self.tableView.reloadData()
-            }
-        }
+        
+        observeUsers()
+        
+//        Ref().databaseUsers.observe(.childAdded) { (snapshot) in
+//            if let dict = snapshot.value as? Dictionary<String, Any> {
+//                if let user = User.transformUser(dict: dict) {
+//                    self.users.append(user)
+//                }
+//                self.tableView.reloadData()
+//            }
+//        }
         
         setupTableView()
+    }
+    
+    func observeUsers() {
+        Api.User.observeUsers { (user) in
+            self.users.append(user)
+            self.tableView.reloadData()
+        }
     }
     
     func setupTableView(){

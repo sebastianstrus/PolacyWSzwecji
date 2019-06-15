@@ -87,4 +87,18 @@ class UserApi {
         }
         (UIApplication.shared.delegate as! AppDelegate).configureInitialVC()
     }
+    
+    func observeUsers(onSuccess: @escaping(UserCompletion)) {
+        Ref().databaseUsers.observe(.childAdded) { (snapshot) in
+            if let dict = snapshot.value as? Dictionary<String, Any> {
+                if let user = User.transformUser(dict: dict) {
+                    onSuccess(user)
+//                    //self.users.append(user)
+                }
+                //self.tableView.reloadData()
+            }
+        }
+    }
 }
+
+typealias UserCompletion = (User) -> Void

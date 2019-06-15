@@ -8,6 +8,8 @@
 
 
 import UIKit
+//import SDWebImage
+
 class UserCell : UITableViewCell {
     
     /*var product : User? {
@@ -21,7 +23,7 @@ class UserCell : UITableViewCell {
     
     var userImageView : UIImageView = {
         let iv = UIImageView(image: UIImage(named: "info_icon"))
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = UIView.ContentMode.scaleAspectFill
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 30
         iv.clipsToBounds = true
@@ -120,7 +122,7 @@ class UserCell : UITableViewCell {
     func loadData(_ user: User) {
         titleLabel.text = user.username
         statusLabel.text = user.status
-        userImageView.image = UIImage(named: "profile0")
+        userImageView.loadImage(user.profileImageUrl)
     }
     
 }

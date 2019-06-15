@@ -11,4 +11,5 @@ target 'Polacy w Szwecji' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'ProgressHUD'
+  pod 'SDWebImage'
 end
