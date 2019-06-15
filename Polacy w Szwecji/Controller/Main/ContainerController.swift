@@ -9,8 +9,11 @@
 import UIKit
 
 
-class ContainerController: UIViewController {
+class ContainerController: UIViewController, SideMenuDelegate {
 
+    func shouldToggleMenu() {
+        toggleMenu()
+    }
     final let kNumberButtons: CGFloat = 7
     final let kWidth: CGFloat = 80
     
@@ -27,46 +30,55 @@ class ContainerController: UIViewController {
     var button6XAnchor: NSLayoutConstraint?
     var buttonViews: [SideButtonView]!
     
-    lazy var accountController: AccountController = {
+    lazy var accountController: UINavigationController = {
         let viewController = AccountController()
-        self.addViewControllerAsChildViewController(childViewController: viewController)
-        return viewController
+        let navController = UINavigationController(rootViewController: viewController)
+        self.addViewControllerAsChildViewController(childViewController: navController)
+        return navController
     }()
     
-    lazy var usersController: UsersTVC = {
+    lazy var usersController: UINavigationController = {
         let viewController = UsersTVC()
-        self.addViewControllerAsChildViewController(childViewController: viewController)
-        return viewController
+        viewController.sideMenuDelegate = self
+        let navController = UINavigationController(rootViewController: viewController)
+        self.addViewControllerAsChildViewController(childViewController: navController)
+        return navController
     }()
     
-    lazy var messagesController: MessagesTVC = {
+    
+    lazy var messagesController: UINavigationController = {
         let viewController = MessagesTVC()
-        self.addViewControllerAsChildViewController(childViewController: viewController)
-        return viewController
+        let navController = UINavigationController(rootViewController: viewController)
+        self.addViewControllerAsChildViewController(childViewController: navController)
+        return navController
     }()
     
-    lazy var workController: WorkController = {
+    lazy var workController: UINavigationController = {
         let viewController = WorkController()
-        self.addViewControllerAsChildViewController(childViewController: viewController)
-        return viewController
+        let navController = UINavigationController(rootViewController: viewController)
+        self.addViewControllerAsChildViewController(childViewController: navController)
+        return navController
     }()
     
-    lazy var flatsController: FlatsController = {
+    lazy var flatsController: UINavigationController = {
         let viewController = FlatsController()
-        self.addViewControllerAsChildViewController(childViewController: viewController)
-        return viewController
+        let navController = UINavigationController(rootViewController: viewController)
+        self.addViewControllerAsChildViewController(childViewController: navController)
+        return navController
     }()
     
-    lazy var shoppingController: ShoppingController = {
+    lazy var shoppingController: UINavigationController = {
         let viewController = ShoppingController()
-        self.addViewControllerAsChildViewController(childViewController: viewController)
-        return viewController
+        let navController = UINavigationController(rootViewController: viewController)
+        self.addViewControllerAsChildViewController(childViewController: navController)
+        return navController
     }()
     
-    lazy var infoController: PDFViewController = {
+    lazy var infoController: UINavigationController = {
         let pdfViewController = PDFViewController()
-        self.addViewControllerAsChildViewController(childViewController: pdfViewController)
-        return pdfViewController
+        let navController = UINavigationController(rootViewController: pdfViewController)
+        self.addViewControllerAsChildViewController(childViewController: navController)
+        return navController
     }()
 
     
@@ -111,14 +123,6 @@ class ContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //temp
-        //let signUpController = RestorePasswordController()
-        //present(signUpController, animated: true)
-        
-        // if not logged in
-//        let welcomeController = WelcomeController()
-//        present(welcomeController, animated: true)
-        
         setupNavBar()
         setupView()
     }
@@ -139,14 +143,14 @@ class ContainerController: UIViewController {
     
     var waveImageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "wave_shape")?.withRenderingMode(.alwaysTemplate))
-        iv.tintColor = UIColor.lightWhite
+        iv.tintColor = UIColor.sideMenuBackground
         iv.contentMode = UIView.ContentMode.scaleToFill
         return iv
     }()
     
     
     
-    func setupNavBar() {
+    private func setupNavBar() {
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.lightRed
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -159,20 +163,11 @@ class ContainerController: UIViewController {
         navigationItem.rightBarButtonItem = logoutBtn
     }
     
-    func setupView() {
+    private func setupView() {
         
         buttonViews = [buttonView0, buttonView1, buttonView2, buttonView3, buttonView4, buttonView5, buttonView6]
 
-        var anchors = [button0XAnchor, button1XAnchor, button2XAnchor, button3XAnchor, button4XAnchor, button5XAnchor, button6XAnchor]
-        
-        var i = 0
-        buttonViews.forEach { (btnView) in
-            btnView.tag = i
-            i += 1
-            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-            btnView.addGestureRecognizer(tap)
-        }
-        
+
         // set initial view
         updateView(tag: 1)
         
@@ -196,16 +191,26 @@ class ContainerController: UIViewController {
 
         
         waveContainerView.addSubview(waveImageView)
-        waveImageView.setAnchor(top: waveContainerView.topAnchor, leading: waveContainerView.leadingAnchor, bottom: waveContainerView.bottomAnchor, trailing: waveContainerView.trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0)
+        waveImageView.setAnchor(top: waveContainerView.topAnchor,
+                                leading: waveContainerView.leadingAnchor,
+                                bottom: waveContainerView.bottomAnchor,
+                                trailing: waveContainerView.trailingAnchor,
+                                paddingTop: 0,
+                                paddingLeft: 0,
+                                paddingBottom: 0,
+                                paddingRight: 0)
         
-        var j = 0
-        for button in buttonViews {
-            containerSideMenu.addSubview(button)
-            button.setAnchor(width: 50, height: 60)
-            anchors[j] = buttonViews[j].centerXAnchor.constraint(equalTo: containerSideMenu.centerXAnchor)
-            j += 1
-        }
 
+        var i = 0
+        buttonViews.forEach { (btnView) in
+            btnView.tag = i
+            i += 1
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+            btnView.addGestureRecognizer(tap)
+            containerSideMenu.addSubview(btnView)
+            btnView.setAnchor(width: 50, height: 60)
+        }
+        
         buttonView0.transform = CGAffineTransform(rotationAngle: self.radians(10))
         buttonView1.transform = CGAffineTransform(rotationAngle: self.radians(15))
         buttonView2.transform = CGAffineTransform(rotationAngle: self.radians(17))
@@ -216,7 +221,7 @@ class ContainerController: UIViewController {
         
     }
 
-    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+    @objc private func handleTap(_ sender: UITapGestureRecognizer) {
         guard let getTag = sender.view?.tag else { return }
         updateView(tag: getTag)
         hideMenu()
@@ -232,7 +237,7 @@ class ContainerController: UIViewController {
         }
     }
     
-    func updateView(tag: Int) {
+    private func updateView(tag: Int) {
         accountController.view.isHidden = !(tag == 0)
         usersController.view.isHidden = !(tag == 1)
         messagesController.view.isHidden = !(tag == 2)
@@ -244,27 +249,22 @@ class ContainerController: UIViewController {
     }
     
 
-    @objc func toggleMenu() {
+    @objc private func toggleMenu() {
         menuShowing ? hideMenu() : showMenu()
-        menuShowing = !menuShowing
     }
     
-    @objc func handleLogout() {
+    @objc private func handleLogout() {
         print("handleLogout")
         
         Api.User.logOut()
         
-        
-//        let welcomeController = WelcomeController()
-//        let nav = UINavigationController(rootViewController: welcomeController)
-//        nav.isNavigationBarHidden = true
-//        present(nav, animated: true)
     }
     
     
     
-    func showMenu() {
+    private func showMenu() {
         containerSideMenu.isHidden = false
+        menuShowing = true
         UIView.animate(withDuration: 0.7) {
             self.sideMenuXAnchor?.isActive = false
             self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: self.kWidth)
@@ -322,7 +322,7 @@ class ContainerController: UIViewController {
         })
     }
     
-    func hideMenu() {
+    private func hideMenu() {
         UIView.animate(withDuration: 0.7, animations: {
             self.sideMenuXAnchor?.isActive = false
             self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -self.kWidth)
@@ -330,6 +330,7 @@ class ContainerController: UIViewController {
             self.view.layoutIfNeeded()
         }) { (_) in
             self.containerSideMenu.isHidden = true
+            self.menuShowing = false
             
         }
         
@@ -393,7 +394,7 @@ class ContainerController: UIViewController {
         childViewController.didMove(toParent: self)
     }
     
-    func radians(_ degrees: Double) -> CGFloat {
+    private func radians(_ degrees: Double) -> CGFloat {
         return CGFloat(degrees * .pi / 180)
     }
 }

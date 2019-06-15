@@ -16,9 +16,10 @@ extension UIColor {
     
     class var lightRed: UIColor { return UIColor(r: 72, g: 98, b: 168)}//{ return UIColor(r: 245, g: 30, b: 30)}
     class var lightWhite: UIColor { return UIColor(r: 240, g: 240, b: 240)}
-    class var sideTint: UIColor { return UIColor.blueFB } //.white
+    class var sideMenuTint: UIColor { return UIColor.white } //.white
     class var blueFB: UIColor { return UIColor(r: 72, g: 98, b: 168)} //or (66,103,178), (59, 89, 152)
     class var redGoogle: UIColor { return UIColor(r: 220, g: 90, b: 64)}
+    class var sideMenuBackground: UIColor { return UIColor.blueFB}
     
 
 }

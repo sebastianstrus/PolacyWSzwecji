@@ -48,13 +48,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func configureInitialVC() {
         let userExists = Auth.auth().currentUser != nil
-        let initialVC = userExists ? ContainerController() : WelcomeController()
-        let navController = UINavigationController(rootViewController: initialVC)
-        navController.navigationBar.isHidden = !userExists
+        
+        // 1. If user is logged in:
+        let containerController = ContainerController()
+        
+        // 2. If user is not logged in:
+        let welcomeNavController = UINavigationController(rootViewController: WelcomeController())
+        welcomeNavController.navigationBar.isHidden = true
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = navController
+        
+        window?.rootViewController = userExists ? containerController : welcomeNavController
     }
 }
 

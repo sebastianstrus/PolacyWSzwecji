@@ -8,16 +8,26 @@
 
 import UIKit
 
-class UsersTVC: UITableViewController {
+protocol SideMenuDelegate {
+    func shouldToggleMenu()
+}
+
+class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDelegate {
     
     var users: [User] = []
     var searchController: UISearchController = UISearchController(searchResultsController: nil)
+    
+    var sideMenuDelegate:SideMenuDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSearchBarController()
         setupNavigationBar()
+        
+        
+        //setupTheNavigationBar()
+        
         observeUsers()
     
         
@@ -25,16 +35,104 @@ class UsersTVC: UITableViewController {
     }
     
     func setupSearchBarController() {
-        searchController.searchBar.placeholder = "Search users..."
-        searchController.searchBar.barTintColor = UIColor.white
-        //parent?.navigationItem.hidesSearchBarWhenScrolling = true
-        parent?.navigationItem.searchController = searchController
+
+        
+        let searchBar = searchController.searchBar
+        searchBar.placeholder = "Search users..."
+        searchBar.tintColor = UIColor.white
+        searchBar.barTintColor = UIColor.white
+        
+        
+        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+            //textfield.textColor = UIColor.mainBlue
+            if let backgroundview = textfield.subviews.first {
+                backgroundview.backgroundColor = UIColor.white
+                backgroundview.layer.cornerRadius = 10;
+                backgroundview.clipsToBounds = true;
+            }
+        }
+        
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
+        
     }
+    
+    
     func setupNavigationBar() {
-        navigationController?.navigationBar.isHidden = false
+        //navigationController?.navigationBar.isHidden = false
         navigationItem.title = "People"
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor.lightRed
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+  
+        let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        logoutBtn.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = logoutBtn
     
     }
+    
+    @objc func handleLogout() {
+        print("handleLogout")
+        
+        Api.User.logOut()
+        
+        
+        //        let welcomeController = WelcomeController()
+        //        let nav = UINavigationController(rootViewController: welcomeController)
+        //        nav.isNavigationBarHidden = true
+        //        present(nav, animated: true)
+    }
+    func setupNavBar() {
+//        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.navigationBar.barTintColor = UIColor.lightRed
+//        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+//
+//        let menuBtn = UIBarButtonItem(image: UIImage(named: "menu_icon")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(toggleMenu))
+//        menuBtn.tintColor = UIColor.white
+//        navigationItem.leftBarButtonItem = menuBtn
+//
+//        let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+//        logoutBtn.tintColor = UIColor.white
+//        navigationItem.rightBarButtonItem = logoutBtn
+    }
+    
+    
+    
+    fileprivate func setupTheNavigationBar() {
+        
+        navigationController?.isNavigationBarHidden = true
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.delegate = self
+        definesPresentationContext = true
+        let searchBar = searchController.searchBar
+        searchBar.tintColor = UIColor.white
+        searchBar.barTintColor = UIColor.white
+        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+            //textfield.textColor = UIColor.mainBlue
+            if let backgroundview = textfield.subviews.first {
+                backgroundview.backgroundColor = UIColor.white
+                backgroundview.layer.cornerRadius = 10;
+                backgroundview.clipsToBounds = true;
+            }
+        }
+        
+        if let navigationbar = self.navigationController?.navigationBar {
+            navigationbar.barTintColor = UIColor.blueFB
+        }
+        navigationItem.searchController = searchController
+        
+        navigationItem.searchController?.searchBar.delegate = self
+        
+        
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = textAttributes
+        navigationItem.title = "Trips"
+        
+        //setupButton()
+        
+    }
+    
     
     func observeUsers() {
         Api.User.observeUsers { (user) in
@@ -70,50 +168,25 @@ class UsersTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 94
     }
- 
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
+        
+        sideMenuDelegate?.shouldToggleMenu()
+    }
+
+//    func setupNavBar() {
+//        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.navigationBar.barTintColor = UIColor.lightRed
+//        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+//        let menuBtn = UIBarButtonItem(image: UIImage(named: "menu_icon")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(toggleMenu))
+//        menuBtn.tintColor = UIColor.white
+//        navigationItem.leftBarButtonItem = menuBtn
+//    }
+//    @objc func toggleMenu() {
+//        parent.menuShowing ? parent.hideMenu() : parent.showMenu()
+//        parent.menuShowing = !parentmenuShowing
+//    }
+  
     
 }
