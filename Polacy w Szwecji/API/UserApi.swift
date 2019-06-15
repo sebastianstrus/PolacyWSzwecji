@@ -93,9 +93,7 @@ class UserApi {
             if let dict = snapshot.value as? Dictionary<String, Any> {
                 if let user = User.transformUser(dict: dict) {
                     onSuccess(user)
-//                    //self.users.append(user)
                 }
-                //self.tableView.reloadData()
             }
         }
     }

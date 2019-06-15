@@ -11,23 +11,29 @@ import UIKit
 class UsersTVC: UITableViewController {
     
     var users: [User] = []
+    var searchController: UISearchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        setupSearchBarController()
+        setupNavigationBar()
         observeUsers()
-        
-//        Ref().databaseUsers.observe(.childAdded) { (snapshot) in
-//            if let dict = snapshot.value as? Dictionary<String, Any> {
-//                if let user = User.transformUser(dict: dict) {
-//                    self.users.append(user)
-//                }
-//                self.tableView.reloadData()
-//            }
-//        }
+    
         
         setupTableView()
+    }
+    
+    func setupSearchBarController() {
+        searchController.searchBar.placeholder = "Search users..."
+        searchController.searchBar.barTintColor = UIColor.white
+        //parent?.navigationItem.hidesSearchBarWhenScrolling = true
+        parent?.navigationItem.searchController = searchController
+    }
+    func setupNavigationBar() {
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "People"
+    
     }
     
     func observeUsers() {
