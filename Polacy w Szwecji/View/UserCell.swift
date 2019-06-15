@@ -117,5 +117,10 @@ class UserCell : UITableViewCell {
     
 
     
+    func loadData(_ user: User) {
+        titleLabel.text = user.username
+        statusLabel.text = user.status
+        userImageView.image = UIImage(named: "profile0")
+    }
     
 }

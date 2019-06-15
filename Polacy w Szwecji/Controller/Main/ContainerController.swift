@@ -174,7 +174,7 @@ class ContainerController: UIViewController {
         }
         
         
-        updateView(tag: 0)
+        updateView(tag: 2)
         
         // add static transparent container for side menu, initially hidden
         view.addSubview(containerSideMenu)

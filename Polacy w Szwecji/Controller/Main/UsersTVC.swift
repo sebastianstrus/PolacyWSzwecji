@@ -10,9 +10,22 @@ import UIKit
 
 class UsersTVC: UITableViewController {
     
+    var users: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("REF:")
+        print(Ref().databaseRoot.ref.description())
+        print(Ref().databaseUsers.ref.description())
+        
+        Ref().databaseUsers.observe(.childAdded) { (snapshot) in
+            if let dict = snapshot.value as? Dictionary<String, Any> {
+                if let user = User.transformUser(dict: dict) {
+                    self.users.append(user)
+                }
+                self.tableView.reloadData()
+            }
+        }
         
         setupTableView()
     }
@@ -25,14 +38,16 @@ class UsersTVC: UITableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return users.count
     }
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_USERS, for: indexPath) as! UserCell
-        cell.titleLabel.text = "Sebastian Strus"
-        cell.statusLabel.text = "We can talk"
-        cell.userImageView.image = UIImage(named: "profile0")
+        
+        cell.loadData(users[indexPath.row])
+//        cell.titleLabel.text = "Sebastian Strus"
+//        cell.statusLabel.text = "We can talk"
+//        cell.userImageView.image = UIImage(named: "profile0")
      
         // Configure the cell...
      
