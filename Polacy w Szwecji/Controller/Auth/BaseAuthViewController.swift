@@ -85,13 +85,13 @@ class BaseAuthViewController: UIViewController {
     }
     
     // fix
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        playerController.player?.pause()
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        playerController.player?.play()
-//    }
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        playerController.player?.pause()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        playerController.player?.play()
+    }
 }

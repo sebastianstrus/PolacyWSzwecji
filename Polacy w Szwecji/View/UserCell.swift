@@ -12,11 +12,9 @@ import UIKit
 
 class UserCell : UITableViewCell {
     
-    /*var product : User? {
+    /*var user : User? {
         didSet {
-            productImage.image = product?.productImage
-            productNameLabel.text = product?.productName
-            productDescriptionLabel.text = product?.productDesc
+     
         }
     }*/
     
@@ -41,10 +39,10 @@ class UserCell : UITableViewCell {
     
     var statusLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textAlignment = .left
         label.text = "Mozemy pogadac"
-        label.textColor = .black
+        label.textColor = UIColor.lightGray
         return label
     }()
     
