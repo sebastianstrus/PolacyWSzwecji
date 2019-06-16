@@ -68,6 +68,7 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
             let chatVC = ChatController()
             chatVC.imagePartner = cell.userImageView.image
             chatVC.partnerUsername = cell.usernameLabel.text
+            chatVC.partnerId = cell.user.uid
             navigationController?.pushViewController(chatVC, animated: true)
         }
     }

@@ -9,7 +9,10 @@
 import Foundation
 import Firebase
 
+
 let REF_USER = "users"
+let REF_MESSAGE = "messages"
+
 let URL_STORAGE_ROOT = "gs://polacywszwecji-aee3f.appspot.com"
 let STORAGE_PROFILE = "profile"
 let PROFILE_IMAGE_URL = "profileImageUrl"
@@ -39,13 +42,30 @@ class Ref {
         return databaseUsers.child(uid)
     }
     
+    var databaseMessage: DatabaseReference {
+        return databaseRoot.child(REF_MESSAGE)
+    }
+    
+    func databaseMessageSendTo(from: String, to: String) -> DatabaseReference {
+        return databaseMessage.child(from).child(to)
+    }
+    
     // Storage Ref
     let storageRoot = Storage.storage().reference(forURL: URL_STORAGE_ROOT)
     var storageProfile:StorageReference {
         return storageRoot.child(STORAGE_PROFILE)
     }
     
+    var storageMessage: StorageReference {
+        return storageRoot.child(REF_MESSAGE)
+    }
+    
     func storageSpecificProfile(uid: String) -> StorageReference {
         return storageProfile.child(uid)
     }
+    
+    func storageSpecificImageMessage(id: String) -> StorageReference {
+        return storageMessage.child("photo").child(id)
+    }
+    
 }

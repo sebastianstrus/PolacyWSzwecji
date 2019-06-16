@@ -27,6 +27,7 @@
 		7D08C6A722B4E1DB00C8DCD8 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A622B4E1DB00C8DCD8 /* UIImageView+Extension.swift */; };
 		7D08C6A922B5ACF900C8DCD8 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A822B5ACF900C8DCD8 /* ChatController.swift */; };
 		7D08C6AB22B5AD1900C8DCD8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6AA22B5AD1900C8DCD8 /* ChatView.swift */; };
+		7D08C6AD22B6538C00C8DCD8 /* MessageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6AC22B6538C00C8DCD8 /* MessageApi.swift */; };
 		7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8822A1DF5900F40530 /* AppDelegate.swift */; };
 		7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8A22A1DF5900F40530 /* WelcomeController.swift */; };
 		7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D348E8F22A1DF5B00F40530 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		7D08C6A622B4E1DB00C8DCD8 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		7D08C6A822B5ACF900C8DCD8 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		7D08C6AA22B5AD1900C8DCD8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		7D08C6AC22B6538C00C8DCD8 /* MessageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageApi.swift; sourceTree = "<group>"; };
 		7D348E8522A1DF5900F40530 /* Polacy w Szwecji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polacy w Szwecji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D348E8822A1DF5900F40530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D348E8A22A1DF5900F40530 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			children = (
 				7D08C67322B1901F00C8DCD8 /* Api.swift */,
 				7D08C67522B190A300C8DCD8 /* UserApi.swift */,
+				7D08C6AC22B6538C00C8DCD8 /* MessageApi.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				7D08C6A922B5ACF900C8DCD8 /* ChatController.swift in Sources */,
 				7D08C6AB22B5AD1900C8DCD8 /* ChatView.swift in Sources */,
 				7DCE64F922A5D06F00CBC3F2 /* UsersTVC.swift in Sources */,
+				7D08C6AD22B6538C00C8DCD8 /* MessageApi.swift in Sources */,
 				7D08C66A22B00C3800C8DCD8 /* UIButton+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

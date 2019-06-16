@@ -18,6 +18,7 @@ class UserCell : UITableViewCell {
         }
     }*/
     
+    var user: User!
     
     var userImageView : UIImageView = {
         let iv = UIImageView(image: UIImage(named: "info_icon"))
@@ -118,6 +119,7 @@ class UserCell : UITableViewCell {
 
     
     func loadData(_ user: User) {
+        self.user = user
         usernameLabel.text = user.username
         statusLabel.text = user.status
         userImageView.loadImage(user.profileImageUrl)
