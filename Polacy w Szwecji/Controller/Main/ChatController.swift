@@ -85,8 +85,20 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         setupPicker()
         setupNavigationBar()
         setupView()
+        observeMessages()
     }
     
+    func observeMessages() {
+        print("observeMessages")
+        Api.Message.retriveMessage(from: Api.User.currentUserId, to: partnerId) { (message) in
+            print("message1")
+            print(message.uid)
+        }
+        Api.Message.retriveMessage(from: partnerId, to: Api.User.currentUserId) { (message) in
+            print("message2")
+            print(message.uid)
+        }
+    }
     func setupPicker() {
         picker.delegate = self
     }
@@ -269,7 +281,6 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     
     
     @objc func attachmentPressed() {
-        print("attachmentPressed")
         let alert = UIAlertController(title: "Polacy w Szwecji", message: "Select source", preferredStyle: .actionSheet)
         
         let cameraAction = UIAlertAction(title: "Take a picture", style: .default) { (_) in

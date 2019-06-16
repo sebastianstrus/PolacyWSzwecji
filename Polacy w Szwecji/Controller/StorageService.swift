@@ -35,15 +35,6 @@ class StorageService {
                         onError(errorMessage)
                     })
                 }
-//                if let metaImageUrl = url?.absoluteString {
-//                    let dict: Dictionary<String, Any> = [
-//                        "imageUrl": metaImageUrl as Any,
-//                        "height": imagePhoto.size.height as Any,
-//                        "width": imagePhoto.size.width as Any,
-//                        "text": "" as Any
-//                    ]
-//                    onSuccess(dict)
-//                }
             })
         }
     }
@@ -123,9 +114,6 @@ class StorageService {
                         if error == nil {
                             print("Done")
                             onSuccess()
-                            //                                    let containerController = ContainerController()
-                            //                                    let navController = UINavigationController(rootViewController: containerController)
-                            //                                    self.present(navController, animated: false)
                         } else {
                             onError(error!.localizedDescription)
                         }
