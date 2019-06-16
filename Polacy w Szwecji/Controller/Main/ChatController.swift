@@ -102,6 +102,17 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     
     func handleVideoSelectedForUrl(_ url: URL) {
         // save video data
+        let videoName = NSUUID().uuidString
+        StorageService.saveVideoMessage(url: url,
+                                        id: videoName,
+                                        onSuccess: { (anyValue) in
+                                            if let dict = anyValue as? [String: Any] {
+                                                self.sendToFirebase(dict: dict)
+                                            }
+        }) { (errorMessage) in
+            
+        }
+        self.picker.dismiss(animated: true, completion: nil)
     }
     
     func handleImageSelectedForInfo(_ info: [UIImagePickerController.InfoKey: Any]) {
@@ -120,7 +131,6 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
                                         id: Api.User.currentUserId,
                                         onSuccess: { (anyValue) in
             if let dict = anyValue as? [String: Any] {
-                print("dict: \(dict)")
                 self.sendToFirebase(dict: dict)
             }
         }) { (errorMessage) in
@@ -270,12 +280,13 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
                 print("Camera unavailable")
             }
         }
-        let libraryAction = UIAlertAction(title: "Choose an image", style: .default) { (_) in
+        let libraryAction = UIAlertAction(title: "Choose an Image or a video", style: .default) { (_) in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
                 self.picker.sourceType = .photoLibrary
+                self.picker.mediaTypes = [String(kUTTypeImage), String(kUTTypeMovie)]
                 self.present(self.picker, animated: true, completion: nil)
             } else {
-                print("Photo library unavailable")
+                print("Library unavailable")
             }
         }
         let videoCameraAction = UIAlertAction(title: "Take a video", style: .default) { (_) in

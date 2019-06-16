@@ -68,4 +68,8 @@ class Ref {
         return storageMessage.child("photo").child(id)
     }
     
+    func storageSpecificVideoMessage(id: String) -> StorageReference {
+        return storageMessage.child("video").child(id)
+    }
+    
 }
