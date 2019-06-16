@@ -96,7 +96,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
             handleVideoSelectedForUrl(videoUrl)
         } else {
-            handleVideoSelectedForInfo(info)
+            handleImageSelectedForInfo(info)
         }
     }
     
@@ -104,7 +104,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         // save video data
     }
     
-    func handleVideoSelectedForInfo(_ info: [UIImagePickerController.InfoKey: Any]) {
+    func handleImageSelectedForInfo(_ info: [UIImagePickerController.InfoKey: Any]) {
         var selectedImageFromPicker: UIImage?
         if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             selectedImageFromPicker = selectedImage
@@ -113,8 +113,12 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             selectedImageFromPicker = originalImage
         }
+        
         // save photo data
-        StorageService.savePhotoMessage(image: selectedImageFromPicker, id: Api.User.currentUserId, onSuccess: { (anyValue) in
+        let imageName = NSUUID().uuidString
+        StorageService.savePhotoMessage(image: selectedImageFromPicker,
+                                        id: Api.User.currentUserId,
+                                        onSuccess: { (anyValue) in
             if let dict = anyValue as? [String: Any] {
                 print("dict: \(dict)")
                 self.sendToFirebase(dict: dict)
@@ -122,6 +126,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         }) { (errorMessage) in
             print("Save photo error: \(errorMessage)")
         }
+        self.picker.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - UITextViewDelegate methods
