@@ -121,6 +121,7 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
     }
     
     private func setupTableView(){
+        tableView.tableFooterView = UIView()
         tableView.register(UserCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_USERS)
         
     }

@@ -18,6 +18,7 @@ class ChatController: UIViewController, UITextViewDelegate {
     // MARK: - All subviews
     var chatTableView: UITableView = {
         let tv = UITableView()
+        tv.tableFooterView = UIView()
         tv.backgroundColor = UIColor.darkGray
         return tv
     }()
