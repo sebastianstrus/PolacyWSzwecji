@@ -25,6 +25,8 @@
 		7D08C6A322B4594A00C8DCD8 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A222B4594A00C8DCD8 /* UserCell.swift */; };
 		7D08C6A522B46E2B00C8DCD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A422B46E2B00C8DCD8 /* User.swift */; };
 		7D08C6A722B4E1DB00C8DCD8 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A622B4E1DB00C8DCD8 /* UIImageView+Extension.swift */; };
+		7D08C6A922B5ACF900C8DCD8 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6A822B5ACF900C8DCD8 /* ChatController.swift */; };
+		7D08C6AB22B5AD1900C8DCD8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6AA22B5AD1900C8DCD8 /* ChatView.swift */; };
 		7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8822A1DF5900F40530 /* AppDelegate.swift */; };
 		7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8A22A1DF5900F40530 /* WelcomeController.swift */; };
 		7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D348E8F22A1DF5B00F40530 /* Assets.xcassets */; };
@@ -70,6 +72,8 @@
 		7D08C6A222B4594A00C8DCD8 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		7D08C6A422B46E2B00C8DCD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7D08C6A622B4E1DB00C8DCD8 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		7D08C6A822B5ACF900C8DCD8 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		7D08C6AA22B5AD1900C8DCD8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		7D348E8522A1DF5900F40530 /* Polacy w Szwecji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polacy w Szwecji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D348E8822A1DF5900F40530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D348E8A22A1DF5900F40530 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 				7D08C67E22B30AC100C8DCD8 /* FlatsController.swift */,
 				7D08C68022B30AEF00C8DCD8 /* ShoppingController.swift */,
 				7D54667022A92A8F0001DDBF /* PDFViewController.swift */,
+				7D08C6A822B5ACF900C8DCD8 /* ChatController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 		7D61603422AD6C0A00D968AD /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7D08C6AA22B5AD1900C8DCD8 /* ChatView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -472,6 +478,8 @@
 				7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */,
 				7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */,
 				7D61602E22AD6A4900D968AD /* SignUpView.swift in Sources */,
+				7D08C6A922B5ACF900C8DCD8 /* ChatController.swift in Sources */,
+				7D08C6AB22B5AD1900C8DCD8 /* ChatView.swift in Sources */,
 				7DCE64F922A5D06F00CBC3F2 /* UsersTVC.swift in Sources */,
 				7D08C66A22B00C3800C8DCD8 /* UIButton+Extension.swift in Sources */,
 			);

@@ -62,6 +62,16 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
         return 94
     }
     
+    // MARK: - UITableViewDelegate methods
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? UserCell {
+            let chatVC = ChatController()
+            chatVC.imagePartner = cell.userImageView.image
+            chatVC.partnerUsername = cell.usernameLabel.text
+            navigationController?.pushViewController(chatVC, animated: true)
+        }
+    }
+    
     // MARK: - Private methods
     @objc private func requestToggleMenu() {
         sideMenuDelegate?.shouldToggleMenu()
@@ -75,6 +85,7 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
         searchBar.placeholder = "Search users..."
         searchBar.tintColor = UIColor.white
         searchBar.barTintColor = UIColor.white
+        definesPresentationContext = true// allows to present correct even cearched users
         
         if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
             if let backgroundview = textfield.subviews.first {

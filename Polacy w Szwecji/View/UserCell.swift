@@ -28,7 +28,7 @@ class UserCell : UITableViewCell {
         return iv
     }()
     
-    var titleLabel : UILabel = {
+    var usernameLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
@@ -71,8 +71,8 @@ class UserCell : UITableViewCell {
                             width: 60,
                             height: 60)
 
-        addSubview(titleLabel)
-        titleLabel.setAnchor(top: topAnchor,
+        addSubview(usernameLabel)
+        usernameLabel.setAnchor(top: topAnchor,
                              leading: userImageView.trailingAnchor,
                              bottom: nil,
                              trailing: nil,
@@ -83,7 +83,7 @@ class UserCell : UITableViewCell {
         
         
         addSubview(statusLabel)
-        statusLabel.setAnchor(top: titleLabel.bottomAnchor,
+        statusLabel.setAnchor(top: usernameLabel.bottomAnchor,
                               leading: userImageView.trailingAnchor,
                               bottom: nil,
                               trailing: nil,
@@ -118,7 +118,7 @@ class UserCell : UITableViewCell {
 
     
     func loadData(_ user: User) {
-        titleLabel.text = user.username
+        usernameLabel.text = user.username
         statusLabel.text = user.status
         userImageView.loadImage(user.profileImageUrl)
     }
