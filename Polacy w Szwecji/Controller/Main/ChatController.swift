@@ -8,18 +8,18 @@
 
 import UIKit
 
-class ChatController: UIViewController {
+class ChatController: UIViewController, UITextViewDelegate {
 
     
     var imagePartner: UIImage!
     var partnerUsername: String!
+    var placeHolderLabel: UILabel!
     
     // MARK: - All subviews
-    var chatTableView: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "aurora1"))
-        iv.backgroundColor = .white
-        iv.contentMode = .scaleAspectFill
-        return iv
+    var chatTableView: UITableView = {
+        let tv = UITableView()
+        tv.backgroundColor = UIColor.darkGray
+        return tv
     }()
     
     var bottomContainer: UIView = {
@@ -43,19 +43,29 @@ class ChatController: UIViewController {
         return label
     }()
     
-    var mediaButton: UIButton = {
+    var attachmentButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "attachment_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.imageView?.tintColor = UIColor.white
+        button.addTarget(self, action: #selector(attachmentPressed), for: .touchUpInside)
         return button
     }()
     
-    var media2Button: UIButton = {
+    var micButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "mic_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.imageView?.tintColor = UIColor.white
+        button.addTarget(self, action: #selector(micPressed), for: .touchUpInside)
         return button
     }()
+    
+    @objc func attachmentPressed() {
+        print("attachmentPressed")
+    }
+    
+    @objc func micPressed() {
+        print("micPressed")
+    }
     
     var sendButton: UIButton = {
         let button = UIButton()
@@ -66,7 +76,10 @@ class ChatController: UIViewController {
     
     var inputTV: UITextView = {
         let tv = UITextView()
-        tv.layer.cornerRadius = 10
+        tv.layer.cornerRadius = 5
+        
+        
+        
         return tv
     }()
     
@@ -77,6 +90,20 @@ class ChatController: UIViewController {
         setupView()
     }
     
+    // MARK: - UITextViewDelegate methods
+    func textViewDidChange(_ textView: UITextView) {
+        let spacing = CharacterSet.whitespacesAndNewlines
+        if !textView.text.trimmingCharacters(in: spacing).isEmpty {
+            let text = textView.text.trimmingCharacters(in: spacing)
+            sendButton.isEnabled = true
+            sendButton.setTitleColor(.white, for: .normal)
+            placeHolderLabel.isHidden = true
+        } else {
+            sendButton.isEnabled = false
+            sendButton.setTitleColor(.lightGray, for: .normal)
+            placeHolderLabel.isHidden = false
+        }
+    }
 
     // MARK: - Private methods
     func setupNavigationBar() {
@@ -107,8 +134,8 @@ class ChatController: UIViewController {
                                   paddingBottom: 0,
                                   paddingRight: 0)
         
-        bottomContainer.addSubview(mediaButton)
-        mediaButton.setAnchor(top: bottomContainer.topAnchor,
+        bottomContainer.addSubview(attachmentButton)
+        attachmentButton.setAnchor(top: bottomContainer.topAnchor,
                               leading: bottomContainer.leadingAnchor,
                               bottom: nil,
                               trailing: nil,
@@ -119,17 +146,17 @@ class ChatController: UIViewController {
                               width: 32,
                               height: 32)
         
-        bottomContainer.addSubview(media2Button)
-        media2Button.setAnchor(top: bottomContainer.topAnchor,
-                              leading: mediaButton.trailingAnchor,
+        bottomContainer.addSubview(micButton)
+        micButton.setAnchor(top: bottomContainer.topAnchor,
+                              leading: attachmentButton.trailingAnchor,
                               bottom: nil,
                               trailing: nil,
-                              paddingTop: 8,
+                              paddingTop: 5,
                               paddingLeft: 8,
                               paddingBottom: 0,
                               paddingRight: 0,
-                              width: 30,
-                              height: 30)
+                              width: 32,
+                              height: 32)
         
         bottomContainer.addSubview(sendButton)
         sendButton.setAnchor(top: bottomContainer.topAnchor,
@@ -137,7 +164,7 @@ class ChatController: UIViewController {
                               bottom: nil,
                               trailing: bottomContainer.trailingAnchor,
                               paddingTop: 5,
-                              paddingLeft: 5,
+                              paddingLeft: 0,
                               paddingBottom: 0,
                               paddingRight: 5,
                               width: 36,
@@ -156,19 +183,44 @@ class ChatController: UIViewController {
                                height: 30)
         
         view.addSubview(chatTableView)
-        chatTableView.setAnchor(top: view.topAnchor,
+        chatTableView.setAnchor(top: view.safeTopAnchor,
                                   leading: view.leadingAnchor,
                                   bottom: bottomContainer.topAnchor,
                                   trailing: view.trailingAnchor,
                                   paddingTop: 0,
                                   paddingLeft: 0,
                                   paddingBottom: 0,
-                                  paddingRight: 0,
-                                  width: 0,
-                                  height: 50)
+                                  paddingRight: 0)
         
+        
+        setupInputContainer()
         
     }
+    
+    
+    func setupInputContainer() {
+        
+        // UITextView doesn't support placeholder so:
+        view.layoutIfNeeded()
+        view.setNeedsLayout()
+        placeHolderLabel = UILabel()
+        let placeholderX: CGFloat = inputTV.frame.size.width / 60
+        let placeholderY: CGFloat = 0
+        let placeholderWidth: CGFloat = inputTV.bounds.width - placeholderX
+        let placeholderHeight: CGFloat = inputTV.bounds.height
+        let placeholderFontSize: CGFloat = CGFloat(Device.SCREEN_WIDTH / 25)
+        placeHolderLabel.frame = CGRect(x: placeholderX, y: placeholderY, width: placeholderWidth, height: placeholderHeight)
+        placeHolderLabel.text = "Write a message"
+        placeHolderLabel.font = UIFont(name: "HelveticaNeue", size: placeholderFontSize)
+        placeHolderLabel.textColor = UIColor.lightGray
+        placeHolderLabel.textAlignment = .left
+        inputTV.addSubview(placeHolderLabel)
+        inputTV.delegate = self
+    }
+    
+    
+
+
     
 
 }
