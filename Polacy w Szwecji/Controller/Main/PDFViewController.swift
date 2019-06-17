@@ -16,7 +16,7 @@ class PDFViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupNavBar()
         view = pdfView
         
         let path = Bundle.main.path(forResource: "vademecum2012", ofType: "pdf")!
@@ -30,5 +30,22 @@ class PDFViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         pdfView.frame = view.frame
+    }
+    
+    
+    private func setupNavBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = UIColor.lightRed
+
+        let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        logoutBtn.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = logoutBtn
+    }
+    
+    @objc private func handleLogout() {
+        print("handleLogout")
+        
+        Api.User.logOut()
+        
     }
 }

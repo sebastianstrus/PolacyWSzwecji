@@ -29,6 +29,7 @@
 		7D08C6AB22B5AD1900C8DCD8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6AA22B5AD1900C8DCD8 /* ChatView.swift */; };
 		7D08C6AD22B6538C00C8DCD8 /* MessageApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D08C6AC22B6538C00C8DCD8 /* MessageApi.swift */; };
 		7D2EC14822B6E14400C9A03E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2EC14722B6E14400C9A03E /* Message.swift */; };
+		7D2EC14A22B6F75700C9A03E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2EC14922B6F75700C9A03E /* MessageCell.swift */; };
 		7D348E8922A1DF5900F40530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8822A1DF5900F40530 /* AppDelegate.swift */; };
 		7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348E8A22A1DF5900F40530 /* WelcomeController.swift */; };
 		7D348E9022A1DF5B00F40530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D348E8F22A1DF5B00F40530 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		7D348EA322A1E51700F40530 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D348EA222A1E51700F40530 /* AppFonts.swift */; };
 		7D348EA522A1E52E00F40530 /* LuckiestGuy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */; };
 		7D348EA722A1EA3500F40530 /* SeymourOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */; };
+		7D3CFE7E22B8537B001796BE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CFE7D22B8537B001796BE /* String+Extension.swift */; };
 		7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54666E22A85F140001DDBF /* SideButtonView.swift */; };
 		7D54667122A92A8F0001DDBF /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54667022A92A8F0001DDBF /* PDFViewController.swift */; };
 		7D54667322A92C270001DDBF /* vademecum2012.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7D54667222A92C270001DDBF /* vademecum2012.pdf */; };
@@ -78,6 +80,7 @@
 		7D08C6AA22B5AD1900C8DCD8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		7D08C6AC22B6538C00C8DCD8 /* MessageApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageApi.swift; sourceTree = "<group>"; };
 		7D2EC14722B6E14400C9A03E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		7D2EC14922B6F75700C9A03E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		7D348E8522A1DF5900F40530 /* Polacy w Szwecji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Polacy w Szwecji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D348E8822A1DF5900F40530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D348E8A22A1DF5900F40530 /* WelcomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		7D348EA222A1E51700F40530 /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		7D348EA422A1E52D00F40530 /* LuckiestGuy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LuckiestGuy-Regular.ttf"; sourceTree = "<group>"; };
 		7D348EA622A1EA3500F40530 /* SeymourOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SeymourOne-Regular.ttf"; sourceTree = "<group>"; };
+		7D3CFE7D22B8537B001796BE /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		7D54666E22A85F140001DDBF /* SideButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideButtonView.swift; sourceTree = "<group>"; };
 		7D54667022A92A8F0001DDBF /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		7D54667222A92C270001DDBF /* vademecum2012.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = vademecum2012.pdf; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 				7D61603222AD6B5200D968AD /* Auth */,
 				7D61603422AD6C0A00D968AD /* Main */,
 				7D54666E22A85F140001DDBF /* SideButtonView.swift */,
+				7D2EC14922B6F75700C9A03E /* MessageCell.swift */,
 				7D08C6A222B4594A00C8DCD8 /* UserCell.swift */,
 			);
 			path = View;
@@ -268,6 +273,7 @@
 				7D08C66B22B0108600C8DCD8 /* UIViewController+Extension.swift */,
 				7D08C66D22B0459500C8DCD8 /* UINavigationController+Extension.swift */,
 				7D08C6A622B4E1DB00C8DCD8 /* UIImageView+Extension.swift */,
+				7D3CFE7D22B8537B001796BE /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -458,6 +464,7 @@
 				7D61602C22AD6A3A00D968AD /* ResetPasswordView.swift in Sources */,
 				7D348EA122A1E2D200F40530 /* Constants.swift in Sources */,
 				7D08C6A522B46E2B00C8DCD8 /* User.swift in Sources */,
+				7D3CFE7E22B8537B001796BE /* String+Extension.swift in Sources */,
 				7D61602822AD69E800D968AD /* SignInController.swift in Sources */,
 				7D08C68122B30AEF00C8DCD8 /* ShoppingController.swift in Sources */,
 				7D08C66822AF221800C8DCD8 /* BaseAuthViewController.swift in Sources */,
@@ -482,6 +489,7 @@
 				7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */,
 				7D08C66E22B0459500C8DCD8 /* UINavigationController+Extension.swift in Sources */,
 				7D2EC14822B6E14400C9A03E /* Message.swift in Sources */,
+				7D2EC14A22B6F75700C9A03E /* MessageCell.swift in Sources */,
 				7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */,
 				7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */,
 				7D61602E22AD6A4900D968AD /* SignUpView.swift in Sources */,

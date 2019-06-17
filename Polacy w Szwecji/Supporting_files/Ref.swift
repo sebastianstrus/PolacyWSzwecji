@@ -30,6 +30,7 @@ let ERROR_EMPTY_EMAIL_RESET = "Please enter an email address for password reset.
 let SUCCESS_EMAIL_RESET = "We have just sent you a password reset email. Please check your inbox and follow the instructions to reset the password."
 
 let IDENTIFIER_CELL_USERS = "UserTableViewCell"
+let IDENTIFIER_CELL_MESSAGES = "MessageTableViewCell"
 
 class Ref {
     let databaseRoot: DatabaseReference = Database.database().reference()

@@ -10,20 +10,21 @@ import UIKit
 import MobileCoreServices
 import AVFoundation
 
-class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    fileprivate var sideMenuDelegate:SideMenuDelegate?
+
     var imagePartner: UIImage!
     var partnerUsername: String!
     var partnerId: String!
     var placeHolderLabel: UILabel!
     var picker = UIImagePickerController()
+    var messages = [Message]()
     
     // MARK: - All subviews
     var chatTableView: UITableView = {
         let tv = UITableView()
         tv.tableFooterView = UIView()
-        tv.backgroundColor = UIColor.darkGray
         return tv
     }()
     
@@ -86,6 +87,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         setupNavigationBar()
         setupView()
         observeMessages()
+        setupChatTableView()
     }
     
     func observeMessages() {
@@ -93,14 +95,61 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         Api.Message.retriveMessage(from: Api.User.currentUserId, to: partnerId) { (message) in
             print("message1")
             print(message.uid)
+            self.messages.append(message)
+            self.sortMessages()
         }
         Api.Message.retriveMessage(from: partnerId, to: Api.User.currentUserId) { (message) in
             print("message2")
             print(message.uid)
+            self.messages.append(message)
+            self.sortMessages()
         }
     }
+    
+    func sortMessages() {
+        messages = messages.sorted(by: { $0.date < $1.date })
+        DispatchQueue.main.async {
+            self.chatTableView.reloadData()
+        }
+    
+    }
+    
     func setupPicker() {
         picker.delegate = self
+    }
+    
+    func setupChatTableView() {
+        chatTableView.delegate = self
+        chatTableView.dataSource = self
+        chatTableView.register(MessageCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_MESSAGES)
+    }
+    
+    // MARK: - UITableViewDataSource methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = chatTableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_MESSAGES) as! MessageCell
+        cell.playButton.isHidden = messages[indexPath.row].videoUrl == ""
+        cell.configureCell(uid: Api.User.currentUserId, message: messages[indexPath.row], circleImage: imagePartner)
+        return cell
+    }
+    
+    // MARK: - UITableViewDelegate methods
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height: CGFloat = 0
+        let message = messages[indexPath.row]
+        let text = message.text
+        if !text.isEmpty {
+            height = text.estimateFrameForText(text).height + 60
+        }
+        let heightMessage = message.height
+        let widthMessage = message.width
+        if heightMessage != 0, widthMessage != 0 {
+            height = CGFloat(heightMessage / widthMessage * 250)
+        }
+        return height
     }
     
     // MARK: - UIImagePickerControllerDelegate methods
@@ -200,7 +249,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
                               leading: bottomContainer.leadingAnchor,
                               bottom: nil,
                               trailing: nil,
-                              paddingTop: 5,
+                              paddingTop: 8,
                               paddingLeft: 8,
                               paddingBottom: 0,
                               paddingRight: 0,
@@ -212,7 +261,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
                               leading: attachmentButton.trailingAnchor,
                               bottom: nil,
                               trailing: nil,
-                              paddingTop: 5,
+                              paddingTop: 8,
                               paddingLeft: 8,
                               paddingBottom: 0,
                               paddingRight: 0,
@@ -229,14 +278,14 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
                               paddingBottom: 0,
                               paddingRight: 5,
                               width: 36,
-                              height: 30)
+                              height: 36)
         
         bottomContainer.addSubview(inputTV)
         inputTV.setAnchor(top: bottomContainer.topAnchor,
                                leading: bottomContainer.leadingAnchor,
                                bottom: nil,
                                trailing: sendButton.leadingAnchor,
-                               paddingTop: 5,
+                               paddingTop: 8,
                                paddingLeft: 88,
                                paddingBottom: 0,
                                paddingRight: 8,
