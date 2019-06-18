@@ -25,8 +25,17 @@ class MessageCell : UITableViewCell {
     
     
 
+    var profileImage: UIImageView = {
+        let iv = UIImageView(image: UIImage(named: "profile0"))
+        iv.contentMode = UIView.ContentMode.scaleAspectFill
+        iv.clipsToBounds = true
+        iv.layer.cornerRadius = 16
+        iv.clipsToBounds = true
+        iv.isHidden = true
+        return iv
+    }()
     
-    var babbleView: UIView = {
+    var bubbleView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.green
         view.layer.cornerRadius = 15
@@ -42,16 +51,6 @@ class MessageCell : UITableViewCell {
         return indicator
     }()
     
-    var profileImage: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "profile0"))
-        iv.contentMode = UIView.ContentMode.scaleAspectFill
-        iv.clipsToBounds = true
-        iv.layer.cornerRadius = 16
-        iv.clipsToBounds = true
-        iv.isHidden = true
-        return iv
-    }()
-    
     var textMessageLabel: UILabel = {
         let label = UILabel()
         label.text = "Message"
@@ -64,6 +63,7 @@ class MessageCell : UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.text = "timestamp"
+        label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
     
@@ -93,66 +93,66 @@ class MessageCell : UITableViewCell {
         //bubbleWidthConstraint = babbleView.widthAnchor.constraint(equalToConstant: 0)
         //bubbleLeftConstraint: NSLayoutConstraint!
         //bubbleRightConstraint: NSLayoutConstraint!
-       
+        addSubview(profileImage)
+        profileImage.setAnchor(top: nil,
+                               leading: leadingAnchor,
+                               bottom: bottomAnchor,
+                               trailing: nil,
+                               paddingTop: 0,
+                               paddingLeft: 15,
+                               paddingBottom: 12,
+                               paddingRight: 0,
+                               width: 32,
+                               height: 32)
         
-        addSubview(babbleView)
+        addSubview(bubbleView)
 
         //top
-        babbleView.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
+        bubbleView.topAnchor.constraint(equalTo: topAnchor, constant: 12).isActive = true
         
         //left
-        bubbleLeftConstraint = babbleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 55)
+        bubbleLeftConstraint = bubbleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 55)
         bubbleLeftConstraint.isActive = true
         
         //right
-        bubbleRightConstraint = babbleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8)
+        bubbleRightConstraint = bubbleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8)
         //bubbleRightConstraint.isActive = true
         
-        babbleView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).isActive = true
+        bubbleView.bottomAnchor.constraint(equalTo: profileImage.bottomAnchor).isActive = true
         
         //width
-        bubbleWidthConstraint = babbleView.widthAnchor.constraint(equalToConstant: 0)
-        //bubbleWidthConstraint.isActive = true
+        bubbleWidthConstraint = bubbleView.widthAnchor.constraint(equalToConstant: 312)
+        bubbleWidthConstraint.isActive = true
         
         
 
-        addSubview(profileImage)
-        profileImage.setAnchor(top: nil,
-                                leading: leadingAnchor,
-                                bottom: bottomAnchor,
-                                trailing: nil,
-                                paddingTop: 0,
-                                paddingLeft: 15,
-                                paddingBottom: 12,
-                                paddingRight: 0,
-                                width: 32,
-                                height: 32)
         
         
-        babbleView.addSubview(activityIndicator)
+        
+        bubbleView.addSubview(activityIndicator)
         activityIndicator.setAnchor(width: 50, height: 50)
-        activityIndicator.centerXAnchor.constraint(equalTo: babbleView.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: babbleView.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: bubbleView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: bubbleView.centerYAnchor).isActive = true
         
         
-        babbleView.addSubview(textMessageLabel)
-        textMessageLabel.setAnchor(top: babbleView.topAnchor,
-                             leading: babbleView.leadingAnchor,
+        bubbleView.addSubview(textMessageLabel)
+        textMessageLabel.setAnchor(top: bubbleView.topAnchor,
+                             leading: bubbleView.leadingAnchor,
                              bottom: nil,
-                             trailing: babbleView.trailingAnchor,
+                             trailing: bubbleView.trailingAnchor,
                              paddingTop: 8,
                              paddingLeft: 15,
                              paddingBottom: 0,
                              paddingRight: 15)
         
-        babbleView.addSubview(messageIV)
-        messageIV.pinToEdges(view: babbleView)
+        bubbleView.addSubview(messageIV)
+        messageIV.pinToEdges(view: bubbleView)
         
-        babbleView.addSubview(dateLabel)
+        bubbleView.addSubview(dateLabel)
         dateLabel.setAnchor(top: textMessageLabel.bottomAnchor,
-                             leading: babbleView.leadingAnchor,
-                             bottom: babbleView.bottomAnchor,
-                             trailing: babbleView.trailingAnchor,
+                             leading: bubbleView.leadingAnchor,
+                             bottom: bubbleView.bottomAnchor,
+                             trailing: bubbleView.trailingAnchor,
                              paddingTop: 0,
                              paddingLeft: 8,
                              paddingBottom: 5,
@@ -160,11 +160,11 @@ class MessageCell : UITableViewCell {
                              width: 0,
                              height: 15)
         
-        babbleView.addSubview(playButton)
-        playButton.setAnchor(top: babbleView.topAnchor,
+        bubbleView.addSubview(playButton)
+        playButton.setAnchor(top: bubbleView.topAnchor,
                                 leading: nil,
                                 bottom: nil,
-                                trailing: babbleView.trailingAnchor,
+                                trailing: bubbleView.trailingAnchor,
                                 paddingTop: 5,
                                 paddingLeft: 0,
                                 paddingBottom: 0,
@@ -207,23 +207,23 @@ class MessageCell : UITableViewCell {
             print("Is empty")
             messageIV.isHidden = false
             messageIV.loadImage(message.imageUrl)
-            babbleView.layer.borderColor = UIColor.clear.cgColor
+            bubbleView.layer.borderColor = UIColor.clear.cgColor
             bubbleWidthConstraint.constant = 250
             dateLabel.textColor = UIColor.white
         }
         
         if uid == message.from {
-            babbleView.backgroundColor = UIColor.groupTableViewBackground
-            babbleView.layer.borderColor = UIColor.clear.cgColor
+            bubbleView.backgroundColor = UIColor.groupTableViewBackground
+            bubbleView.layer.borderColor = UIColor.clear.cgColor
             
             bubbleRightConstraint.constant = 8
             bubbleLeftConstraint.constant = UIScreen.main.bounds.width - bubbleWidthConstraint.constant - bubbleRightConstraint.constant
             
         } else {
             profileImage.isHidden = false
-            babbleView.backgroundColor = UIColor.white
+            bubbleView.backgroundColor = UIColor.white
             profileImage.image = circleImage
-            babbleView.layer.borderColor = UIColor.lightGray.cgColor
+            bubbleView.layer.borderColor = UIColor.lightGray.cgColor
             
             bubbleLeftConstraint.constant = 55
             bubbleRightConstraint.constant = UIScreen.main.bounds.width - bubbleWidthConstraint.constant - bubbleLeftConstraint.constant

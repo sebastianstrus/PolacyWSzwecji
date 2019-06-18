@@ -111,7 +111,6 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         DispatchQueue.main.async {
             self.chatTableView.reloadData()
         }
-    
     }
     
     func setupPicker() {

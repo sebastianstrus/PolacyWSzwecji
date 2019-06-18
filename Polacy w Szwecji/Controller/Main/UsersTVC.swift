@@ -66,7 +66,7 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? UserCell {
             let chatVC = ChatController()
-            chatVC.imagePartner = cell.userImageView.image
+            chatVC.imagePartner = cell.profileImageView.image
             chatVC.partnerUsername = cell.usernameLabel.text
             chatVC.partnerId = cell.user.uid
             navigationController?.pushViewController(chatVC, animated: true)

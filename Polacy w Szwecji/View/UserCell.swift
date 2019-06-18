@@ -20,7 +20,7 @@ class UserCell : UITableViewCell {
     
     var user: User!
     
-    var userImageView : UIImageView = {
+    var profileImageView : UIImageView = {
         let iv = UIImageView(image: UIImage(named: "info_icon"))
         iv.contentMode = UIView.ContentMode.scaleAspectFill
         iv.clipsToBounds = true
@@ -60,8 +60,8 @@ class UserCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        addSubview(userImageView)
-        userImageView.setAnchor(top: topAnchor,
+        addSubview(profileImageView)
+        profileImageView.setAnchor(top: topAnchor,
                             leading: leadingAnchor,
                             bottom: nil,
                             trailing: nil,
@@ -74,7 +74,7 @@ class UserCell : UITableViewCell {
 
         addSubview(usernameLabel)
         usernameLabel.setAnchor(top: topAnchor,
-                             leading: userImageView.trailingAnchor,
+                             leading: profileImageView.trailingAnchor,
                              bottom: nil,
                              trailing: nil,
                              paddingTop: 25,
@@ -85,7 +85,7 @@ class UserCell : UITableViewCell {
         
         addSubview(statusLabel)
         statusLabel.setAnchor(top: usernameLabel.bottomAnchor,
-                              leading: userImageView.trailingAnchor,
+                              leading: profileImageView.trailingAnchor,
                               bottom: nil,
                               trailing: nil,
                               paddingTop: 5,
@@ -105,7 +105,7 @@ class UserCell : UITableViewCell {
                                 paddingRight: 20,
                                 width: 36,
                                 height: 36)
-        chatImageView.centerYAnchor.constraint(equalTo: userImageView.centerYAnchor).isActive = true
+        chatImageView.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
 
         
         
@@ -122,7 +122,7 @@ class UserCell : UITableViewCell {
         self.user = user
         usernameLabel.text = user.username
         statusLabel.text = user.status
-        userImageView.loadImage(user.profileImageUrl)
+        profileImageView.loadImage(user.profileImageUrl)
     }
     
 }
