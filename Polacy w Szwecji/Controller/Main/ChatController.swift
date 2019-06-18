@@ -122,6 +122,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     }
     
     func setupChatTableView() {
+        chatTableView.separatorStyle = .none
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.register(MessageCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_MESSAGES)

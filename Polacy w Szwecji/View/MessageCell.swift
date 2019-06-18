@@ -83,6 +83,7 @@ class MessageCell : UITableViewCell {
         let indicator = UIActivityIndicatorView()
         indicator.hidesWhenStopped = true
         indicator.isHidden = true
+        indicator.style = .whiteLarge
         indicator.stopAnimating()
         return indicator
     }()
