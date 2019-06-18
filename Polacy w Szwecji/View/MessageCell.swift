@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import SDWebImage
+import AVFoundation
 
 class MessageCell : UITableViewCell {
     
@@ -23,7 +23,9 @@ class MessageCell : UITableViewCell {
     var bubbleLeftConstraint: NSLayoutConstraint!
     var bubbleRightConstraint: NSLayoutConstraint!
     
-    
+    var playerLayer: AVPlayerLayer?
+    var player: AVPlayer?
+    var message: Message!
 
     var profileImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "profile0"))
@@ -45,12 +47,6 @@ class MessageCell : UITableViewCell {
         return view
     }()
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
-    
     var textMessageLabel: UILabel = {
         let label = UILabel()
         label.text = "Message"
@@ -67,9 +63,9 @@ class MessageCell : UITableViewCell {
         return label
     }()
     
-    var messageIV: UIImageView = {
+    var photoMessage: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.blueFB
+        iv.backgroundColor = UIColor(r: 250, g: 250, b: 250)
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 15
         iv.clipsToBounds = true
@@ -83,16 +79,17 @@ class MessageCell : UITableViewCell {
         return button
     }()
     
-
-
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.hidesWhenStopped = true
+        indicator.isHidden = true
+        indicator.stopAnimating()
+        return indicator
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        //yCenterAnchor = containerView.centerYAnchor.constraint(equalTo: centerYAnchor)
-        //bubbleWidthConstraint = babbleView.widthAnchor.constraint(equalToConstant: 0)
-        //bubbleLeftConstraint: NSLayoutConstraint!
-        //bubbleRightConstraint: NSLayoutConstraint!
         addSubview(profileImage)
         profileImage.setAnchor(top: nil,
                                leading: leadingAnchor,
@@ -124,16 +121,7 @@ class MessageCell : UITableViewCell {
         bubbleWidthConstraint = bubbleView.widthAnchor.constraint(equalToConstant: 312)
         bubbleWidthConstraint.isActive = true
         
-        
-
-        
-        
-        
-        bubbleView.addSubview(activityIndicator)
-        activityIndicator.setAnchor(width: 50, height: 50)
-        activityIndicator.centerXAnchor.constraint(equalTo: bubbleView.centerXAnchor).isActive = true
-        activityIndicator.centerYAnchor.constraint(equalTo: bubbleView.centerYAnchor).isActive = true
-        
+    
         
         bubbleView.addSubview(textMessageLabel)
         textMessageLabel.setAnchor(top: bubbleView.topAnchor,
@@ -145,8 +133,8 @@ class MessageCell : UITableViewCell {
                              paddingBottom: 0,
                              paddingRight: 15)
         
-        bubbleView.addSubview(messageIV)
-        messageIV.pinToEdges(view: bubbleView)
+        bubbleView.addSubview(photoMessage)
+        photoMessage.pinToEdges(view: bubbleView)
         
         bubbleView.addSubview(dateLabel)
         dateLabel.setAnchor(top: textMessageLabel.bottomAnchor,
@@ -172,7 +160,12 @@ class MessageCell : UITableViewCell {
                                 width: 37,
                                 height: 37)
         
-
+        bubbleView.addSubview(activityIndicator)
+        activityIndicator.setAnchor(width: 50, height: 50)
+        activityIndicator.centerXAnchor.constraint(equalTo: bubbleView.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: bubbleView.centerYAnchor).isActive = true
+        
+        playButton.addTarget(self, action: #selector(playTapped), for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -181,13 +174,70 @@ class MessageCell : UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        messageIV.isHidden = true
+        photoMessage.isHidden = true
         profileImage.isHidden = true
         textMessageLabel.isHidden = true
+        
+        if observation != nil {
+            stopObservers()
+        }
+        playerLayer?.removeFromSuperlayer()
+        player?.pause()
+        playButton.isHidden = false
+        
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+    }
+    
+    func stopObservers() {
+        player?.removeObserver(self, forKeyPath: "status")
+        observation = nil
+    }
+    
+    @objc func playTapped() {
+        print("playTapped")
+        handlePlay()
+    }
+    
+    
+    var observation: Any? = nil
+    func handlePlay() {
+        print("handlePlay")
+        let videoUrl = message.videoUrl
+        if videoUrl.isEmpty {
+            return
+        }
+        if let url = URL(string: videoUrl) {
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
+            player = AVPlayer(url: url)
+            playerLayer = AVPlayerLayer(player: player)
+            playerLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+            playerLayer?.frame = photoMessage.frame
+            observation = player?.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.new, context: nil)
+            bubbleView.layer.addSublayer(playerLayer!)
+            player?.play()
+            playButton.isHidden = true
+        }
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "status" {
+            let status: AVPlayer.Status = player!.status
+            switch (status) {
+            case .readyToPlay:
+                activityIndicator.isHidden = true
+                activityIndicator.stopAnimating()
+                break
+            case .failed, .unknown:
+                break
+            }
+        }
     }
     
     //public functions
     func configureCell(uid: String, message: Message, circleImage: UIImage) {
+        self.message = message
         let text = message.text
         if !text.isEmpty {
             print("Not empty")
@@ -205,8 +255,8 @@ class MessageCell : UITableViewCell {
             dateLabel.textColor = UIColor.lightGray
         } else {
             print("Is empty")
-            messageIV.isHidden = false
-            messageIV.loadImage(message.imageUrl)
+            photoMessage.isHidden = false
+            photoMessage.loadImage(message.imageUrl)
             bubbleView.layer.borderColor = UIColor.clear.cgColor
             bubbleWidthConstraint.constant = 250
             dateLabel.textColor = UIColor.white
@@ -227,16 +277,13 @@ class MessageCell : UITableViewCell {
             
             bubbleLeftConstraint.constant = 55
             bubbleRightConstraint.constant = UIScreen.main.bounds.width - bubbleWidthConstraint.constant - bubbleLeftConstraint.constant
-            
         }
         
         let date = Date(timeIntervalSince1970: message.date)
         let dateString = timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
         dateLabel.text = dateString
     }
-    
 }
-
 
 //global function
 func timeAgoSinceDate(_ date:Date, currentDate:Date, numericDates:Bool) -> String {
