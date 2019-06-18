@@ -88,7 +88,16 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         setupView()
         observeMessages()
         setupChatTableView()
+        handleKeyboard()
     }
+    
+    func handleKeyboard() {
+        
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {}
+    @objc func keyboardWillHide(notification: NSNotification) {}
+    
     
     func observeMessages() {
         print("observeMessages")
@@ -233,15 +242,18 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     }
     
     func setupView() {
+        view.backgroundColor = UIColor.blueFB
         view.addSubview(bottomContainer)
-        bottomContainer.setAnchor(top: view.safeBottomAnchor,
+        bottomContainer.setAnchor(top: nil,
                                   leading: view.leadingAnchor,
-                                  bottom: view.bottomAnchor,
+                                  bottom: view.safeBottomAnchor,
                                   trailing: view.trailingAnchor,
-                                  paddingTop: -50,
+                                  paddingTop: 0,
                                   paddingLeft: 0,
                                   paddingBottom: 0,
-                                  paddingRight: 0)
+                                  paddingRight: 0,
+                                  width: 0,
+                                  height: 50)
         
         bottomContainer.addSubview(attachmentButton)
         attachmentButton.setAnchor(top: bottomContainer.topAnchor,
