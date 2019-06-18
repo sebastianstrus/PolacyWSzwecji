@@ -12,6 +12,8 @@ import Firebase
 
 let REF_USER = "users"
 let REF_MESSAGE = "messages"
+let REF_INBOX = "inbox"
+
 
 let URL_STORAGE_ROOT = "gs://polacywszwecji-aee3f.appspot.com"
 let STORAGE_PROFILE = "profile"
@@ -31,6 +33,7 @@ let SUCCESS_EMAIL_RESET = "We have just sent you a password reset email. Please 
 
 let IDENTIFIER_CELL_USERS = "UserTableViewCell"
 let IDENTIFIER_CELL_MESSAGES = "MessageTableViewCell"
+let IDENTIFIER_CELL_INBOX_USERS = "UserInboxTableViewCell"
 
 class Ref {
     let databaseRoot: DatabaseReference = Database.database().reference()
@@ -50,6 +53,22 @@ class Ref {
     func databaseMessageSendTo(from: String, to: String) -> DatabaseReference {
         return databaseMessage.child(from).child(to)
     }
+    
+    var databaseInbox: DatabaseReference {
+        return databaseMessage.child(REF_INBOX)
+    }
+    
+    func databaseInboxInfor(from: String, to: String) -> DatabaseReference {
+        return databaseMessage.child(from).child(to)
+    }
+    
+    func databaseInboxForUser(uid: String) -> DatabaseReference {
+        return databaseInbox.child(uid)
+    }
+    
+    
+    
+    
     
     // Storage Ref
     let storageRoot = Storage.storage().reference(forURL: URL_STORAGE_ROOT)

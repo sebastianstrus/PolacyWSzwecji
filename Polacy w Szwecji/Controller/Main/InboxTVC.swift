@@ -1,18 +1,17 @@
 //
-//  UsersTVC.swift
+//  InboxTVC.swift
 //  Polacy w Szwecji
 //
 //  Created by Sebastian Strus on 2019-06-14.
 //  Copyright © 2019 Sebastian Strus. All rights reserved.
 //
 
+
 import UIKit
 
-protocol SideMenuDelegate {
-    func shouldToggleMenu()
-}
 
-class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+
+class InboxTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     
     var users: [User] = []
     var searchController: UISearchController = UISearchController(searchResultsController: nil)
@@ -23,9 +22,9 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupSearchBarController()
+        //setupSearchBarController()
         setupNavigationBar()
-        observeUsers()
+        observeInbox()
         setupTableView()
     }
     
@@ -52,11 +51,11 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
         
     }
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_USERS, for: indexPath) as! UserChatCell
         cell.loadData((searchController.isActive ? searchResults : users)[indexPath.row])
         return cell
-     }
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 94
@@ -100,7 +99,7 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "People"
+        navigationItem.title = "Inbox"
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.lightRed
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -109,6 +108,7 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
         menuBtn.tintColor = UIColor.white
         navigationItem.leftBarButtonItem = menuBtn
     }
+
     
     private func observeUsers() {
         Api.User.observeUsers { (user) in
@@ -117,9 +117,13 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
         }
     }
     
+    private func observeInbox() {
+        Api.Inbox.lastMessages(uid: Api.User.currentUserId)
+    }
+    
     private func setupTableView(){
         tableView.tableFooterView = UIView()
-        tableView.register(UserChatCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_USERS)
+        tableView.register(UserInboxCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_INBOX_USERS)
         
     }
 }

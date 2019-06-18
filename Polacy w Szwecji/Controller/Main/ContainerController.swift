@@ -46,8 +46,8 @@ class ContainerController: UIViewController, SideMenuDelegate {
     }()
     
     
-    lazy var messagesController: UINavigationController = {
-        let viewController = MessagesTVC()
+    lazy var inboxController: UINavigationController = {
+        let viewController = InboxTVC()
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
         return navController
@@ -94,7 +94,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     }()
     
     let buttonView2: SideButtonView = {
-        let button = SideButtonView(imageName: "chat_icon", title: "Chat")//Lokale
+        let button = SideButtonView(imageName: "chat_icon", title: "Inbox")//Lokale
         return button
     }()
     
@@ -253,7 +253,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     private func updateView(tag: Int) {
         accountController.view.isHidden = !(tag == 0)
         usersController.view.isHidden = !(tag == 1)
-        messagesController.view.isHidden = !(tag == 2)
+        inboxController.view.isHidden = !(tag == 2)
         workController.view.isHidden = !(tag == 3)
         flatsController.view.isHidden = !(tag == 4)
         shoppingController.view.isHidden = !(tag == 5)
