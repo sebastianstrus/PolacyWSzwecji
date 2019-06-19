@@ -119,11 +119,20 @@ class UserInboxCell : UITableViewCell {
     
     
     
-    func loadData(_ user: User) {
-        self.user = user
-        usernameLabel.text = user.username
-        latestMessageLabel.text = user.status
-        profileImageView.loadImage(user.profileImageUrl)
+
+    
+    // public
+    func configureCell(uid: String, inbox: Inbox) {
+        user = inbox.user
+        profileImageView.loadImage(inbox.user.profileImageUrl)
+        usernameLabel.text = inbox.user.username
+        
+        let date = Date(timeIntervalSince1970: inbox.date)
+        let dateString = timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
+        dateLabel.text = dateString
+        
+        latestMessageLabel.text = inbox.text.isEmpty ? "[MEDIA]" : inbox.text
+
     }
     
 }

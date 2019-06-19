@@ -193,7 +193,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         // save photo data
         let imageName = NSUUID().uuidString
         StorageService.savePhotoMessage(image: selectedImageFromPicker,
-                                        id: Api.User.currentUserId,
+                                        id: imageName,
                                         onSuccess: { (anyValue) in
             if let dict = anyValue as? [String: Any] {
                 self.sendToFirebase(dict: dict)

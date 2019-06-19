@@ -11,42 +11,38 @@ import UIKit
 
 
 
-class InboxTVC: UITableViewController/*, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating*/ {
+class InboxTVC: UITableViewController {
     
 
     var sideMenuDelegate:SideMenuDelegate?
     
+    var inboxArray = [Inbox]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //setupSearchBarController()
         setupNavigationBar()
-        observeInbox()
         setupTableView()
+        observeInbox()
+        
     }
     
-    // MARK: - UISearchResultsUpdating methods
-//    func updateSearchResults(for searchController: UISearchController) {
-//        if  searchController.searchBar.text == nil || searchController.searchBar.text!.isEmpty {
-//            view.endEditing(true)
-//        } else {
-//            let textLowercased = searchController.searchBar.text!.lowercased()
-//            filterContent(for: textLowercased)
-//        }
-//        tableView.reloadData()
-//    }
-    
 
+
+ 
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        print("numberOfRowsInSection: \(inboxArray.count)")
+        return inboxArray.count
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("cellForRowAt")
         let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_INBOX_USERS, for: indexPath) as! UserInboxCell
+        let inbox = inboxArray[indexPath.row]
+        cell.configureCell(uid: Api.User.currentUserId, inbox: inbox)
         return cell
     }
     
@@ -54,8 +50,21 @@ class InboxTVC: UITableViewController/*, UISearchControllerDelegate, UISearchBar
     
     // MARK: - UITableViewDelegate methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if let cell = tableView.cellForRow(at: indexPath) as? UserInboxCell {
+            let chatVC = ChatController()
+            chatVC.imagePartner = cell.profileImageView.image
+            chatVC.partnerUsername = cell.usernameLabel.text
+            chatVC.partnerId = cell.user.uid
+            navigationController?.pushViewController(chatVC, animated: true)
+        }
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("heightForRowAt")
+        return 94
+    }
+    
+    
     
     // MARK: - Private methods
     @objc private func requestToggleMenu() {
@@ -78,11 +87,28 @@ class InboxTVC: UITableViewController/*, UISearchControllerDelegate, UISearchBar
     
     
     private func observeInbox() {
-        Api.Inbox.lastMessages(uid: Api.User.currentUserId)
+        print("observeInbox")
+        Api.Inbox.lastMessages(uid: Api.User.currentUserId) { (inbox) in
+            print("count: \(inbox)")
+            if !self.inboxArray.contains(where: {$0.user.uid == inbox.user.uid}) {
+                self.inboxArray.append(inbox)
+                self.sortedInbox()
+            }
+        }
+    }
+    
+
+    func sortedInbox() {
+        inboxArray = inboxArray.sorted(by: { $0.date > $1.date })
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     private func setupTableView(){
-        tableView.tableFooterView = UIView()
+        //tableView.tableFooterView = UIView()
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(UserInboxCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_INBOX_USERS)
         
     }

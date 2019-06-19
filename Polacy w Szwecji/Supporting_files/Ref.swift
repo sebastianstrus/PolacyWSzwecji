@@ -55,11 +55,11 @@ class Ref {
     }
     
     var databaseInbox: DatabaseReference {
-        return databaseMessage.child(REF_INBOX)
+        return databaseRoot.child(REF_INBOX)
     }
     
     func databaseInboxInfor(from: String, to: String) -> DatabaseReference {
-        return databaseMessage.child(from).child(to)
+        return databaseInbox.child(from).child(to)
     }
     
     func databaseInboxForUser(uid: String) -> DatabaseReference {

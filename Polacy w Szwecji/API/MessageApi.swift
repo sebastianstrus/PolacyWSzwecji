@@ -31,7 +31,7 @@ class MessageApi {
     }
     
     typealias MessageCompletion = (Message) -> Void
-    func retriveMessage(from: String, to: String, onSuccess: @escaping(MessageCompletion)) {
+    func retriveMessage(from: String, to: String, onSuccess: @escaping(Message) -> Void) {
         let ref = Ref().databaseMessageSendTo(from: from, to: to)
         ref.observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? Dictionary<String, Any> {

@@ -88,7 +88,6 @@ class ContainerController: UIViewController, SideMenuDelegate {
     }()
 
     
-    
     let buttonView0: SideButtonView = {
         let button = SideButtonView(imageName: "account_icon", title: "Account")//Forum
         return button
@@ -123,7 +122,6 @@ class ContainerController: UIViewController, SideMenuDelegate {
         let button = SideButtonView(imageName: "info_icon", title: "Info") //Życie
         return button
     }()
-    
    
     
     override func viewDidLoad() {
@@ -182,7 +180,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
 
 
         // set initial view
-        updateView(tag: 1)
+        updateView(tag: 2)
         
         
         view.addSubview(blockerCoverView)
