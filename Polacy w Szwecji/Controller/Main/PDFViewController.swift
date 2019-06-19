@@ -14,9 +14,11 @@ class PDFViewController: UIViewController {
     var pdfView = PDFView()
     var pdfURL: URL!
     
+    var sideMenuDelegate:SideMenuDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavBar()
+        setupNavigationBar()
         view = pdfView
         
         let path = Bundle.main.path(forResource: "vademecum2012", ofType: "pdf")!
@@ -32,14 +34,24 @@ class PDFViewController: UIViewController {
         pdfView.frame = view.frame
     }
     
-    
-    private func setupNavBar() {
+    private func setupNavigationBar() {
+        navigationItem.title = "Info"
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.lightRed
-
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
         let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         logoutBtn.tintColor = UIColor.white
         navigationItem.rightBarButtonItem = logoutBtn
+        
+        let menuBtn = UIBarButtonItem(image: UIImage(named: "menu_icon")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(requestToggleMenu))
+        menuBtn.tintColor = UIColor.white
+        navigationItem.leftBarButtonItem = menuBtn
+    }
+    
+    // MARK: - Private methods
+    @objc private func requestToggleMenu() {
+        sideMenuDelegate?.shouldToggleMenu()
     }
     
     @objc private func handleLogout() {

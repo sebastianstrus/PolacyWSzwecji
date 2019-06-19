@@ -32,6 +32,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     
     lazy var accountController: UINavigationController = {
         let viewController = AccountController()
+        viewController.sideMenuDelegate = self
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
         return navController
@@ -48,6 +49,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     
     lazy var inboxController: UINavigationController = {
         let viewController = InboxTVC()
+        viewController.sideMenuDelegate = self
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
         return navController
@@ -55,6 +57,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     
     lazy var workController: UINavigationController = {
         let viewController = WorkController()
+        viewController.sideMenuDelegate = self
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
         return navController
@@ -62,6 +65,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     
     lazy var flatsController: UINavigationController = {
         let viewController = FlatsController()
+        viewController.sideMenuDelegate = self
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
         return navController
@@ -69,6 +73,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     
     lazy var shoppingController: UINavigationController = {
         let viewController = ShoppingController()
+        viewController.sideMenuDelegate = self
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
         return navController
@@ -76,6 +81,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     
     lazy var infoController: UINavigationController = {
         let pdfViewController = PDFViewController()
+        pdfViewController.sideMenuDelegate = self
         let navController = UINavigationController(rootViewController: pdfViewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
         return navController
@@ -337,7 +343,6 @@ class ContainerController: UIViewController, SideMenuDelegate {
     }
     
     @objc private func hideMenu() {
-        blockerCoverView.isHidden = true
         UIView.animate(withDuration: 0.7, animations: {
             self.sideMenuXAnchor?.isActive = false
             self.sideMenuXAnchor = self.waveContainerView.centerXAnchor.constraint(equalTo: self.view.leadingAnchor, constant: -self.kWidth)
@@ -346,6 +351,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
         }) { (_) in
             self.containerSideMenu.isHidden = true
             self.menuShowing = false
+            self.blockerCoverView.isHidden = true
             
         }
         
