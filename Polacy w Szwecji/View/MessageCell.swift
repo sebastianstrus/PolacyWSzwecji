@@ -232,6 +232,8 @@ class MessageCell : UITableViewCell {
                 break
             case .failed, .unknown:
                 break
+            @unknown default:
+                break
             }
         }
     }

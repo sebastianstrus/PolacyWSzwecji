@@ -10,6 +10,11 @@ import UIKit
 
 class ChatView: UIView {
     
+    var bottomAnchorKeyboardHidden: NSLayoutConstraint!
+    var bottomAnchorKeyboardShown: NSLayoutConstraint!
+    
+
+    
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +49,7 @@ class ChatView: UIView {
         addSubview(bottomContainer)
         bottomContainer.setAnchor(top: nil,
                                leading: leadingAnchor,
-                               bottom: bottomAnchor,
+                               bottom: safeBottomAnchor,
                                trailing: trailingAnchor,
                                paddingTop: 0,
                                paddingLeft: 0,
@@ -52,6 +57,24 @@ class ChatView: UIView {
                                paddingRight: 0,
                                width: 0,
                                height: 50)
+        
+        
+        
+        
+       
+        
+        bottomContainer.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        bottomContainer.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+        
+        bottomContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        
+        
+        bottomAnchorKeyboardHidden = bottomContainer.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: 0)
+        bottomAnchorKeyboardShown = bottomContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -150)
+        bottomAnchorKeyboardHidden.isActive = true
+        
+        
         
         addSubview(chatTableView)
         bottomContainer.setAnchor(top: topAnchor,
@@ -75,5 +98,16 @@ class ChatView: UIView {
     
     @objc fileprivate func handleGallery() {
         galleryAction?()
+    }
+    
+    
+    func handleShowKeyboard() {
+        bottomAnchorKeyboardHidden.isActive = false
+        bottomAnchorKeyboardShown.isActive = true
+    }
+    
+    func handleHideKeyboard() {
+        bottomAnchorKeyboardShown.isActive = false
+        bottomAnchorKeyboardHidden.isActive = true
     }
 }

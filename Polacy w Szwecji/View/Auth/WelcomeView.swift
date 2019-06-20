@@ -14,9 +14,6 @@ class WelcomeView: UIView {
     var googleAction: (() -> Void)?
     var creteAccountAction: (() -> Void)?
     
-    var yCenterAnchor: NSLayoutConstraint!
-    var yUpAnchor: NSLayoutConstraint!
-    
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)

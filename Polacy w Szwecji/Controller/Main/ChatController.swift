@@ -13,7 +13,10 @@ import AVFoundation
 class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     fileprivate var sideMenuDelegate:SideMenuDelegate?
-
+    
+    var bottomAnchorKeyboardHidden: NSLayoutConstraint!
+    var bottomAnchorKeyboardShown: NSLayoutConstraint!
+    
     var imagePartner: UIImage!
     var partnerUsername: String!
     var partnerId: String!
@@ -76,7 +79,6 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     var inputTV: UITextView = {
         let tv = UITextView()
         tv.layer.cornerRadius = 5
-
         return tv
     }()
     
@@ -88,11 +90,8 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         setupView()
         observeMessages()
         setupChatTableView()
+        handleKeyboard()
     }
-    
-    
-
-    
     
     func observeMessages() {
         print("observeMessages")
@@ -209,6 +208,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         let spacing = CharacterSet.whitespacesAndNewlines
         if !textView.text.trimmingCharacters(in: spacing).isEmpty {
             let text = textView.text.trimmingCharacters(in: spacing)
+            print(text)
             sendButton.isEnabled = true
             sendButton.setTitleColor(.white, for: .normal)
             placeHolderLabel.isHidden = true
@@ -234,22 +234,19 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         attributed.append(NSAttributedString(string: "Active", attributes: [.font: UIFont.systemFont(ofSize: 13), .foregroundColor: UIColor.green]))
         topLabel.attributedText = attributed
         navigationItem.titleView = topLabel
-        
     }
     
     func setupView() {
         view.backgroundColor = UIColor.blueFB
+        
         view.addSubview(bottomContainer)
-        bottomContainer.setAnchor(top: nil,
-                                  leading: view.leadingAnchor,
-                                  bottom: view.safeBottomAnchor,
-                                  trailing: view.trailingAnchor,
-                                  paddingTop: 0,
-                                  paddingLeft: 0,
-                                  paddingBottom: 0,
-                                  paddingRight: 0,
-                                  width: 0,
-                                  height: 50)
+        bottomContainer.translatesAutoresizingMaskIntoConstraints = false
+        bottomContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        bottomContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        bottomContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
+        bottomAnchorKeyboardHidden = bottomContainer.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: 0)
+        bottomAnchorKeyboardHidden.isActive = true
         
         bottomContainer.addSubview(attachmentButton)
         attachmentButton.setAnchor(top: bottomContainer.topAnchor,
@@ -308,15 +305,12 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
                                   paddingLeft: 0,
                                   paddingBottom: 0,
                                   paddingRight: 0)
-        
-        
         setupInputContainer()
         
     }
     
     
     func setupInputContainer() {
-        
         // UITextView doesn't support placeholder so:
         view.layoutIfNeeded()
         view.setNeedsLayout()
@@ -335,10 +329,8 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         inputTV.delegate = self
     }
     
-    
     @objc func attachmentPressed() {
         let alert = UIAlertController(title: "Polacy w Szwecji", message: "Select source", preferredStyle: .actionSheet)
-        
         let cameraAction = UIAlertAction(title: "Take a picture", style: .default) { (_) in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
                 self.picker.sourceType = .camera
@@ -375,7 +367,6 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         alert.addAction(videoCameraAction)
         
         present(alert, animated: true)
-        
     }
     
     @objc func micPressed() {
@@ -383,13 +374,13 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     }
     
     @objc func sendPressed() {
+        inputTV.endEditing(true)
         if let text = inputTV.text, text != "" {
             inputTV.text = ""
             self.textViewDidChange(inputTV)
             sendToFirebase(dict: ["text": text as Any])
         }
     }
-    
 
     func sendToFirebase(dict: Dictionary<String, Any>) {
         let date: Double = Date().timeIntervalSince1970
@@ -403,26 +394,27 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
                                 to: partnerId,
                                 value: value)
     }
-
     
-    
+    // MARK: - Handling keyboard methods
     func handleKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
     }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0 {
-                self.view.frame.origin.y -= keyboardSize.height
-            }
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            bottomAnchorKeyboardShown = bottomContainer.bottomAnchor.constraint(equalTo: view.safeBottomAnchor, constant: -keyboardSize.height)
+            self.bottomAnchorKeyboardHidden.isActive = false
+            self.bottomAnchorKeyboardShown.isActive = true
+            self.view.layoutIfNeeded()
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y = 0
+        if let aBottomAnchorKeyboardShown = bottomAnchorKeyboardShown {
+            aBottomAnchorKeyboardShown.isActive = false
+            bottomAnchorKeyboardHidden.isActive = true
+            view.layoutIfNeeded()
         }
     }
-
 }
