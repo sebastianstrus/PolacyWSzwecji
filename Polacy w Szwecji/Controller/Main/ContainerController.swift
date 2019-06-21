@@ -229,7 +229,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
             let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
             btnView.addGestureRecognizer(tap)
             containerSideMenu.addSubview(btnView)
-            btnView.setAnchor(width: 50, height: 60)
+            btnView.setAnchor(width: 80, height: 60)
         }
         
         buttonView0.transform = CGAffineTransform(rotationAngle: self.radians(10))

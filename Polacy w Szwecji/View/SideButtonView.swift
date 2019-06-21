@@ -37,9 +37,9 @@ class SideButtonView: UIView {
                             bottom: nil,
                             trailing: trailingAnchor,
                             paddingTop: 0,
-                            paddingLeft: 3,
+                            paddingLeft: 18,
                             paddingBottom: 0,
-                            paddingRight: 3,
+                            paddingRight: 18,
                             width: 0,
                             height: 44)
         
@@ -67,7 +67,7 @@ class SideButtonView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.sideMenuTint
-        label.font = UIFont.boldSystemFont(ofSize: 10)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .center
         return label
     }()
