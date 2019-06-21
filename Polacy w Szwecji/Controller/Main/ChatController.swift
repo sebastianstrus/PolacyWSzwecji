@@ -306,9 +306,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
                                   paddingBottom: 0,
                                   paddingRight: 0)
         setupInputContainer()
-        
     }
-    
     
     func setupInputContainer() {
         // UITextView doesn't support placeholder so:
@@ -331,21 +329,21 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     
     @objc func attachmentPressed() {
         let alert = UIAlertController(title: "Polacy w Szwecji", message: "Select source", preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: "Take a picture", style: .default) { (_) in
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
-                self.picker.sourceType = .camera
-                self.present(self.picker, animated: true, completion: nil)
-            } else {
-                print("Camera unavailable")
-            }
-        }
-        let libraryAction = UIAlertAction(title: "Choose an Image or a video", style: .default) { (_) in
+        let libraryAction = UIAlertAction(title: "Open library", style: .default) { (_) in
             if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary) {
                 self.picker.sourceType = .photoLibrary
                 self.picker.mediaTypes = [String(kUTTypeImage), String(kUTTypeMovie)]
                 self.present(self.picker, animated: true, completion: nil)
             } else {
                 print("Library unavailable")
+            }
+        }
+        let cameraAction = UIAlertAction(title: "Take a picture", style: .default) { (_) in
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+                self.picker.sourceType = .camera
+                self.present(self.picker, animated: true, completion: nil)
+            } else {
+                print("Camera unavailable")
             }
         }
         let videoCameraAction = UIAlertAction(title: "Take a video", style: .default) { (_) in
@@ -361,8 +359,8 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        alert.addAction(cameraAction)
         alert.addAction(libraryAction)
+        alert.addAction(cameraAction)
         alert.addAction(cancelAction)
         alert.addAction(videoCameraAction)
         

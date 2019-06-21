@@ -12,7 +12,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import ProgressHUD
 
-class SignUpController: BaseAuthViewController {
+class SignUpController: BaseAuthController {
     
     fileprivate var signUpView: SignUpView!
     private var image: UIImage? = nil

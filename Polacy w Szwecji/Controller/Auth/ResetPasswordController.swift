@@ -9,7 +9,7 @@
 import UIKit
 import ProgressHUD
 
-class ResetPasswordController: BaseAuthViewController {
+class ResetPasswordController: BaseAuthController {
 
 
     private var yCenterAnchor: NSLayoutConstraint!

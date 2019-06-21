@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WelcomeController: BaseAuthViewController {
+class WelcomeController: BaseAuthController {
 
     fileprivate var welcomeView: WelcomeView!
     

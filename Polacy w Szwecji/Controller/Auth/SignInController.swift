@@ -9,7 +9,7 @@
 import UIKit
 import ProgressHUD
 
-class SignInController: BaseAuthViewController {
+class SignInController: BaseAuthController {
 
 
     fileprivate var signInView: SignInView!

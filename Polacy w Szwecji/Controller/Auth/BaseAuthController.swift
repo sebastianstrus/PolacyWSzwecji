@@ -9,7 +9,7 @@
 import UIKit
 import AVKit
 
-class BaseAuthViewController: UIViewController {
+class BaseAuthController: UIViewController {
 
     private var player: AVPlayer!
     private var playerController: AVPlayerViewController!
