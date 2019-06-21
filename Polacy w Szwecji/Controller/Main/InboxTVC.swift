@@ -106,9 +106,7 @@ class InboxTVC: UITableViewController {
     }
     
     private func setupTableView(){
-        //tableView.tableFooterView = UIView()
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
         tableView.register(UserInboxCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_INBOX_USERS)
         
     }

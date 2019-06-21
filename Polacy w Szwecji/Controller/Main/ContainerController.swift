@@ -32,7 +32,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     var buttonViews: [SideButtonView]!
     
     lazy var accountController: UINavigationController = {
-        let viewController = AccountController()
+        let viewController = AccountTVC(style: .grouped)
         viewController.sideMenuDelegate = self
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
@@ -184,7 +184,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
 
 
         // set initial view
-        updateView(tag: 2)
+        updateView(tag: 0)
         
         
         view.addSubview(blockerCoverView)
