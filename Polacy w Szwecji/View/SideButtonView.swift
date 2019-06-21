@@ -32,25 +32,50 @@ class SideButtonView: UIView {
     func setupView() {
         addSubview(imageView)
         imageView.image = UIImage(named: imageName)!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        imageView.setAnchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, paddingTop: 0, paddingLeft: 3, paddingBottom: 0, paddingRight: 3, width: 0, height: 44)
+        imageView.setAnchor(top: topAnchor,
+                            leading: leadingAnchor,
+                            bottom: nil,
+                            trailing: trailingAnchor,
+                            paddingTop: 0,
+                            paddingLeft: 3,
+                            paddingBottom: 0,
+                            paddingRight: 3,
+                            width: 0,
+                            height: 44)
         
         addSubview(titleLabel)
         titleLabel.text = title
-        titleLabel.setAnchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 16)
+        titleLabel.setAnchor(top: nil,
+                             leading: leadingAnchor,
+                             bottom: bottomAnchor,
+                             trailing: trailingAnchor,
+                             paddingTop: 0,
+                             paddingLeft: 0,
+                             paddingBottom: 0,
+                             paddingRight: 0,
+                             width: 0,
+                             height: 16)
     }
     
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "menu_icon"))
         iv.tintColor = UIColor.sideMenuTint
         return iv
     }()
     
-    let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.sideMenuTint
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .center
         return label
     }()
+    
+    //public
+    func setAvatar(photoUrl: URL) {
+        imageView.loadImage(photoUrl.absoluteString)
+        imageView.layer.cornerRadius = 22
+        imageView.clipsToBounds = true
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 
 class ContainerController: UIViewController, SideMenuDelegate {
@@ -90,6 +91,9 @@ class ContainerController: UIViewController, SideMenuDelegate {
     
     let buttonView0: SideButtonView = {
         let button = SideButtonView(imageName: "account_icon", title: "Account")//Forum
+        if let currentUser = Auth.auth().currentUser, let photoURL = currentUser.photoURL {
+            button.setAvatar(photoUrl: photoURL)
+        }
         return button
     }()
     
@@ -262,7 +266,6 @@ class ContainerController: UIViewController, SideMenuDelegate {
         flatsController.view.isHidden = !(tag == 4)
         shoppingController.view.isHidden = !(tag == 5)
         infoController.view.isHidden = !(tag == 6)
-        navigationController?.navigationBar.topItem?.title = buttonViews[tag].titleLabel.text
     }
     
 
