@@ -41,6 +41,7 @@ class AccountImageCell: UITableViewCell {
     }
     
     func setup() {
+        selectionStyle = .none
         backgroundColor = UIColor.groupTableViewBackground
         layer.borderColor = UIColor.groupTableViewBackground.cgColor
         layer.borderWidth = 2

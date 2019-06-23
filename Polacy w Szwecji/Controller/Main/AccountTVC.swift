@@ -44,8 +44,6 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
         self.present(picker, animated: true, completion: nil)
     }
     
-
-
     var sideMenuDelegate:SideMenuDelegate?
     var user: User?
     private var image: UIImage? = nil {
@@ -54,14 +52,12 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupNavigationBar()
         setupTableView()
         observeData()
-        
     }
     
     func observeData() {
@@ -91,9 +87,7 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
         default:
             return 1
         }
-        
     }
-    
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 84 : 44
@@ -104,7 +98,7 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
         
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountImageTableViewCell", for: indexPath) as! AccountImageCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_ACCOUNT_IMAGE, for: indexPath) as! AccountImageCell
             cell.openPickerDelegate = self
             if let aUser = user {
                 if let aImage = self.image {
@@ -115,7 +109,8 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
             }
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTextFieldTableViewCell", for: indexPath) as! AccountTextFieldCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_ACCOUNT_TF, for: indexPath) as! AccountTextFieldCell
+            //cell.selectionStyle = .none
             cell.textField.delegate = self
             switch indexPath.row {
             case 0:
@@ -138,7 +133,8 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
             }
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_ACCOUNT_DEFAULT, for: indexPath)
+            cell.selectionStyle = .none
             switch indexPath.row {
             case 0:
                 cell.textLabel?.text = "Privacy policy"
@@ -152,22 +148,23 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
                 return cell
             }
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_ACCOUNT_DEFAULT, for: indexPath)
+            cell.selectionStyle = .none
             cell.textLabel?.text = "Log out"
             cell.textLabel?.textAlignment = .center
             cell.textLabel?.textColor = cell.tintColor
             return cell
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_ACCOUNT_DEFAULT, for: indexPath)
+            cell.selectionStyle = .none
             cell.textLabel?.text = "Remove account"
             cell.textLabel?.textAlignment = .center
             cell.textLabel?.textColor = UIColor.red
             return cell
             
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTableViewCell", for: indexPath)
-            cell.textLabel?.text = "Cell \(indexPath.section) : \(indexPath.row)"
-            return cell
+            print("Default cell")
+            return UITableViewCell()
         }
     }
 
@@ -188,7 +185,6 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
     
     @objc private func handleSave() {
         ProgressHUD.show("Loading...")
-        
         var dict = Dictionary<String, Any>()
         if let username = user?.username, !username.isEmpty {
             dict["username"] = username
@@ -218,7 +214,6 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
                                  onError: { (errorMessage) in
                                     ProgressHUD.showError(errorMessage)
         })
-
     }
     
     @objc private func requestToggleMenu() {
@@ -226,13 +221,11 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
     }
 
     func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountTableViewCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_ACCOUNT_DEFAULT)
         tableView.register(AccountImageCell.self, forCellReuseIdentifier: "AccountImageTableViewCell")
-        tableView.register(AccountTextFieldCell.self, forCellReuseIdentifier: "AccountTextFieldTableViewCell")
+        tableView.register(AccountTextFieldCell.self, forCellReuseIdentifier: IDENTIFIER_CELL_ACCOUNT_TF)
+        //tableView.allowsSelection = false
     }
-    
-
-
 }
 
 
@@ -242,11 +235,9 @@ extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             image = selectedImage
         }
-        
         if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             image = originalImage
         }
-        
         picker.dismiss(animated: true, completion: nil)
     }
     
@@ -264,9 +255,20 @@ extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         case 3:
             Api.User.logOut()
         case 4:
-            print("Remove account?")
+            removeAccountPressed()
         default:
             print("No action required")
         }
+    }
+    
+    func removeAccountPressed() {
+        let alert = UIAlertController(title: "Remove account ”Polacy w Szwecji”", message: "Are you sure you want to remove your account? All your data will be lost permanently.", preferredStyle: .actionSheet)
+        let removeAccountAction = UIAlertAction(title: "Remove permanently", style: .destructive) { (_) in
+            print("Remove account")
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(removeAccountAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 }

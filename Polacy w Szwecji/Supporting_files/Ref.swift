@@ -34,6 +34,9 @@ let SUCCESS_EMAIL_RESET = "We have just sent you a password reset email. Please 
 let IDENTIFIER_CELL_USERS = "UserTableViewCell"
 let IDENTIFIER_CELL_MESSAGES = "MessageTableViewCell"
 let IDENTIFIER_CELL_INBOX_USERS = "UserInboxTableViewCell"
+let IDENTIFIER_CELL_ACCOUNT_TF = "AccountTextFieldTableViewCell"
+let IDENTIFIER_CELL_ACCOUNT_IMAGE = "AccountImageTableViewCell"
+let IDENTIFIER_CELL_ACCOUNT_DEFAULT = "AccountTableViewCell"
 
 let TAG_USERNAME_TF = 101
 let TAG_EMAIL_TF = 102

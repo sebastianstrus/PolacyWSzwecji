@@ -30,6 +30,7 @@ class AccountTextFieldCell: UITableViewCell {
     
     
     func setup() {
+        selectionStyle = .none
         addSubview(textField)
         textField.setAnchor(top: topAnchor,
                             leading: leadingAnchor,
