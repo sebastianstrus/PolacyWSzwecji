@@ -65,7 +65,7 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
     }
     
     func observeData() {
-        Api.User.getUserInfor(uid: Api.User.currentUserId) { (user) in
+        Api.User.getUserInforSingleEvent(uid: Api.User.currentUserId) { (user) in
             self.user = user
             self.tableView.reloadData()
         }
@@ -187,12 +187,38 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
     }
     
     @objc private func handleSave() {
-        print(user?.username)
-        print(user?.email)
-        print(user?.status)
-//        let tempUser = user
-//        tempUser?.email = "raz dwa trzy"
-//        user = tempUser
+        ProgressHUD.show("Loading...")
+        
+        var dict = Dictionary<String, Any>()
+        if let username = user?.username, !username.isEmpty {
+            dict["username"] = username
+        }
+        if let email = user?.email, !email.isEmpty {
+            dict["email"] = email
+        }
+        if let status = user?.status, !status.isEmpty {
+            dict["status"] = status
+        }
+        print("saveUserProfile")
+        Api.User.saveUserProfile(dict: dict,
+                                 onSuccess: {
+                                    print("onSuccess, show HUD")
+                                    if let img = self.image {
+                                        StorageService.safePhotoProfile(image: img,
+                                                                        uid: Api.User.currentUserId,
+                                                                        onSuccess: {
+                                                                           ProgressHUD.showSuccess()
+                                        }) { (errorMessage) in
+                                            ProgressHUD.showError(errorMessage)
+                                        }
+                                    } else {
+                                        ProgressHUD.showSuccess()
+                                    }
+        },
+                                 onError: { (errorMessage) in
+                                    ProgressHUD.showError(errorMessage)
+        })
+
     }
     
     @objc private func requestToggleMenu() {
@@ -224,5 +250,23 @@ extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         picker.dismiss(animated: true, completion: nil)
     }
     
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 2:
+            switch indexPath.row {
+            case 0:
+                print("PP")
+            case 1:
+                print("T&C")
+            default:
+                print("Remove account?")
+            }
+        case 3:
+            Api.User.logOut()
+        case 4:
+            print("Remove account?")
+        default:
+            print("No action required")
+        }
+    }
 }

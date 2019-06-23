@@ -55,6 +55,7 @@ class StorageService {
         
     }
     
+    
     static func savePhotoMessage(image: UIImage?, id: String, onSuccess: @escaping(_ value: Any) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         if let imagePhoto = image {
             let ref = Ref().storageSpecificImageMessage(id: id)
@@ -77,6 +78,50 @@ class StorageService {
                 }
             }
         }
+    }
+    
+    static func safePhotoProfile(image: UIImage,
+                                 uid: String,
+                                 onSuccess: @escaping() -> Void,
+                                 onError: @escaping(_ errorMessage: String) -> Void) {
+        guard let imageData = image.jpegData(compressionQuality: 0.4) else {
+            return
+        }
+        
+        let storageProfileRef = Ref().storageSpecificProfile(uid: uid)
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        
+        storageProfileRef.putData(imageData, metadata: metadata, completion: { (storageMetaData, error) in
+            if error != nil {
+                onError(error!.localizedDescription)
+                return
+            }
+            storageProfileRef.downloadURL(completion: { (url, error) in
+                if let metaImageUrl = url?.absoluteString {
+                    
+                    if let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() {
+                        changeRequest.photoURL = url
+                        changeRequest.commitChanges(completion: { (error) in
+                            if let aError = error {
+                                ProgressHUD.showError(aError.localizedDescription)
+                            }
+                        })
+                    }
+                    
+                    Ref().databaseSpecificUser(uid: uid).updateChildValues([PROFILE_IMAGE_URL: metaImageUrl], withCompletionBlock: { (error, ref) in
+                        if error == nil {
+                            print("Done")
+                            onSuccess()
+                        } else {
+                            onError(error!.localizedDescription)
+                        }
+                    })
+                }
+            })
+        })
     }
     
     static func savePhoto(username: String,
