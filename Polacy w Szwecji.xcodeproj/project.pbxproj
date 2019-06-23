@@ -44,6 +44,8 @@
 		7D3CFE8022B99B7B001796BE /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CFE7F22B99B7B001796BE /* Inbox.swift */; };
 		7D3CFE8222B99FEA001796BE /* UserInboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CFE8122B99FEA001796BE /* UserInboxCell.swift */; };
 		7D3CFE8422B9A581001796BE /* InboxApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CFE8322B9A581001796BE /* InboxApi.swift */; };
+		7D49AE3822BFC3610053B9E9 /* AccountImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49AE3722BFC3610053B9E9 /* AccountImageCell.swift */; };
+		7D49AE3A22BFED9C0053B9E9 /* AccountTextFieldCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49AE3922BFED9C0053B9E9 /* AccountTextFieldCellTableViewCell.swift */; };
 		7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54666E22A85F140001DDBF /* SideButtonView.swift */; };
 		7D54667122A92A8F0001DDBF /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54667022A92A8F0001DDBF /* PDFViewController.swift */; };
 		7D54667322A92C270001DDBF /* vademecum2012.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7D54667222A92C270001DDBF /* vademecum2012.pdf */; };
@@ -100,6 +102,8 @@
 		7D3CFE7F22B99B7B001796BE /* Inbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
 		7D3CFE8122B99FEA001796BE /* UserInboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInboxCell.swift; sourceTree = "<group>"; };
 		7D3CFE8322B9A581001796BE /* InboxApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxApi.swift; sourceTree = "<group>"; };
+		7D49AE3722BFC3610053B9E9 /* AccountImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImageCell.swift; sourceTree = "<group>"; };
+		7D49AE3922BFED9C0053B9E9 /* AccountTextFieldCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTextFieldCellTableViewCell.swift; sourceTree = "<group>"; };
 		7D54666E22A85F140001DDBF /* SideButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideButtonView.swift; sourceTree = "<group>"; };
 		7D54667022A92A8F0001DDBF /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		7D54667222A92C270001DDBF /* vademecum2012.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = vademecum2012.pdf; sourceTree = "<group>"; };
@@ -184,6 +188,18 @@
 			path = "Polacy w Szwecji";
 			sourceTree = "<group>";
 		};
+		7D49AE3622BFC2C60053B9E9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7D2EC14922B6F75700C9A03E /* MessageCell.swift */,
+				7D08C6A222B4594A00C8DCD8 /* UserChatCell.swift */,
+				7D3CFE8122B99FEA001796BE /* UserInboxCell.swift */,
+				7D49AE3722BFC3610053B9E9 /* AccountImageCell.swift */,
+				7D49AE3922BFED9C0053B9E9 /* AccountTextFieldCellTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		7D61603122AD6B4800D968AD /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,13 +268,11 @@
 		7DCE63D322A30D7600CBC3F2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D49AE3622BFC2C60053B9E9 /* Cells */,
 				7D348E9122A1DF5B00F40530 /* LaunchScreen.storyboard */,
 				7D61603222AD6B5200D968AD /* Auth */,
 				7D61603422AD6C0A00D968AD /* Main */,
 				7D54666E22A85F140001DDBF /* SideButtonView.swift */,
-				7D2EC14922B6F75700C9A03E /* MessageCell.swift */,
-				7D08C6A222B4594A00C8DCD8 /* UserChatCell.swift */,
-				7D3CFE8122B99FEA001796BE /* UserInboxCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -475,10 +489,12 @@
 				7D08C6A522B46E2B00C8DCD8 /* User.swift in Sources */,
 				7D3CFE7E22B8537B001796BE /* String+Extension.swift in Sources */,
 				7D61602822AD69E800D968AD /* SignInController.swift in Sources */,
+				7D49AE3A22BFED9C0053B9E9 /* AccountTextFieldCellTableViewCell.swift in Sources */,
 				7D3CFE8222B99FEA001796BE /* UserInboxCell.swift in Sources */,
 				7D08C68122B30AEF00C8DCD8 /* ShoppingController.swift in Sources */,
 				7D08C66822AF221800C8DCD8 /* BaseAuthController.swift in Sources */,
 				7D08C6A322B4594A00C8DCD8 /* UserChatCell.swift in Sources */,
+				7D49AE3822BFC3610053B9E9 /* AccountImageCell.swift in Sources */,
 				7D08C67422B1901F00C8DCD8 /* Api.swift in Sources */,
 				7D08C67822B1958600C8DCD8 /* StorageService.swift in Sources */,
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
