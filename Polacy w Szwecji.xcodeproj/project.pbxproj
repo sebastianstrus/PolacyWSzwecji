@@ -44,6 +44,7 @@
 		7D3CFE8022B99B7B001796BE /* Inbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CFE7F22B99B7B001796BE /* Inbox.swift */; };
 		7D3CFE8222B99FEA001796BE /* UserInboxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CFE8122B99FEA001796BE /* UserInboxCell.swift */; };
 		7D3CFE8422B9A581001796BE /* InboxApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CFE8322B9A581001796BE /* InboxApi.swift */; };
+		7D49AE3522BEE5E80053B9E9 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D49AE3422BEE5E80053B9E9 /* AccountView.swift */; };
 		7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54666E22A85F140001DDBF /* SideButtonView.swift */; };
 		7D54667122A92A8F0001DDBF /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D54667022A92A8F0001DDBF /* PDFViewController.swift */; };
 		7D54667322A92C270001DDBF /* vademecum2012.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 7D54667222A92C270001DDBF /* vademecum2012.pdf */; };
@@ -54,7 +55,7 @@
 		7D61602E22AD6A4900D968AD /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602D22AD6A4900D968AD /* SignUpView.swift */; };
 		7D61603022AD6A6000D968AD /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D61602F22AD6A6000D968AD /* SignInView.swift */; };
 		7DCE63DC22A30E5F00CBC3F2 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */; };
-		7DCE64F722A5D06F00CBC3F2 /* AccountTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F322A5D06F00CBC3F2 /* AccountTVC.swift */; };
+		7DCE64F722A5D06F00CBC3F2 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F322A5D06F00CBC3F2 /* AccountController.swift */; };
 		7DCE64F922A5D06F00CBC3F2 /* UsersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F522A5D06F00CBC3F2 /* UsersTVC.swift */; };
 		7DCE64FA22A5D06F00CBC3F2 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */; };
 		7DCE64FE22A5D4DE00CBC3F2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */; };
@@ -100,6 +101,7 @@
 		7D3CFE7F22B99B7B001796BE /* Inbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inbox.swift; sourceTree = "<group>"; };
 		7D3CFE8122B99FEA001796BE /* UserInboxCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInboxCell.swift; sourceTree = "<group>"; };
 		7D3CFE8322B9A581001796BE /* InboxApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxApi.swift; sourceTree = "<group>"; };
+		7D49AE3422BEE5E80053B9E9 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		7D54666E22A85F140001DDBF /* SideButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideButtonView.swift; sourceTree = "<group>"; };
 		7D54667022A92A8F0001DDBF /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		7D54667222A92C270001DDBF /* vademecum2012.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = vademecum2012.pdf; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 		7D61602D22AD6A4900D968AD /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7D61602F22AD6A6000D968AD /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7DCE63DB22A30E5F00CBC3F2 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		7DCE64F322A5D06F00CBC3F2 /* AccountTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTVC.swift; sourceTree = "<group>"; };
+		7DCE64F322A5D06F00CBC3F2 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		7DCE64F522A5D06F00CBC3F2 /* UsersTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersTVC.swift; sourceTree = "<group>"; };
 		7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		7DCE64FD22A5D4DE00CBC3F2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -211,7 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCE64F622A5D06F00CBC3F2 /* ContainerController.swift */,
-				7DCE64F322A5D06F00CBC3F2 /* AccountTVC.swift */,
+				7DCE64F322A5D06F00CBC3F2 /* AccountController.swift */,
 				7DCE64F522A5D06F00CBC3F2 /* UsersTVC.swift */,
 				7D08C68222B42A1B00C8DCD8 /* InboxTVC.swift */,
 				7D08C67C22B30A9700C8DCD8 /* WorkController.swift */,
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				7D08C6AA22B5AD1900C8DCD8 /* ChatView.swift */,
+				7D49AE3422BEE5E80053B9E9 /* AccountView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -484,9 +487,10 @@
 				7D348E8B22A1DF5900F40530 /* WelcomeController.swift in Sources */,
 				7D61602A22AD6A1E00D968AD /* ResetPasswordController.swift in Sources */,
 				7D3CFE8422B9A581001796BE /* InboxApi.swift in Sources */,
+				7D49AE3522BEE5E80053B9E9 /* AccountView.swift in Sources */,
 				7D54666F22A85F140001DDBF /* SideButtonView.swift in Sources */,
 				7D08C67622B190A300C8DCD8 /* UserApi.swift in Sources */,
-				7DCE64F722A5D06F00CBC3F2 /* AccountTVC.swift in Sources */,
+				7DCE64F722A5D06F00CBC3F2 /* AccountController.swift in Sources */,
 				7D08C67D22B30A9700C8DCD8 /* WorkController.swift in Sources */,
 				7D08C67F22B30AC100C8DCD8 /* FlatsController.swift in Sources */,
 				7D08C6A722B4E1DB00C8DCD8 /* UIImageView+Extension.swift in Sources */,

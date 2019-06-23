@@ -32,7 +32,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     var buttonViews: [SideButtonView]!
     
     lazy var accountController: UINavigationController = {
-        let viewController = AccountTVC(style: .grouped)
+        let viewController = AccountController()
         viewController.sideMenuDelegate = self
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
