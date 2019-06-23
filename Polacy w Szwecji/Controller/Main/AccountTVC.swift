@@ -7,22 +7,23 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch textField.tag {
-        case 101:
+        case TAG_USERNAME_TF:
             if let text = textField.text as NSString? {
                 let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
                 user?.username = txtAfterUpdate
             }
-        case 102:
+        case TAG_EMAIL_TF:
             if let text = textField.text as NSString? {
                 let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
                 user?.email = txtAfterUpdate
             }
-        case 103:
+        case TAG_STATUS_TF:
             if let text = textField.text as NSString? {
                 let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
                 user?.status = txtAfterUpdate
@@ -30,27 +31,20 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
         default:
             print("Unexpected case. Incorrect tag.")
         }
-        
-        if let text = textField.text as NSString? {
-            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
-            print(txtAfterUpdate)
-        }
         return true
     }
     
     // MARK: - OpenPickerDelegate methods
     func openPicker() {
-        print("openPicker")
-        handlePicker()
-    }
-    
-    private func handlePicker() {
+        view.endEditing(true)
         let picker = UIImagePickerController()
         picker.sourceType = .photoLibrary
         picker.allowsEditing = true
         picker.delegate = self
         self.present(picker, animated: true, completion: nil)
     }
+    
+
 
     var sideMenuDelegate:SideMenuDelegate?
     var user: User?
@@ -122,23 +116,21 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AccountTextFieldTableViewCell", for: indexPath) as! AccountTextFieldCell
+            cell.textField.delegate = self
             switch indexPath.row {
             case 0:
                 if let aUser = user {
-                    cell.textField.delegate = self
-                    cell.textField.tag = 101
+                    cell.textField.tag = TAG_USERNAME_TF
                     cell.textField.text = aUser.username
                 }
             case 1:
                 if let aUser = user {
-                    cell.textField.delegate = self
-                    cell.textField.tag = 102
+                    cell.textField.tag = TAG_EMAIL_TF
                     cell.textField.text = aUser.email
                 }
             case 2:
                 if let aUser = user {
-                    cell.textField.delegate = self
-                    cell.textField.tag = 103
+                    cell.textField.tag = TAG_STATUS_TF
                     cell.textField.text = aUser.status
                 }
             default:
@@ -177,9 +169,6 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
             cell.textLabel?.text = "Cell \(indexPath.section) : \(indexPath.row)"
             return cell
         }
-        
-
-        
     }
 
     private func setupNavigationBar() {
@@ -198,9 +187,12 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
     }
     
     @objc private func handleSave() {
-        let tempUser = user
-        tempUser?.email = "raz dwa trzy"
-        user = tempUser
+        print(user?.username)
+        print(user?.email)
+        print(user?.status)
+//        let tempUser = user
+//        tempUser?.email = "raz dwa trzy"
+//        user = tempUser
     }
     
     @objc private func requestToggleMenu() {
@@ -211,8 +203,6 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "AccountTableViewCell")
         tableView.register(AccountImageCell.self, forCellReuseIdentifier: "AccountImageTableViewCell")
         tableView.register(AccountTextFieldCell.self, forCellReuseIdentifier: "AccountTextFieldTableViewCell")
-        
-        //tableView.separatorColor = UIColor.clear
     }
     
 
@@ -225,12 +215,10 @@ extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             image = selectedImage
-            //signUpView.setAwatar(image: selectedImage)
         }
         
         if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             image = originalImage
-            //signUpView.setAwatar(image: originalImage)
         }
         
         picker.dismiss(animated: true, completion: nil)

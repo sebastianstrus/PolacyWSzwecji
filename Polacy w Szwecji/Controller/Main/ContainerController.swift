@@ -184,7 +184,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
 
 
         // set initial view
-        updateView(tag: 0)
+        updateView(tag: 1)
         
         
         view.addSubview(blockerCoverView)

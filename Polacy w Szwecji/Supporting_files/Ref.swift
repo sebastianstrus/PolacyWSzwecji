@@ -35,6 +35,10 @@ let IDENTIFIER_CELL_USERS = "UserTableViewCell"
 let IDENTIFIER_CELL_MESSAGES = "MessageTableViewCell"
 let IDENTIFIER_CELL_INBOX_USERS = "UserInboxTableViewCell"
 
+let TAG_USERNAME_TF = 101
+let TAG_EMAIL_TF = 102
+let TAG_STATUS_TF = 103
+
 class Ref {
     let databaseRoot: DatabaseReference = Database.database().reference()
     
