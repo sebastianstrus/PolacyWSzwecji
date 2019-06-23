@@ -8,13 +8,25 @@
 
 import UIKit
 
+protocol OpenPickerDelegate {
+    func openPicker()
+}
+
+protocol ImageCellDelegate {
+    func updateImage(image: UIImage)
+}
+
 class AccountImageCell: UITableViewCell {
     
+    var pickerAction: (() -> Void)?
+    var openPickerDelegate: OpenPickerDelegate?
+    
     let profileIV: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "profile0"))
+        let iv = UIImageView()
         iv.layer.cornerRadius = 40
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     
@@ -38,7 +50,18 @@ class AccountImageCell: UITableViewCell {
                             height: 80)
         profileIV.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         profileIV.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(presentPicker))
+        profileIV.addGestureRecognizer(tapGesture)
     }
     
-    
+    @objc private func presentPicker() {
+        print("run selector")
+        openPickerDelegate?.openPicker()
+        
+        
+        
+        
+        //imageCellDelegate?.updateImage(image: UIImage)
+    }
 }

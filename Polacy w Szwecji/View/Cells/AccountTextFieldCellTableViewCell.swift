@@ -27,6 +27,8 @@ class AccountTextFieldCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
     func setup() {
         addSubview(textField)
         textField.setAnchor(top: topAnchor,
@@ -38,6 +40,17 @@ class AccountTextFieldCell: UITableViewCell {
                             paddingBottom: 0,
                             paddingRight: 20)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
     
     
 }

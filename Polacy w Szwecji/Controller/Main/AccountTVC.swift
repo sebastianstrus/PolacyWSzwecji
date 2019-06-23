@@ -8,10 +8,57 @@
 
 import UIKit
 
-class AccountTVC: UITableViewController {
+class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        switch textField.tag {
+        case 101:
+            if let text = textField.text as NSString? {
+                let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+                user?.username = txtAfterUpdate
+            }
+        case 102:
+            if let text = textField.text as NSString? {
+                let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+                user?.email = txtAfterUpdate
+            }
+        case 103:
+            if let text = textField.text as NSString? {
+                let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+                user?.status = txtAfterUpdate
+            }
+        default:
+            print("Unexpected case. Incorrect tag.")
+        }
+        
+        if let text = textField.text as NSString? {
+            let txtAfterUpdate = text.replacingCharacters(in: range, with: string)
+            print(txtAfterUpdate)
+        }
+        return true
+    }
+    
+    // MARK: - OpenPickerDelegate methods
+    func openPicker() {
+        print("openPicker")
+        handlePicker()
+    }
+    
+    private func handlePicker() {
+        let picker = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.allowsEditing = true
+        picker.delegate = self
+        self.present(picker, animated: true, completion: nil)
+    }
 
     var sideMenuDelegate:SideMenuDelegate?
     var user: User?
+    private var image: UIImage? = nil {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     
     override func viewDidLoad() {
@@ -64,8 +111,13 @@ class AccountTVC: UITableViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AccountImageTableViewCell", for: indexPath) as! AccountImageCell
+            cell.openPickerDelegate = self
             if let aUser = user {
-                cell.profileIV.loadImage(aUser.profileImageUrl)
+                if let aImage = self.image {
+                    cell.profileIV.image = aImage
+                } else {
+                    cell.profileIV.loadImage(aUser.profileImageUrl)
+                }
             }
             return cell
         case 1:
@@ -73,14 +125,20 @@ class AccountTVC: UITableViewController {
             switch indexPath.row {
             case 0:
                 if let aUser = user {
+                    cell.textField.delegate = self
+                    cell.textField.tag = 101
                     cell.textField.text = aUser.username
                 }
             case 1:
                 if let aUser = user {
+                    cell.textField.delegate = self
+                    cell.textField.tag = 102
                     cell.textField.text = aUser.email
                 }
             case 2:
                 if let aUser = user {
+                    cell.textField.delegate = self
+                    cell.textField.tag = 103
                     cell.textField.text = aUser.status
                 }
             default:
@@ -140,7 +198,9 @@ class AccountTVC: UITableViewController {
     }
     
     @objc private func handleSave() {
-        print("handleSave")
+        let tempUser = user
+        tempUser?.email = "raz dwa trzy"
+        user = tempUser
     }
     
     @objc private func requestToggleMenu() {
@@ -157,4 +217,24 @@ class AccountTVC: UITableViewController {
     
 
 
+}
+
+
+extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            image = selectedImage
+            //signUpView.setAwatar(image: selectedImage)
+        }
+        
+        if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            image = originalImage
+            //signUpView.setAwatar(image: originalImage)
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
