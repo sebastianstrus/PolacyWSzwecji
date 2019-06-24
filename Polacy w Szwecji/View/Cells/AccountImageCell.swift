@@ -12,10 +12,6 @@ protocol OpenPickerDelegate {
     func openPicker()
 }
 
-protocol ImageCellDelegate {
-    func updateImage(image: UIImage)
-}
-
 class AccountImageCell: UITableViewCell {
     
     var pickerAction: (() -> Void)?
@@ -63,6 +59,5 @@ class AccountImageCell: UITableViewCell {
         
         
         
-        //imageCellDelegate?.updateImage(image: UIImage)
     }
 }

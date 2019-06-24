@@ -78,4 +78,8 @@ class SideButtonView: UIView {
         imageView.layer.cornerRadius = 22
         imageView.clipsToBounds = true
     }
+    
+    func setImage(_ image: UIImage) {
+        imageView.image = image
+    }
 }

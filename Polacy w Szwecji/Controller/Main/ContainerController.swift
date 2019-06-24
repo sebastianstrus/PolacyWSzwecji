@@ -10,7 +10,12 @@ import UIKit
 import FirebaseAuth
 
 
-class ContainerController: UIViewController, SideMenuDelegate {
+class ContainerController: UIViewController, SideMenuDelegate, ProfileImageDelegate {
+    
+    func updateImage(image: UIImage) {
+        buttonView0.setImage(image)
+    }
+    
 
     func shouldToggleMenu() {
         toggleMenu()
@@ -34,6 +39,7 @@ class ContainerController: UIViewController, SideMenuDelegate {
     lazy var accountController: UINavigationController = {
         let viewController = AccountTVC(style: .grouped)
         viewController.sideMenuDelegate = self
+        viewController.profileImageDelegate = self
         let navController = UINavigationController(rootViewController: viewController)
         self.addViewControllerAsChildViewController(childViewController: navController)
         return navController

@@ -9,7 +9,13 @@
 import UIKit
 import ProgressHUD
 
+protocol ProfileImageDelegate {
+    func updateImage(image: UIImage)
+}
+
 class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate {
+    
+    var profileImageDelegate:ProfileImageDelegate!
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch textField.tag {
@@ -203,11 +209,13 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
                                         StorageService.safePhotoProfile(image: img,
                                                                         uid: Api.User.currentUserId,
                                                                         onSuccess: {
-                                                                           ProgressHUD.showSuccess()
+                                                                            self.profileImageDelegate?.updateImage(image: self.image!)
+                                                                            ProgressHUD.showSuccess()
                                         }) { (errorMessage) in
                                             ProgressHUD.showError(errorMessage)
                                         }
                                     } else {
+                                        self.profileImageDelegate?.updateImage(image: self.image!)
                                         ProgressHUD.showSuccess()
                                     }
         },
