@@ -61,6 +61,7 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        handleKeyboard()
         //hideKeyboardWhenTappedAround()
         setupNavigationBar()
         setupTableView()
@@ -281,6 +282,13 @@ extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         present(alert, animated: true)
     }
     
-
     
+    
+    func handleKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    override func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

@@ -33,7 +33,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     
     var bottomContainer: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.blueFB
+        view.backgroundColor = UIColor.lightRed
         return view
     }()
     
@@ -237,7 +237,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     }
     
     func setupView() {
-        view.backgroundColor = UIColor.blueFB
+        view.backgroundColor = UIColor.lightRed
         
         view.addSubview(bottomContainer)
         bottomContainer.translatesAutoresizingMaskIntoConstraints = false
