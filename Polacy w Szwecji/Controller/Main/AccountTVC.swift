@@ -61,6 +61,7 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //hideKeyboardWhenTappedAround()
         setupNavigationBar()
         setupTableView()
         observeData()
@@ -279,4 +280,7 @@ extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         alert.addAction(cancelAction)
         present(alert, animated: true)
     }
+    
+
+    
 }

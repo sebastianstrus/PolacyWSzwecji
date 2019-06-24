@@ -60,6 +60,7 @@ class SideButtonView: UIView {
     
     private let imageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "menu_icon"))
+        iv.contentMode = .scaleAspectFill
         iv.tintColor = UIColor.sideMenuTint
         return iv
     }()
