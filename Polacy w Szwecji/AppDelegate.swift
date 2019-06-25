@@ -17,9 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
 
     let gcmMessageIDKey = "gcm.message_id"
-    static let isToken: String? = {
-        return InstanceID.instanceID().token()
-    }()
+    static var isToken: String? = nil
+    
+//    static let isToken: String? = {
+//        return InstanceID.instanceID().token(withAuthorizedEntity: <#String#>)
+//    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -27,6 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         configureInitialVC()
         
         // push notificaions
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instange ID: \(error)")
+            } else if let result = result {
+                print("Remote instance ID token: \(result.token)")
+                AppDelegate.isToken = result.token
+            }
+        }
+        
         if #available(iOS 10.0, *) {
             let current = UNUserNotificationCenter.current()
             let options: UNAuthorizationOptions = [.sound, .badge, .alert]
@@ -57,10 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func configureInitialVC() {
         let userExists = Auth.auth().currentUser != nil
         
-        // 1. If user is logged in:
+        // 1. If the user is logged in:
         let containerController = ContainerController()
         
-        // 2. If user is not logged in:
+        // 2. If the user is not logged in:
         let welcomeNavController = UINavigationController(rootViewController: WelcomeController())
         welcomeNavController.navigationBar.isHidden = true
         
