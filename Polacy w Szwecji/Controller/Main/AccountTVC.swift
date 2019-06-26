@@ -286,6 +286,7 @@ extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
     
     func handleKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     override func dismissKeyboard() {
