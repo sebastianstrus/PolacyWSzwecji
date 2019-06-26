@@ -104,6 +104,7 @@
 		7D3CFE8322B9A581001796BE /* InboxApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxApi.swift; sourceTree = "<group>"; };
 		7D49AE3722BFC3610053B9E9 /* AccountImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImageCell.swift; sourceTree = "<group>"; };
 		7D49AE3922BFED9C0053B9E9 /* AccountTextFieldCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTextFieldCellTableViewCell.swift; sourceTree = "<group>"; };
+		7D49AE3B22C2CD990053B9E9 /* Polacy w Szwecji.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Polacy w Szwecji.entitlements"; sourceTree = "<group>"; };
 		7D54666E22A85F140001DDBF /* SideButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideButtonView.swift; sourceTree = "<group>"; };
 		7D54667022A92A8F0001DDBF /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		7D54667222A92C270001DDBF /* vademecum2012.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = vademecum2012.pdf; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 		7D348E8722A1DF5900F40530 /* Polacy w Szwecji */ = {
 			isa = PBXGroup;
 			children = (
+				7D49AE3B22C2CD990053B9E9 /* Polacy w Szwecji.entitlements */,
 				7D348E8822A1DF5900F40530 /* AppDelegate.swift */,
 				7D348E9422A1DF5B00F40530 /* Info.plist */,
 				7D08C67122B0637F00C8DCD8 /* GoogleService-Info.plist */,
@@ -394,6 +396,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -664,6 +669,7 @@
 			baseConfigurationReference = DDEBB48392E34822D2D3AD54 /* Pods-Polacy w Szwecji.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Polacy w Szwecji/Polacy w Szwecji.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4SL936GBZY;
 				INFOPLIST_FILE = "Polacy w Szwecji/Info.plist";
@@ -683,6 +689,7 @@
 			baseConfigurationReference = 76837F098D9D5402B3E049AA /* Pods-Polacy w Szwecji.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Polacy w Szwecji/Polacy w Szwecji.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4SL936GBZY;
 				INFOPLIST_FILE = "Polacy w Szwecji/Info.plist";
