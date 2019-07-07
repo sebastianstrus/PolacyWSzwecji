@@ -56,7 +56,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         let button = UIButton()
         button.setImage(UIImage(named: "attachment_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.imageView?.tintColor = UIColor.white
-        button.addTarget(self, action: #selector(attachmentPressed), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(attachmentPressed), for: .touchUpInside)
         return button
     }()
     
@@ -64,7 +64,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         let button = UIButton()
         button.setImage(UIImage(named: "mic_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.imageView?.tintColor = UIColor.white
-        button.addTarget(self, action: #selector(micPressed), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(micPressed), for: .touchUpInside)
         return button
     }()
     
@@ -84,7 +84,7 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupPicker()
         setupNavigationBar()
         setupView()
@@ -237,6 +237,10 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     
     func setupView() {
         view.backgroundColor = UIColor.lightRed
+        
+        // workaround for iOS 13, TODO: move to buttons,
+        attachmentButton.addTarget(self, action: #selector(attachmentPressed), for: .touchUpInside)
+        micButton.addTarget(self, action: #selector(micPressed), for: .touchUpInside)
         
         view.addSubview(bottomContainer)
         bottomContainer.translatesAutoresizingMaskIntoConstraints = false

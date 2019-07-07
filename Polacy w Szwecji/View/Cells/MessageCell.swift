@@ -91,7 +91,7 @@ class MessageCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        //selectionStyle = .none
+        selectionStyle = .none
         addSubview(profileImage)
         profileImage.setAnchor(top: nil,
                                leading: leadingAnchor,
