@@ -34,7 +34,6 @@ class UserInboxCell : UITableViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .left
         label.text = "My title"
-        label.textColor = .black
         return label
     }()
     

@@ -33,8 +33,7 @@ class UserChatCell : UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)//TODO not bold
         label.textAlignment = .left
-        label.text = "My title"
-        label.textColor = .black
+        label.text = "Name"
         return label
     }()
     
@@ -42,7 +41,7 @@ class UserChatCell : UITableViewCell {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textAlignment = .left
-        label.text = "Mozemy pogadac"
+        label.text = "Let's talk."
         label.textColor = UIColor.lightGray
         return label
     }()
