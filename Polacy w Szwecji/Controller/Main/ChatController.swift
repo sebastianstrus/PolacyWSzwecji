@@ -208,7 +208,6 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
         let spacing = CharacterSet.whitespacesAndNewlines
         if !textView.text.trimmingCharacters(in: spacing).isEmpty {
             let text = textView.text.trimmingCharacters(in: spacing)
-            print(text)
             sendButton.isEnabled = true
             sendButton.setTitleColor(.white, for: .normal)
             placeHolderLabel.isHidden = true

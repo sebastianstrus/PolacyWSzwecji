@@ -88,11 +88,15 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
         searchBar.barTintColor = UIColor.white
         definesPresentationContext = true// allows to present correct even cearched users
         
-        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
-            if let backgroundview = textfield.subviews.first {
-                backgroundview.backgroundColor = UIColor.white
-                backgroundview.layer.cornerRadius = 10;
-                backgroundview.clipsToBounds = true;
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.backgroundColor = UIColor.white
+        } else {
+            if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+                if let backgroundview = textfield.subviews.first {
+                    backgroundview.backgroundColor = UIColor.white
+                    backgroundview.layer.cornerRadius = 10;
+                    backgroundview.clipsToBounds = true;
+                }
             }
         }
         navigationItem.hidesSearchBarWhenScrolling = false
