@@ -28,7 +28,6 @@ class BaseAuthController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("touchesEnded")
         self.view.endEditing(true)
     }
     

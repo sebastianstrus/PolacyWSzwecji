@@ -33,13 +33,11 @@ class InboxTVC: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsInSection: \(inboxArray.count)")
         return inboxArray.count
         
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt")
         let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_INBOX_USERS, for: indexPath) as! UserInboxCell
         let inbox = inboxArray[indexPath.row]
         cell.configureCell(uid: Api.User.currentUserId, inbox: inbox)
@@ -60,7 +58,6 @@ class InboxTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("heightForRowAt")
         return 94
     }
     
@@ -68,7 +65,6 @@ class InboxTVC: UITableViewController {
     
     // MARK: - Private methods
     @objc private func requestToggleMenu() {
-        print("requestToggleMenu")
         sideMenuDelegate?.shouldToggleMenu()
     }
     
@@ -87,9 +83,7 @@ class InboxTVC: UITableViewController {
     
     
     private func observeInbox() {
-        print("observeInbox")
         Api.Inbox.lastMessages(uid: Api.User.currentUserId) { (inbox) in
-            print("count: \(inbox)")
             if !self.inboxArray.contains(where: {$0.user.uid == inbox.user.uid}) {
                 self.inboxArray.append(inbox)
                 self.sortedInbox()

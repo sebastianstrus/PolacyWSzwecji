@@ -55,8 +55,6 @@ class PDFViewController: UIViewController {
     }
     
     @objc private func handleLogout() {
-        print("handleLogout")
-        
         Api.User.logOut()
         
     }

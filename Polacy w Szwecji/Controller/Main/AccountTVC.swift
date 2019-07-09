@@ -102,8 +102,6 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt")
-        
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_ACCOUNT_IMAGE, for: indexPath) as! AccountImageCell
@@ -203,7 +201,6 @@ class AccountTVC: UITableViewController, OpenPickerDelegate, UITextFieldDelegate
         if let status = user?.status, !status.isEmpty {
             dict["status"] = status
         }
-        print("saveUserProfile")
         Api.User.saveUserProfile(dict: dict,
                                  onSuccess: {
                                     print("onSuccess, show HUD")

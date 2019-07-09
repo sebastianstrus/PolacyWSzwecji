@@ -53,11 +53,7 @@ class AccountImageCell: UITableViewCell {
     }
     
     @objc private func presentPicker() {
-        print("run selector")
         openPickerDelegate?.openPicker()
-        
-        
-        
         
     }
 }

@@ -280,10 +280,7 @@ class ContainerController: UIViewController, SideMenuDelegate, ProfileImageDeleg
     }
     
     @objc private func handleLogout() {
-        print("handleLogout")
-        
         Api.User.logOut()
-        
     }
     
     

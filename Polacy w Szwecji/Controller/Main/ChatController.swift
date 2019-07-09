@@ -94,15 +94,12 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     }
     
     func observeMessages() {
-        print("observeMessages")
         Api.Message.retriveMessage(from: Api.User.currentUserId, to: partnerId) { (message) in
-            print("message1")
             print(message.uid)
             self.messages.append(message)
             self.sortMessages()
         }
         Api.Message.retriveMessage(from: partnerId, to: Api.User.currentUserId) { (message) in
-            print("message2")
             print(message.uid)
             self.messages.append(message)
             self.sortMessages()

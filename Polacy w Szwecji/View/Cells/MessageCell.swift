@@ -197,14 +197,12 @@ class MessageCell : UITableViewCell {
     }
     
     @objc func playTapped() {
-        print("playTapped")
         handlePlay()
     }
     
     
     var observation: Any? = nil
     func handlePlay() {
-        print("handlePlay")
         let videoUrl = message.videoUrl
         if videoUrl.isEmpty {
             return
@@ -244,13 +242,10 @@ class MessageCell : UITableViewCell {
         self.message = message
         let text = message.text
         if !text.isEmpty {
-            print("Not empty")
             textMessageLabel.isHidden = false
             textMessageLabel.text = message.text
             
             let widthValue = text.estimateFrameForText(text).width + 40
-            print("widthValue: \(widthValue)")
-            
             if widthValue < 100 {
                 bubbleWidthConstraint.constant = 100
             } else {
@@ -258,7 +253,6 @@ class MessageCell : UITableViewCell {
             }
             dateLabel.textColor = UIColor.lightGray
         } else {
-            print("Is empty")
             photoMessage.isHidden = false
             photoMessage.loadImage(message.imageUrl)
             bubbleView.layer.borderColor = UIColor.clear.cgColor

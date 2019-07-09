@@ -19,9 +19,17 @@ class StorageService {
         let ref = Ref().storageSpecificVideoMessage(id: id)
 
         // temporary iOS 13 workaround:
+        let finalUrl: URL!
         let urlStringTochange = url.absoluteString
+        print("urlStringTochange: \(urlStringTochange)")
         let changedString = urlStringTochange.replacingOccurrences(of: "Application", with: "PluginKitPlugin", options: .literal, range: nil)
-        ref.putFile(from: /*url*/URL(string: changedString)!, metadata: nil) { (metadada, error) in
+        if #available(iOS 13.0, *) {
+            finalUrl = URL(string: changedString)!
+        } else {
+            finalUrl = url
+        }
+        
+        ref.putFile(from: /*url*/finalUrl, metadata: nil) { (metadada, error) in
             if error != nil {
                 onError(error!.localizedDescription)
             }
@@ -117,7 +125,6 @@ class StorageService {
                     
                     Ref().databaseSpecificUser(uid: uid).updateChildValues([PROFILE_IMAGE_URL: metaImageUrl], withCompletionBlock: { (error, ref) in
                         if error == nil {
-                            print("Done")
                             onSuccess()
                         } else {
                             onError(error!.localizedDescription)
@@ -161,7 +168,6 @@ class StorageService {
                     
                     Ref().databaseSpecificUser(uid: uid).updateChildValues(dictTemp, withCompletionBlock: { (error, ref) in
                         if error == nil {
-                            print("Done")
                             onSuccess()
                         } else {
                             onError(error!.localizedDescription)

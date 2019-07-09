@@ -37,7 +37,6 @@ class SignInController: BaseAuthController {
         self.view.endEditing(true)
         validateTextFields()
         signIn(onSuccess: {
-            print("Sign in ok! SWITCH VIEW!!!")
             (UIApplication.shared.delegate as! AppDelegate).configureInitialVC()
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)
@@ -58,7 +57,6 @@ class SignInController: BaseAuthController {
     
     
     private  func cancelToSignUp() {
-        print("handleSignUp")
         navigationController?.customPop()
     }
     

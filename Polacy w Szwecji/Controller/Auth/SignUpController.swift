@@ -55,7 +55,6 @@ class SignUpController: BaseAuthController {
         self.view.endEditing(true)
         validateTextFields()
         signUp(onSuccess: {
-            print("Sign up ok! SWITCH VIEW!!!")
             (UIApplication.shared.delegate as! AppDelegate).configureInitialVC()
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)
