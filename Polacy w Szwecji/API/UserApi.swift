@@ -32,7 +32,7 @@ class UserApi {
                     EMAIL: authData.user.email!,
                     USERNAME: username,
                     PROFILE_IMAGE_URL: "",
-                    STATUS: "Welcome to ”Polacy w Szwecji”"
+                    STATUS: "Welcome to ”Poles in Sweden”"
                 ]
                 
                 guard let imageSelected = image else {

@@ -39,12 +39,14 @@ class Message {
         let to = dict["to"] as? String,
         let date = dict["date"] as? Double else { return nil }
         
-        let text = (dict["text"] as? String) == nil ? "" : (dict["text"]! as! String)  // ?? ""
+        let text = (dict["text"] as? String) == nil ? "" : (dict["text"]! as! String)
         let imageUrl = (dict["imageUrl"] as? String) == nil ? "" : (dict["imageUrl"]! as! String)
         let height = (dict["height"] as? Double) == nil ? 0 : (dict["height"]! as! Double)
         let width = (dict["width"] as? Double) == nil ? 0 : (dict["width"]! as! Double)
         let videoUrl = (dict["videoUrl"] as? String) == nil ? "" : (dict["videoUrl"]! as! String)
 
+        
+        
         return Message(uid: keyId,
                        from: from,
                        to: to,

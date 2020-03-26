@@ -118,12 +118,6 @@ extension SignUpController: UIImagePickerControllerDelegate, UINavigationControl
             image = selectedImage
             signUpView.setAwatar(image: selectedImage)
         }
-        
-        if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            image = originalImage
-            signUpView.setAwatar(image: originalImage)
-        }
-        
         picker.dismiss(animated: true, completion: nil)
     }
     

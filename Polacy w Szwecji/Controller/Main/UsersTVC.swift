@@ -104,7 +104,7 @@ class UsersTVC: UITableViewController, UISearchControllerDelegate, UISearchBarDe
     }
     
     private func setupNavigationBar() {
-        navigationItem.title = "People"
+        navigationItem.title = "Users"
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = UIColor.lightRed
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]

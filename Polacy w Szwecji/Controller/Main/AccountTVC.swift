@@ -242,9 +242,6 @@ extension AccountTVC: UIImagePickerControllerDelegate, UINavigationControllerDel
         if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             image = selectedImage
         }
-        if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            image = originalImage
-        }
         picker.dismiss(animated: true, completion: nil)
     }
     

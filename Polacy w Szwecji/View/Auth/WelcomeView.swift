@@ -45,7 +45,7 @@ class WelcomeView: UIView {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        let attributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: "POLACY\nW SZWECJI", attributes: [NSAttributedString.Key.font: AppFonts.TITLE_FONT!, .foregroundColor: UIColor.white]))
+        let attributedString = NSMutableAttributedString(attributedString: NSAttributedString(string: "POLES\nIN SWEDEN", attributes: [NSAttributedString.Key.font: AppFonts.TITLE_FONT!, .foregroundColor: UIColor.white]))
         label.attributedText = attributedString
         label.numberOfLines = 0
         label.textAlignment = NSTextAlignment.center
