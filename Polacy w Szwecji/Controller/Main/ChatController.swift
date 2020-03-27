@@ -155,6 +155,8 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     // MARK: - UIImagePickerControllerDelegate methods
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let videoUrl = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
+            print("TEST555")
+            print(videoUrl)
             handleVideoSelectedForUrl(videoUrl)
         } else {
             handleImageSelectedForInfo(info)
@@ -163,11 +165,16 @@ class ChatController: UIViewController, UITextViewDelegate, UIImagePickerControl
     
     func handleVideoSelectedForUrl(_ url: URL) {
         // save video data
+        print("TEST777")
+        print(url)
+        //  fileURI = fileURI.indexOf('file://')==0?fileURI:'file://'+fileURI;
         let videoName = NSUUID().uuidString
         StorageService.saveVideoMessage(url: url,
                                         id: videoName,
                                         onSuccess: { (anyValue) in
                                             if let dict = anyValue as? [String: Any] {
+                                                print("TEST777")
+                                                print(dict)
                                                 self.sendToFirebase(dict: dict)
                                             }
         }) { (errorMessage) in

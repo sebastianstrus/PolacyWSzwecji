@@ -204,6 +204,7 @@ class MessageCell : UITableViewCell {
     var observation: Any? = nil
     func handlePlay() {
         let videoUrl = message.videoUrl
+        print(videoUrl)
         if videoUrl.isEmpty {
             return
         }

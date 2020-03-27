@@ -18,10 +18,10 @@ class StorageService {
     static func saveVideoMessage(url: URL, id: String, onSuccess: @escaping(_ value: Any) -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         let ref = Ref().storageSpecificVideoMessage(id: id)
 
-        ref.putFile(from: url, metadata: nil) { (metadada, error) in
+        //ref.putFile(from: url, metadata: nil) { (metadada, error) in
             
         // temporary iOS 13 workaround:
-        /*let finalUrl: URL!
+        let finalUrl: URL!
         let urlStringTochange = url.absoluteString
         print("urlStringTochange: \(urlStringTochange)")
         let changedString = urlStringTochange.replacingOccurrences(of: "Application", with: "PluginKitPlugin", options: .literal, range: nil)
@@ -31,7 +31,7 @@ class StorageService {
             finalUrl = url
         }
         
-        ref.putFile(from: /*url*/finalUrl, metadata: nil) { (metadada, error) in*/
+        ref.putFile(from: /*url*/finalUrl, metadata: nil) { (metadada, error) in
             if error != nil {
                 onError(error!.localizedDescription)
             }

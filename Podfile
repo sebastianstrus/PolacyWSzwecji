@@ -13,4 +13,5 @@ target 'Polacy w Szwecji' do
   pod 'Firebase/Messaging'
   pod 'ProgressHUD'
   pod 'SDWebImage'
+  pod 'FBSDKLoginKit'
 end
