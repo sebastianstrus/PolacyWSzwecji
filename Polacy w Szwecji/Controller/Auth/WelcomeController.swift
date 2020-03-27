@@ -10,8 +10,9 @@ import UIKit
 import FBSDKLoginKit
 import ProgressHUD
 import Firebase
+import GoogleSignIn
 
-class WelcomeController: BaseAuthController {
+class WelcomeController: BaseAuthController, GIDSignInDelegate, GIDSignInUIDelegate {
 
     fileprivate var welcomeView: WelcomeView!
     
@@ -19,6 +20,9 @@ class WelcomeController: BaseAuthController {
         super.viewDidLoad()
 
         setupView()
+        
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.uiDelegate = self
     }
     
     private func setupView() {
@@ -51,41 +55,63 @@ class WelcomeController: BaseAuthController {
                     ProgressHUD.showError(error.localizedDescription)
                     return
                 }
-                
-                
                 if let authData = result {
-                    print(authData)
-                    print(authData.user.email)
-                    let dict: Dictionary<String, Any> = [
-                        UID: authData.user.uid,
-                        EMAIL: authData.user.email!,
-                        USERNAME: authData.user.displayName,
-                        PROFILE_IMAGE_URL: authData.user.photoURL?.absoluteString,
-                        STATUS: "Welcome to ”Poles in Sweden”"
-                    ]
-                    Ref().databaseSpecificUser(uid: authData.user.uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
-                        if error == nil {
-                            // TODO: set the user is online
-                            (UIApplication.shared.delegate as! AppDelegate).configureInitialVC()
-                        } else {
-                            ProgressHUD.showError(error!.localizedDescription)
-                        }
-                    })
-                    
+                    self.handleFbGoogleLogic(authData: authData)
                 }
             }
-             
-            
         }
     }
     
     private func handleGoogle() {
-        dismiss(animated: true)
+        GIDSignIn.sharedInstance()?.signIn()
     }
     
     private func handleCreateAccount() {
         let signUpController = SignUpController()
         navigationController?.customPush(vc: signUpController)
+    }
+    
+    
+    // MARK: - GIDSignInDelegate methods
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error != nil {
+            return
+        }
+        
+        guard let authentication = user.authentication  else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        Auth.auth().signInAndRetrieveData(with: credential) { (result, error) in
+            if let error = error {
+                ProgressHUD.showError(error.localizedDescription)
+                return
+            }
+            
+            if let authData = result {
+                self.handleFbGoogleLogic(authData: authData)
+            }
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        ProgressHUD.showError(error.localizedDescription)
+    }
+    
+    func handleFbGoogleLogic(authData: AuthDataResult) {
+        let dict: Dictionary<String, Any> = [
+                               UID: authData.user.uid,
+                               EMAIL: authData.user.email!,
+                               USERNAME: authData.user.displayName!,
+                               PROFILE_IMAGE_URL: (authData.user.photoURL == nil) ? "" : authData.user.photoURL!.absoluteString,
+                               STATUS: "Welcome to ”Poles in Sweden”"
+                           ]
+                           Ref().databaseSpecificUser(uid: authData.user.uid).updateChildValues(dict, withCompletionBlock: { (error, ref) in
+                               if error == nil {
+                                   // TODO: set the user is online
+                                   (UIApplication.shared.delegate as! AppDelegate).configureInitialVC()
+                               } else {
+                                   ProgressHUD.showError(error!.localizedDescription)
+                               }
+                           })
     }
 }
 

@@ -14,4 +14,5 @@ target 'Polacy w Szwecji' do
   pod 'ProgressHUD'
   pod 'SDWebImage'
   pod 'FBSDKLoginKit'
+  pod 'GoogleSignIn'
 end

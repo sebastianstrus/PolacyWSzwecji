@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import Firebase
 import ProgressHUD
-//import FirebaseStorage
+import GoogleSignIn
 
 typealias UserCompletion = (User) -> Void
 
@@ -99,6 +99,17 @@ class UserApi {
     // onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void
     func logOut() {
         do {
+            // TODO: set user status to offline
+            if let providerData = Auth.auth().currentUser?.providerData {
+                let userInfo = providerData[0]
+                switch userInfo.providerID {
+                case "google.com":
+                    GIDSignIn.sharedInstance()?.signOut()
+                default:
+                    break
+                }
+            }
+            
             try Auth.auth().signOut()
         } catch {
             ProgressHUD.showError(error.localizedDescription)
