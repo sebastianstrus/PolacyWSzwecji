@@ -40,9 +40,9 @@ class PDFViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = UIColor.lightRed
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         
-        let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
-        logoutBtn.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = logoutBtn
+//        let logoutBtn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+//        logoutBtn.tintColor = UIColor.white
+//        navigationItem.rightBarButtonItem = logoutBtn
         
         let menuBtn = UIBarButtonItem(image: UIImage(named: "menu_icon")?.withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(requestToggleMenu))
         menuBtn.tintColor = UIColor.white
@@ -54,8 +54,8 @@ class PDFViewController: UIViewController {
         sideMenuDelegate?.shouldToggleMenu()
     }
     
-    @objc private func handleLogout() {
-        Api.User.logOut()
-        
-    }
+//    @objc private func handleLogout() {
+//        Api.User.logOut()
+//        
+//    }
 }
