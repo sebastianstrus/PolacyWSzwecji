@@ -36,14 +36,14 @@ class WelcomeController: BaseAuthController, GIDSignInDelegate, GIDSignInUIDeleg
     
     private func handleFB() {
         print("handleFB")
-        let fbLoginManager = LoginManager()
-        fbLoginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) in
+        let fbLoginManager = FBSDKLoginManager()
+        fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
             if let error = error {
                 ProgressHUD.showError(error.localizedDescription)
                 return
             }
             
-            guard let accessToken = AccessToken.current else {
+            guard let accessToken = FBSDKAccessToken.current() else {
                 //TODO: investigate why AccessToken.current == nil
                 ProgressHUD.showError("Failed to get token")
                 return

@@ -13,6 +13,10 @@ target 'Polacy w Szwecji' do
   pod 'Firebase/Messaging'
   pod 'ProgressHUD'
   pod 'SDWebImage'
-  pod 'FBSDKLoginKit'
+  #pod 'FBSDKLoginKit'
+  pod 'FBSDKCoreKit', '4.38'
+  pod 'FBSDKLoginKit', '4.38'
+  pod 'FBSDKShareKit', '4.38'
+  pod 'FBSDKCoreKit'
   pod 'GoogleSignIn'
 end

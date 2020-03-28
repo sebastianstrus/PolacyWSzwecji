@@ -1,12 +1,16 @@
 PODS:
-  - FBSDKCoreKit (5.2.1):
-    - FBSDKCoreKit/Basics (= 5.2.1)
-    - FBSDKCoreKit/Core (= 5.2.1)
-  - FBSDKCoreKit/Basics (5.2.1)
-  - FBSDKCoreKit/Core (5.2.1):
-    - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.2.1):
-    - FBSDKCoreKit (~> 5.0)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FBSDKCoreKit (4.38.0):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.38.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.38.0):
+    - FBSDKCoreKit
   - Firebase/Auth (6.4.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.2.0)
@@ -115,7 +119,10 @@ PODS:
   - SDWebImage/Core (5.0.6)
 
 DEPENDENCIES:
-  - FBSDKLoginKit
+  - FBSDKCoreKit
+  - FBSDKCoreKit (= 4.38)
+  - FBSDKLoginKit (= 4.38)
+  - FBSDKShareKit (= 4.38)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -127,8 +134,10 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Bolts
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - FBSDKShareKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -151,8 +160,10 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
-  FBSDKCoreKit: e1ab8d86f5eea2d7aa6ab12acca3e1d2dcb11983
-  FBSDKLoginKit: 6e20e44775ddf4b159a8ca676834325e13d12221
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FBSDKCoreKit: 2ab7fdbf600dc6b628ba7a49aa29d357a7b4c74e
+  FBSDKLoginKit: 634fa27e72e33620eb6389253337342c03d4a407
+  FBSDKShareKit: 00290e3db446eed603ff80ac629dcc5e80cf8b74
   Firebase: 9445469655a98e9010737f4bc4720e5bda465873
   FirebaseAnalytics: 69fe25866d2ec87c6f02d72c3c9a82bce9c065a0
   FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
@@ -174,6 +185,6 @@ SPEC CHECKSUMS:
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
 
-PODFILE CHECKSUM: 04d1f0a455eca2d7083cbd33bf8d43b5dfef5288
+PODFILE CHECKSUM: 8f324217e4527d3f8a4f4ef0907de4771727149a
 
 COCOAPODS: 1.7.2
