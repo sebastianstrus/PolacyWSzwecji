@@ -17,6 +17,5 @@ target 'Polacy w Szwecji' do
   pod 'FBSDKCoreKit', '4.38'
   pod 'FBSDKLoginKit', '4.38'
   pod 'FBSDKShareKit', '4.38'
-  pod 'FBSDKCoreKit'
   pod 'GoogleSignIn'
 end
